@@ -10,6 +10,7 @@ import {
   type OrdinanceStatus,
   type PlaceKind,
 } from "@/lib/place-directory";
+import { ordinanceReminder, reminderColor, reminderLabel } from "@/lib/reminder";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -47,24 +48,24 @@ export function PlaceBrowser() {
 
   return (
     <div className="flex flex-col md:min-h-0 md:flex-1">
-      <div className="border-b border-[#d5dde5] px-4 py-4">
-        <h1 className="text-base font-semibold text-[#161b20]">
+      <div className="border-b border-border px-4 py-4">
+        <h1 className="text-base font-semibold text-foreground">
           Neighborhoods and municipalities
         </h1>
-        <p className="mt-1 text-sm leading-5 text-[#546e7a]">
+        <p className="mt-1 text-sm leading-5 text-muted-foreground">
           Pittsburgh is split into its official neighborhoods. The rest of
           Allegheny County is split into municipalities, which write the zoning.
           Click the map to drop a pin.
         </p>
-        <label className="mt-3 block text-xs font-medium text-[#546e7a]">
+        <label className="mt-3 block text-xs font-medium text-muted-foreground">
           Place
           <div className="relative mt-1">
-            <Search className="pointer-events-none absolute top-2 left-2.5 size-4 text-[#78909c]" />
+            <Search className="pointer-events-none absolute top-2 left-2.5 size-4 text-muted-foreground" />
             <Input
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               placeholder="Search a neighborhood or municipality"
-              className="bg-white pl-8"
+              className="bg-background pl-8"
             />
           </div>
         </label>
@@ -81,14 +82,14 @@ export function PlaceBrowser() {
             </Button>
           ))}
         </div>
-        <label className="mt-3 block text-xs font-medium text-[#546e7a]">
+        <label className="mt-3 block text-xs font-medium text-muted-foreground">
           Data-center zoning
           <select
             value={status}
             onChange={(event) =>
               setStatus(event.target.value as OrdinanceStatus | "all")
             }
-            className="mt-1 h-8 w-full rounded-lg border border-input bg-white px-2.5 text-sm"
+            className="mt-1 h-8 w-full rounded-none border border-input bg-black px-2.5 text-sm text-foreground"
           >
             {statuses.map((item) => (
               <option key={item.value} value={item.value}>
@@ -98,14 +99,14 @@ export function PlaceBrowser() {
           </select>
         </label>
       </div>
-      <div className="flex items-center justify-between px-4 py-2 text-xs text-[#546e7a]">
+      <div className="flex items-center justify-between px-4 py-2 text-xs text-muted-foreground">
         <span>
           {results.length} of {places.length}
         </span>
         {query || kind !== "all" || status !== "all" ? (
           <button
             type="button"
-            className="text-[#1565c0] hover:underline"
+            className="text-primary hover:underline"
             onClick={() => {
               setQuery("");
               setKind("all");
@@ -116,29 +117,45 @@ export function PlaceBrowser() {
           </button>
         ) : null}
       </div>
-      <ul className="border-t border-[#e6ebf0] md:min-h-0 md:flex-1 md:overflow-y-auto">
+      <ul className="border-t border-border md:min-h-0 md:flex-1 md:overflow-y-auto">
         {results.length === 0 ? (
-          <li className="px-4 py-8 text-sm text-[#546e7a]">
+          <li className="px-4 py-8 text-sm text-muted-foreground">
             No place matches that search.
           </li>
         ) : (
           results.map((place) => {
             const ordinance = getOrdinance(place.ordinanceKey);
             return (
-              <li key={place.slug} className="border-b border-[#eef2f5]">
+              <li key={place.slug} className="border-b border-border">
                 <Link
                   href={`/places/${place.slug}`}
-                  className="block px-4 py-3 hover:bg-[#f4f8fc] focus-visible:bg-[#f4f8fc] focus-visible:outline-none"
+                  className="block px-4 py-3 hover:bg-muted focus-visible:bg-muted focus-visible:outline-none"
                 >
-                  <span className="block font-medium text-[#161b20]">
+                  <span className="flex items-center gap-2 font-medium text-foreground">
+                    <span
+                      className="size-2.5 shrink-0"
+                      style={{
+                        backgroundColor: reminderColor(
+                          ordinanceReminder(
+                            ordinance.whereAllowed,
+                            ordinance.status,
+                          ).tone,
+                        ),
+                      }}
+                      aria-hidden="true"
+                    />
                     {place.name}
                   </span>
-                  <span className="mt-0.5 block text-sm text-[#546e7a]">
+                  <span className="mt-0.5 block text-sm text-muted-foreground">
                     {place.kind === "neighborhood"
                       ? "Pittsburgh neighborhood"
                       : place.municipality}
                   </span>
-                  <span className="mt-1 block text-xs font-medium text-[#334049]">
+                  <span className="mt-1 block text-xs font-medium text-foreground/90">
+                    {reminderLabel(
+                      ordinanceReminder(ordinance.whereAllowed, ordinance.status).tone,
+                    )}
+                    {" · "}
                     {statusLabel(ordinance.status)}
                   </span>
                 </Link>

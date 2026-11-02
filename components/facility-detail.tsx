@@ -10,19 +10,21 @@ import {
   markerPosition,
   stageLabel,
 } from "@/lib/facilities";
+import { newsFor } from "@/data/news";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export function FacilityDetail({ facility }: { facility: Facility }) {
   const position = markerPosition(facility);
   const companies = facility.companies.join(", ");
+  const news = newsFor(facility.slug);
 
   return (
     <article className="md:min-h-0 md:flex-1 md:overflow-y-auto">
-      <div className="border-b border-[#e6ebf0] px-4 py-3">
+      <div className="border-b border-border px-4 py-3">
         <Link
           href="/"
-          className="inline-flex items-center gap-1.5 text-sm font-medium text-[#1565c0] hover:underline"
+          className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
         >
           <ArrowLeft className="size-4" />
           All facilities
@@ -30,14 +32,14 @@ export function FacilityDetail({ facility }: { facility: Facility }) {
       </div>
       <div className="space-y-5 px-4 py-4">
         <header>
-          <p className="text-sm text-[#546e7a]">
-            <Link href="/" className="text-[#1565c0] hover:underline">
+          <p className="text-sm text-muted-foreground">
+            <Link href="/" className="text-primary hover:underline">
               Allegheny County
             </Link>
             <span aria-hidden="true"> / </span>
             <span>{facility.name}</span>
           </p>
-          <h1 className="mt-2 text-2xl font-semibold tracking-tight text-[#161b20]">
+          <h1 className="mt-2 text-xl font-medium text-foreground">
             {facility.name}
           </h1>
           <div className="mt-2 flex flex-wrap gap-1.5">
@@ -51,12 +53,12 @@ export function FacilityDetail({ facility }: { facility: Facility }) {
               <Badge variant="outline">Approximate location</Badge>
             ) : null}
           </div>
-          <p className="mt-3 text-sm leading-6 text-[#334049]">
+          <p className="mt-3 text-sm leading-6 text-foreground/90">
             {facility.summary}
           </p>
         </header>
 
-        <dl className="divide-y divide-[#e6ebf0] border-y border-[#e6ebf0] text-sm">
+        <dl className="divide-y divide-border border-y border-border text-sm">
           <Fact label="Location">
             {facility.municipality}, Allegheny County, Pennsylvania
           </Fact>
@@ -89,28 +91,28 @@ export function FacilityDetail({ facility }: { facility: Facility }) {
             Permit file
           </h2>
           {facility.permits.length === 0 ? (
-            <p className="mt-2 text-sm leading-6 text-[#546e7a]">
+            <p className="mt-2 text-sm leading-6 text-muted-foreground">
               No PA DEP permit rows are linked to this facility in the county
               extract from {DATA_AS_OF}.
             </p>
           ) : (
-            <ul className="mt-2 divide-y divide-[#eef2f5] border-t border-[#e6ebf0]">
+            <ul className="mt-2 divide-y divide-border border-t border-border">
               {facility.permits.map((permit) => (
                 <li
                   key={`${permit.authorization}-${permit.permitNumber}-${permit.category}`}
                   className="py-3"
                 >
                   <div className="flex items-start justify-between gap-3">
-                    <p className="text-sm font-medium text-[#161b20]">
+                    <p className="text-sm font-medium text-foreground">
                       {permit.authorization}
                     </p>
                     <PermitBadge status={permit.status} />
                   </div>
-                  <p className="mt-1 text-xs text-[#607d8b]">
+                  <p className="mt-1 text-xs text-muted-foreground">
                     {permit.category}
                     {permit.eFactsId ? ` · eFACTS ${permit.eFactsId}` : ""}
                   </p>
-                  <p className="mt-1 text-xs text-[#334049]">
+                  <p className="mt-1 text-xs text-foreground/90">
                     {permit.applicationType || "No application type"}
                     {" · "}
                     {permit.permitNumber || "No number"}
@@ -125,9 +127,39 @@ export function FacilityDetail({ facility }: { facility: Facility }) {
           )}
         </section>
 
+        <section aria-labelledby="news-heading">
+          <h2 id="news-heading" className="text-base font-semibold">
+            News
+          </h2>
+          {news.length === 0 ? (
+            <p className="mt-2 text-sm leading-6 text-muted-foreground">
+              No news article naming this facility was found.
+            </p>
+          ) : (
+            <ul className="mt-2 divide-y divide-border border-t border-border">
+              {news.map((item) => (
+                <li key={item.href} className="py-3">
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-sm font-medium text-primary hover:underline"
+                  >
+                    {item.title}
+                  </a>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    {item.outlet}
+                    {item.date ? ` · ${item.date}` : ""}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
+
         <OpinionSkeleton />
 
-        <footer className="pb-6 text-xs leading-5 text-[#607d8b]">
+        <footer className="pb-6 text-xs leading-5 text-muted-foreground">
           <p>
             Facility facts are drawn from public tracker pages. Permit rows are
             from the PA DEP Data Center Permit Tracker county extract retrieved{" "}
@@ -140,7 +172,7 @@ export function FacilityDetail({ facility }: { facility: Facility }) {
                   href={source.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-[#1565c0] hover:underline"
+                  className="text-primary hover:underline"
                 >
                   {source.label}
                 </a>
@@ -162,8 +194,8 @@ function Fact({
 }) {
   return (
     <div className="grid gap-1 py-2.5 sm:grid-cols-[140px_1fr] sm:gap-3">
-      <dt className="text-[#607d8b]">{label}</dt>
-      <dd className="text-[#161b20]">{children}</dd>
+      <dt className="text-muted-foreground">{label}</dt>
+      <dd className="text-foreground">{children}</dd>
     </div>
   );
 }
@@ -171,14 +203,14 @@ function Fact({
 function PermitBadge({ status }: { status: PermitStatus }) {
   if (status === "Issued") {
     return (
-      <Badge className="bg-[#e8f5e9] text-[#1b5e20]" variant="secondary">
+      <Badge className="border-[#3cba6a] text-[#7dcea0]" variant="outline">
         Issued
       </Badge>
     );
   }
   if (status === "Pending") {
     return (
-      <Badge className="bg-[#fff8e1] text-[#8a5a12]" variant="secondary">
+      <Badge className="border-[#e6b422] text-[#e6b422]" variant="outline">
         Pending
       </Badge>
     );
@@ -191,29 +223,29 @@ function OpinionSkeleton() {
   return (
     <section
       aria-labelledby="opinion-heading"
-      className="rounded-lg border border-dashed border-[#90a4ae] bg-[#f7f9fb] p-4"
+      className="rounded-lg border border-dashed border-border bg-card p-4"
     >
       <div className="flex items-baseline justify-between gap-3">
         <h2 id="opinion-heading" className="text-base font-semibold">
           Public opinion
         </h2>
-        <span className="text-[11px] font-medium tracking-wide text-[#607d8b] uppercase">
+        <span className="text-[11px] font-medium tracking-wide text-muted-foreground uppercase">
           Not collected
         </span>
       </div>
-      <p className="mt-2 text-sm leading-6 text-[#546e7a]">
+      <p className="mt-2 text-sm leading-6 text-muted-foreground">
         Hearing minutes, written comments, and a local stance will go here.
         Nothing has been gathered for this county yet.
       </p>
       <ul className="mt-3 space-y-2">
         {slots.map((slot) => (
-          <li key={slot} className="rounded-md border border-[#e6ebf0] bg-white p-3">
-            <div className="text-[11px] font-medium tracking-wide text-[#607d8b] uppercase">
+          <li key={slot} className="border border-border bg-card p-3">
+            <div className="text-[11px] font-medium tracking-wide text-muted-foreground uppercase">
               {slot}
             </div>
             <Skeleton className="mt-2 h-3 w-4/5" />
             <Skeleton className="mt-2 h-3 w-2/5" />
-            <p className="mt-2 text-sm text-[#78909c]">Empty placeholder</p>
+            <p className="mt-2 text-sm text-muted-foreground">Empty placeholder</p>
           </li>
         ))}
       </ul>

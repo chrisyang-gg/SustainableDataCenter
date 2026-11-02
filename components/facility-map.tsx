@@ -21,11 +21,29 @@ import county from "@/data/allegheny-county.json";
 import placesGeo from "@/data/places.json";
 import { COUNTY_BOUNDS, facilities, getFacility } from "@/data/facilities";
 import { markerPosition, stageLabel } from "@/lib/facilities";
-import { getPlace, parsePin } from "@/lib/place-directory";
+import { getOrdinance, getPlace, parsePin } from "@/lib/place-directory";
+import { ordinanceReminder, reminderColor } from "@/lib/reminder";
 import { cn } from "@/lib/utils";
 
 const countyGeo = county as FeatureCollection<Geometry>;
 const placeGeo = placesGeo as FeatureCollection<Geometry>;
+const coloredPlaces: FeatureCollection<Geometry> = {
+  type: "FeatureCollection",
+  features: placeGeo.features.map((feature) => {
+    const slug = String(feature.properties?.slug ?? "");
+    const summary = getPlace(slug);
+    const tone = summary
+      ? ordinanceReminder(
+          getOrdinance(summary.ordinanceKey).whereAllowed,
+          getOrdinance(summary.ordinanceKey).status,
+        ).tone
+      : "debated";
+    return {
+      ...feature,
+      properties: { ...feature.properties, tone },
+    };
+  }),
+};
 const mapMaxBounds: [number, number, number, number] = [
   COUNTY_BOUNDS.west - 0.18,
   COUNTY_BOUNDS.south - 0.14,
@@ -40,11 +58,11 @@ const bounds: [[number, number], [number, number]] = [
 
 function tone(slug: string): string {
   const facility = getFacility(slug);
-  if (!facility) return "bg-[#1565c0]";
-  if (facility.approximate) return "border-[#ef6c00] bg-white";
+  if (!facility) return "bg-[#7eb6ff]";
+  if (facility.approximate) return "border-[#ef6c00] bg-black";
   if (facility.dep?.projectStatus === "Under Review") return "bg-[#f9a825]";
-  if (facility.stage === "existing") return "bg-[#1565c0]";
-  if (facility.stage === "planned") return "bg-[#546e7a]";
+  if (facility.stage === "existing") return "bg-[#7eb6ff]";
+  if (facility.stage === "planned") return "bg-[#8d887e]";
   return "bg-[#ef6c00]";
 }
 
@@ -61,6 +79,12 @@ export default function FacilityMap() {
     : "";
   const selected = facilitySlug ? getFacility(facilitySlug) : undefined;
   const place = placeSlug ? getPlace(placeSlug) : undefined;
+  const areaTone = place
+    ? ordinanceReminder(
+        getOrdinance(place.ordinanceKey).whereAllowed,
+        getOrdinance(place.ordinanceKey).status,
+      ).tone
+    : "debated";
   const pin = place
     ? (parsePin(searchParams.get("pin")) ?? {
         longitude: place.centroid[0],
@@ -102,7 +126,7 @@ export default function FacilityMap() {
           bounds,
           fitBoundsOptions: { padding: 36 },
         }}
-        mapStyle="https://basemaps.cartocdn.com/gl/positron-gl-style/style.json"
+        mapStyle="https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json"
         maxBounds={mapMaxBounds}
         minZoom={8}
         interactiveLayerIds={["place-fill", "place-fill-selected"]}
@@ -130,36 +154,47 @@ export default function FacilityMap() {
           <Layer
             id="allegheny-fill"
             type="fill"
-            paint={{ "fill-color": "#1565c0", "fill-opacity": 0.05 }}
+            paint={{ "fill-color": "#000000", "fill-opacity": 0 }}
           />
           <Layer
             id="allegheny-line"
             type="line"
-            paint={{ "line-color": "#0f3d6e", "line-width": 1.5 }}
+            paint={{ "line-color": "#f3f0e8", "line-width": 1.25 }}
           />
         </Source>
-        <Source id="places" type="geojson" data={placeGeo}>
+        <Source id="places" type="geojson" data={coloredPlaces}>
           <Layer
             id="place-fill"
             type="fill"
-            paint={{ "fill-color": "#1565c0", "fill-opacity": 0.04 }}
+            paint={{
+              "fill-color": [
+                "match",
+                ["get", "tone"],
+                "ok",
+                reminderColor("ok"),
+                "no",
+                reminderColor("no"),
+                reminderColor("debated"),
+              ],
+              "fill-opacity": 0.82,
+            }}
           />
           <Layer
             id="place-line"
             type="line"
-            paint={{ "line-color": "#5d7384", "line-width": 0.7 }}
+            paint={{ "line-color": "#1a1a1a", "line-width": 0.6 }}
           />
           <Layer
             id="place-fill-selected"
             type="fill"
             filter={["==", ["get", "slug"], place?.slug ?? ""]}
-            paint={{ "fill-color": "#1565c0", "fill-opacity": 0.22 }}
+            paint={{ "fill-color": reminderColor(areaTone), "fill-opacity": 0.94 }}
           />
           <Layer
             id="place-line-selected"
             type="line"
             filter={["==", ["get", "slug"], place?.slug ?? ""]}
-            paint={{ "line-color": "#0f3d6e", "line-width": 2.4 }}
+            paint={{ "line-color": reminderColor(areaTone), "line-width": 2.4 }}
           />
         </Source>
         {facilities.map((facility) => {
@@ -183,8 +218,8 @@ export default function FacilityMap() {
                   router.push(`/facilities/${facility.slug}`);
                 }}
                 className={cn(
-                  "block rounded-full border-2 border-white shadow-md",
-                  active ? "size-4 ring-4 ring-[#0f3d6e]/30" : "size-3",
+                  "block rounded-full border border-black",
+                  active ? "size-4 ring-2 ring-[#e4d2a2]" : "size-3",
                   tone(facility.slug),
                 )}
               />
@@ -194,25 +229,36 @@ export default function FacilityMap() {
         {pin ? (
           <Marker longitude={pin.longitude} latitude={pin.latitude} anchor="center">
             <span
-              className="block size-4 rounded-full border-2 border-[#0f3d6e] bg-white shadow"
+              className="block size-3.5 rounded-full border-2 border-[#f3f0e8] bg-black"
               aria-hidden="true"
             />
           </Marker>
         ) : null}
       </Map>
-      <div className="pointer-events-none absolute top-2 left-2 rounded-md bg-white/95 px-2.5 py-1.5 text-[11px] text-[#334049] shadow">
-        Click an area for geology and zoning
+      <div className="pointer-events-none absolute top-2 left-2 border border-[#2a2a2a] bg-black/90 px-2 py-1 font-mono text-[10px] tracking-[0.08em] text-[#f3f0e8] uppercase">
+        Click an area
       </div>
-      <div className="pointer-events-none absolute bottom-8 left-2 max-w-[210px] rounded-md bg-white/95 px-3 py-2 text-[11px] leading-4 text-[#334049] shadow md:bottom-3 md:left-3">
-        <LegendDot className="bg-[#1565c0]" label="Existing" />
+      <div className="pointer-events-none absolute bottom-8 left-2 max-w-[250px] border border-[#2a2a2a] bg-black/90 px-3 py-2 font-mono text-[10px] leading-4 text-[#f3f0e8] md:bottom-3 md:left-3">
+        <p className="mb-1 tracking-[0.14em] text-[#a39e93] uppercase">Zoning</p>
+        <LegendSwatch className="bg-[#3cba6a]" label="Possible in a district" />
+        <LegendSwatch className="bg-[#e6b422]" label="Debated or needs approval" />
+        <LegendSwatch className="bg-[#e24b4b]" label="Ordinance blocks the use" />
+        <p className="mt-2 mb-1 tracking-[0.14em] text-[#a39e93] uppercase">Facilities</p>
+        <LegendDot className="bg-[#7eb6ff]" label="Existing" />
         <LegendDot className="bg-[#f9a825]" label="Permits under review" />
         <LegendDot className="bg-[#ef6c00]" label="Proposed, no DEP file" />
-        <LegendDot className="bg-[#546e7a]" label="Planned" />
-        <LegendDot
-          className="border-[#ef6c00] bg-white"
-          label="Approximate location"
-        />
+        <LegendDot className="bg-[#8d887e]" label="Planned" />
+        <LegendDot className="border border-[#ef6c00] bg-black" label="Approximate location" />
       </div>
+    </div>
+  );
+}
+
+function LegendSwatch({ className, label }: { className: string; label: string }) {
+  return (
+    <div className="flex items-center gap-2 py-0.5">
+      <span className={cn("size-2.5 shrink-0", className)} />
+      <span>{label}</span>
     </div>
   );
 }
@@ -220,7 +266,7 @@ export default function FacilityMap() {
 function LegendDot({ className, label }: { className: string; label: string }) {
   return (
     <div className="flex items-center gap-2 py-0.5">
-      <span className={cn("size-2.5 rounded-full border-2 border-white shadow", className)} />
+      <span className={cn("size-2.5 shrink-0 rounded-full", className)} />
       <span>{label}</span>
     </div>
   );

@@ -6,7 +6,9 @@ The current slice is an Allegheny County data center map.
 
 A county map of existing, planned, and proposed data centers in Allegheny County, Pennsylvania. Select a facility for the basic brief: place, companies, capacity when it is published, and the PA DEP permit file when one exists.
 
-Click a neighborhood or municipality, or pick one from Places, for the zoning rule that applies there and for bedrock, elevation, and the flood zone at the pin. Pittsburgh uses the city’s 90 official neighborhoods. The rest of the county uses municipal boundaries, because those governments write the zoning.
+Click a neighborhood or municipality, or pick one from Places, for the zoning rule that applies there and for bedrock, elevation, flood, and nearby water at the pin. Pittsburgh uses the city’s 90 official neighborhoods. The rest of the county uses municipal boundaries, because those governments write the zoning.
+
+Each area is colored from that zoning note. Green means the review found data centers permitted in at least one district. Yellow means the use is conditional, still a draft, or not named. Red means the ordinance blocks unlisted uses. A floodway or a mapped landslide deposit can make one pin stricter than the area color. Green is a reminder from the published review, not a permit.
 
 Public opinion is a placeholder. Hearing minutes, comments, and a local stance are not collected yet.
 
@@ -31,6 +33,7 @@ npm run lint
 - Location, coordinates, and alternate names
 - Companies, and capacity or acreage when a public project note states them
 - PA DEP project name and permit rows: authorization, application type, number, submitted date, and status
+- News stories that name that facility. If none was found, the page says so
 - An empty public-opinion section
 
 Permit rows come from the [PA DEP Data Center Permit Tracker](https://gis.dep.pa.gov/DataCenterPermitTracker/) project and permit tables, retrieved October 31, 2026. Facility names, operators, and the two published capacity figures come from public facility pages such as the [Dynamo Springdale](https://trackdatacenters.com/usa/pennsylvania/data-centers/dynamo-springdale) brief. This app is not a DEP product.
@@ -46,6 +49,7 @@ Pins that share one published coordinate are nudged apart so each can be selecte
 - The municipal data-center zoning note from the [Pennsylvania Data Center Ordinance Project](https://padatacenterordinances.org/), verified October 28, 2026, with the source that review used
 - Facilities from this map that fall inside the area
 - Bedrock units from [Macrostrat](https://macrostrat.org/), ground elevation from USGS 3DEP, and the flood zone from the FEMA National Flood Hazard Layer, read at the pin
+- Nearby water from the USGS National Hydrography Dataset and active USGS stream and groundwater sites. A gage reading is not a cooling-water supply or a withdrawal permit
 
 Neighborhood boundaries are the City of Pittsburgh file on the [Western Pennsylvania Regional Data Center](https://data.wprdc.org/dataset/neighborhoods2). Municipal boundaries are the [Allegheny County municipal boundary file](https://data.wprdc.org/dataset/allegheny-county-municipal-boundaries), reprojected from Pennsylvania State Plane South. `scripts/build-places.py` rebuilds those files and needs `pyproj`.
 

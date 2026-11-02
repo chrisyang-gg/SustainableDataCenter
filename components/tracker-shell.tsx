@@ -30,10 +30,10 @@ function useIsClient() {
 function MapSlot() {
   const isClient = useIsClient();
   if (!isClient) {
-    return <div className="absolute inset-0 bg-[#e6ebf0]" aria-hidden="true" />;
+    return <div className="absolute inset-0 bg-black" aria-hidden="true" />;
   }
   return (
-    <Suspense fallback={<div className="absolute inset-0 bg-[#e6ebf0]" />}>
+    <Suspense fallback={<div className="absolute inset-0 bg-black" />}>
       <FacilityMap />
     </Suspense>
   );
@@ -71,21 +71,26 @@ export function TrackerShell({ children }: { children: React.ReactNode }) {
   return (
     <FiltersContext.Provider value={{ filters, setFilters, results }}>
       <div className="flex min-h-dvh flex-col md:h-dvh">
-        <header className="flex shrink-0 items-center justify-between gap-4 bg-[#0f3d6e] px-4 py-3 text-white">
+        <header className="flex shrink-0 items-end justify-between gap-4 border-b border-border bg-black px-4 py-3">
           <div className="min-w-0">
-            <p className="text-[11px] font-medium tracking-[0.14em] text-[#b9d4f0] uppercase">
+            <p className="font-mono text-[10px] tracking-[0.18em] text-muted-foreground uppercase">
               Allegheny County, Pennsylvania
             </p>
-            <Link href="/" className="text-lg font-semibold tracking-tight">
+            <Link href="/" className="text-lg font-medium text-foreground">
               Data center map
             </Link>
           </div>
-          <nav className="flex shrink-0 gap-1 text-sm" aria-label="Map sections">
+          <nav
+            className="flex shrink-0 gap-4 font-mono text-[11px] tracking-[0.14em] uppercase"
+            aria-label="Map sections"
+          >
             <Link
               href="/"
               className={cn(
-                "rounded px-2.5 py-1",
-                projectsActive ? "bg-white/15 font-semibold" : "text-[#d6e6f5]",
+                "pb-0.5",
+                projectsActive
+                  ? "text-primary underline decoration-1 underline-offset-4"
+                  : "text-muted-foreground hover:text-foreground",
               )}
               aria-current={projectsActive ? "page" : undefined}
             >
@@ -94,8 +99,10 @@ export function TrackerShell({ children }: { children: React.ReactNode }) {
             <Link
               href="/places"
               className={cn(
-                "rounded px-2.5 py-1",
-                placesActive ? "bg-white/15 font-semibold" : "text-[#d6e6f5]",
+                "pb-0.5",
+                placesActive
+                  ? "text-primary underline decoration-1 underline-offset-4"
+                  : "text-muted-foreground hover:text-foreground",
               )}
               aria-current={placesActive ? "page" : undefined}
             >
@@ -107,7 +114,7 @@ export function TrackerShell({ children }: { children: React.ReactNode }) {
           <div className="relative order-1 h-[48vh] min-h-[260px] shrink-0 md:order-2 md:h-auto md:min-h-0 md:flex-1">
             <MapSlot />
           </div>
-          <aside className="order-2 flex flex-col bg-white md:order-1 md:min-h-0 md:w-[460px] md:flex-none md:overflow-hidden md:border-r md:border-[#d5dde5]">
+          <aside className="order-2 flex flex-col border-border bg-black md:order-1 md:min-h-0 md:w-[440px] md:flex-none md:overflow-hidden md:border-r">
             {children}
           </aside>
         </div>

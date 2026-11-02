@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { pointInCounty, readGeology } from "@/lib/geology";
+import { readWater } from "@/lib/water";
 
 export async function GET(request: Request) {
   const url = new URL(request.url);
@@ -14,6 +15,9 @@ export async function GET(request: Request) {
       { status: 400 },
     );
   }
-  const report = await readGeology(latitude, longitude);
-  return NextResponse.json(report);
+  const [report, water] = await Promise.all([
+    readGeology(latitude, longitude),
+    readWater(latitude, longitude),
+  ]);
+  return NextResponse.json({ ...report, water });
 }

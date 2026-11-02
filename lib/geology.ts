@@ -1,4 +1,5 @@
 import { COUNTY_BOUNDS } from "@/data/facilities";
+import type { WaterReading } from "@/lib/water";
 
 export type GeologyUnit = {
   name: string;
@@ -20,6 +21,7 @@ export type GeologyReport = {
   floodZones: FloodZone[];
   messages: string[];
   sources: { label: string; href: string }[];
+  water?: WaterReading | null;
 };
 
 const PAD = 0.02;

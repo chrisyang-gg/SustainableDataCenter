@@ -4,6 +4,13 @@ import { Suspense, use, useSyncExternalStore } from "react";
 import { useSearchParams } from "next/navigation";
 import type { GeologyReport } from "@/lib/geology";
 import { parsePin } from "@/lib/place-directory";
+import {
+  pinReminder,
+  reminderColor,
+  reminderLabel,
+  type ReminderTone,
+} from "@/lib/reminder";
+import { describeChannel, describeStream, describeWell } from "@/lib/water";
 import { Skeleton } from "@/components/ui/skeleton";
 
 function useIsClient() {
@@ -32,8 +39,10 @@ function loadReport(latitude: number, longitude: number): Promise<GeologyReport>
 
 export function GeologyPanel({
   centroid,
+  areaTone,
 }: {
   centroid: [number, number];
+  areaTone: ReminderTone;
 }) {
   const params = useSearchParams();
   const isClient = useIsClient();
@@ -46,7 +55,7 @@ export function GeologyPanel({
       <h2 id="geology-heading" className="text-base font-semibold">
         Ground at this pin
       </h2>
-      <p className="mt-1 text-sm leading-6 text-[#546e7a]">
+      <p className="mt-1 text-sm leading-6 text-muted-foreground">
         {pin
           ? `Reading for the pin at ${latitude.toFixed(5)}, ${longitude.toFixed(5)}. Bedrock, elevation, and the flood zone come from the public map services linked below.`
           : "This reading uses a point in the middle of the area. Click the map to drop a pin on the site you care about."}
@@ -57,6 +66,7 @@ export function GeologyPanel({
             key={`${latitude.toFixed(5)},${longitude.toFixed(5)}`}
             latitude={latitude}
             longitude={longitude}
+            areaTone={areaTone}
           />
         </Suspense>
       ) : (
@@ -69,29 +79,42 @@ export function GeologyPanel({
 function GeologyResult({
   latitude,
   longitude,
+  areaTone,
 }: {
   latitude: number;
   longitude: number;
+  areaTone: ReminderTone;
 }) {
   const report = use(loadReport(latitude, longitude));
+  const pinTone = pinReminder(areaTone, report.floodZones, report.units);
+  const water = report.water;
   return (
     <div className="mt-3 space-y-3">
+      {pinTone.tone !== areaTone ? (
+        <p
+          className="border border-border border-l-4 bg-card px-3 py-2 text-sm leading-6 text-foreground"
+          style={{ borderLeftColor: reminderColor(pinTone.tone) }}
+        >
+          <span className="font-semibold">This pin: {reminderLabel(pinTone.tone)}.</span>{" "}
+          {pinTone.notes.join(" ")}
+        </p>
+      ) : null}
       <dl className="grid gap-2 text-sm sm:grid-cols-2">
-        <div className="rounded-md border border-[#e6ebf0] bg-white px-3 py-2">
-          <dt className="text-xs tracking-wide text-[#607d8b] uppercase">
+        <div className="rounded-md border border-border bg-card px-3 py-2">
+          <dt className="text-xs tracking-wide text-muted-foreground uppercase">
             Elevation
           </dt>
-          <dd className="mt-1 font-medium text-[#161b20]">
+          <dd className="mt-1 font-medium text-foreground">
             {report.elevationFeet === null
               ? "Unavailable"
               : `${report.elevationFeet.toLocaleString("en-US")} ft`}
           </dd>
         </div>
-        <div className="rounded-md border border-[#e6ebf0] bg-white px-3 py-2">
-          <dt className="text-xs tracking-wide text-[#607d8b] uppercase">
+        <div className="rounded-md border border-border bg-card px-3 py-2">
+          <dt className="text-xs tracking-wide text-muted-foreground uppercase">
             Flood zone
           </dt>
-          <dd className="mt-1 font-medium text-[#161b20]">
+          <dd className="mt-1 font-medium text-foreground">
             {report.floodZones.length === 0
               ? "Unavailable"
               : report.floodZones
@@ -107,17 +130,17 @@ function GeologyResult({
           {report.units.map((unit) => (
             <li
               key={`${unit.name}-${unit.age}`}
-              className="rounded-md border border-[#e6ebf0] bg-white px-3 py-2"
+              className="rounded-md border border-border bg-card px-3 py-2"
             >
-              <p className="text-sm font-medium text-[#161b20]">{unit.name}</p>
-              <p className="mt-0.5 text-xs text-[#607d8b]">
+              <p className="text-sm font-medium text-foreground">{unit.name}</p>
+              <p className="mt-0.5 text-xs text-muted-foreground">
                 {unit.age}
                 {unit.lithology === "Lithology not stated"
                   ? ""
                   : ` · ${unit.lithology}`}
               </p>
               {unit.description ? (
-                <p className="mt-1 text-sm leading-6 text-[#334049]">
+                <p className="mt-1 text-sm leading-6 text-foreground/90">
                   {unit.description}
                 </p>
               ) : null}
@@ -125,21 +148,44 @@ function GeologyResult({
           ))}
         </ul>
       ) : null}
+      <section aria-labelledby="water-heading" className="rounded-md border border-border bg-card px-3 py-2">
+        <h3 id="water-heading" className="text-sm font-semibold text-foreground">
+          Water nearby
+        </h3>
+        {water ? (
+          <div className="mt-1 space-y-1 text-sm leading-6 text-foreground/90">
+            <p>{describeChannel(water.channel)}</p>
+            <p>{describeStream(water.stream, water.streamReading)}</p>
+            <p>{describeWell(water.well)}</p>
+            <p className="text-muted-foreground">
+              Cooling water for a data center is a utility contract or a
+              withdrawal permit. A nearby gage is not that supply.
+            </p>
+            {water.messages.map((message) => (
+              <p key={message} className="text-[#e0b15a]">
+                {message}
+              </p>
+            ))}
+          </div>
+        ) : (
+          <p className="mt-1 text-sm text-[#e0b15a]">The water reading did not load.</p>
+        )}
+      </section>
       {report.messages.length > 0 ? (
-        <ul className="space-y-1 text-sm text-[#8a5a12]">
+        <ul className="space-y-1 text-sm text-[#e0b15a]">
           {report.messages.map((message) => (
             <li key={message}>{message}</li>
           ))}
         </ul>
       ) : null}
       <ul className="space-y-1 text-xs leading-5">
-        {report.sources.map((source) => (
+        {[...report.sources, ...(water?.sources ?? [])].map((source) => (
           <li key={source.label}>
             <a
               href={source.href}
               target="_blank"
               rel="noreferrer"
-              className="text-[#1565c0] hover:underline"
+              className="text-primary hover:underline"
             >
               {source.label}
             </a>
@@ -159,6 +205,7 @@ function unavailable(latitude: number, longitude: number): GeologyReport {
     floodZones: [],
     messages: ["The ground reading did not load. Try the pin again."],
     sources: [],
+    water: null,
   };
 }
 

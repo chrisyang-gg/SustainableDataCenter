@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { COUNTY_BOUNDS, facilities, getFacility } from "../data/facilities.ts";
+import { newsFor, newsSlugs } from "../data/news.ts";
 import {
   filterFacilities,
   formatSubmitted,
@@ -19,6 +20,15 @@ test("every pin sits inside the Allegheny County bounds", () => {
     facilities.some((facility) => facility.slug === "servaxnet-new-castle"),
     false,
   );
+});
+
+test("news links name the facility and use a published article", () => {
+  assert.deepEqual(newsSlugs().sort(), facilities.map((facility) => facility.slug).sort());
+  const dynamo = newsFor("dynamo-springdale");
+  assert.ok(dynamo.length >= 2);
+  assert.ok(dynamo.every((item) => item.href.startsWith("https://")));
+  assert.equal(newsFor("sei-allegheny").length, 0);
+  assert.ok(newsFor("northern-data-ardent-pit1").some((item) => item.outlet === "Data Center Dynamics"));
 });
 
 test("Dynamo Springdale carries the DEP permit file", () => {

@@ -1,12 +1,19 @@
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
+import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import { TrackerShell } from "@/components/tracker-shell";
 import "./globals.css";
+import "./map-controls.css";
 
-const roboto = Roboto({
+const sans = IBM_Plex_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  variable: "--font-roboto",
+  weight: ["400", "500", "600"],
+  variable: "--font-plex-sans",
+});
+
+const mono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-plex-mono",
 });
 
 export const metadata: Metadata = {
@@ -24,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${roboto.variable} h-full antialiased`}>
+    <html lang="en" className={`${sans.variable} ${mono.variable} h-full antialiased`}>
       <body className="h-full bg-background text-foreground">
         <TrackerShell>{children}</TrackerShell>
       </body>
