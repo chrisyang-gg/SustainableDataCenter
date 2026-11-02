@@ -1,0 +1,1042 @@
+[
+  {
+    "municipality": "Aleppo Township",
+    "status": "none",
+    "whereAllowed": "Not listed; unlisted uses are conditional uses in the C-2 district",
+    "verified": "2026-10-28",
+    "sourceHref": "https://aleppotownship.com/local-laws/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Aleppo"
+  },
+  {
+    "municipality": "Aspinwall Borough",
+    "status": "none",
+    "whereAllowed": "Not listed; unlisted uses are conditional in AI-1",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.aspinwallpa.gov/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Aspinwall"
+  },
+  {
+    "municipality": "Avalon Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://boroughofavalon.org/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Avalon"
+  },
+  {
+    "municipality": "Baldwin Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.baldwinborough.org/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Baldwin+Borough"
+  },
+  {
+    "municipality": "Baldwin Township",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://baldwintownship.com/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Baldwin+Township"
+  },
+  {
+    "municipality": "Bell Acres Borough",
+    "status": "adopted",
+    "whereAllowed": "Conditional use in the M3 Industrial District",
+    "verified": "2026-10-28",
+    "sourceHref": "https://ecode360.com/BE1240",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Bell+Acres"
+  },
+  {
+    "municipality": "Bellevue Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.bellevuepa.org/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Bellevue"
+  },
+  {
+    "municipality": "Ben Avon Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.benavon.com/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Ben+Avon"
+  },
+  {
+    "municipality": "Ben Avon Heights Borough",
+    "status": "none",
+    "whereAllowed": "Not listed; unlisted uses go to the Tri-Borough ordinance",
+    "verified": "2026-10-28",
+    "sourceHref": "http://www.benavonheightsborough.com/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Ben+Avon+Heights"
+  },
+  {
+    "municipality": "Bethel Park Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.bethelparkpa.gov/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Bethel+Park"
+  },
+  {
+    "municipality": "Blawnox Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "http://www.blawnox.com/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Blawnox"
+  },
+  {
+    "municipality": "Brackenridge Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://brackenridgeboro.com/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Brackenridge"
+  },
+  {
+    "municipality": "Braddock Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://braddockborough.com/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Braddock"
+  },
+  {
+    "municipality": "Braddock Hills Borough",
+    "status": "none",
+    "whereAllowed": "Not listed; unlisted uses prohibited",
+    "verified": "2026-10-28",
+    "sourceHref": "https://braddockhillspa.com/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Braddock+Hills"
+  },
+  {
+    "municipality": "Bradford Woods Borough",
+    "status": "adopted",
+    "whereAllowed": "Special exception in the R-2 Residential District",
+    "verified": "2026-10-28",
+    "sourceHref": "https://ecode360.com/BR1973/laws/LF2746361.pdf",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Bradford+Woods"
+  },
+  {
+    "municipality": "Brentwood Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://brentwoodpa.gov/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Brentwood"
+  },
+  {
+    "municipality": "Bridgeville Borough",
+    "status": "none",
+    "whereAllowed": "Not listed; business services permitted in Mixed-Use and DT",
+    "verified": "2026-10-28",
+    "sourceHref": "http://www.bridgevilleboro.com",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Bridgeville"
+  },
+  {
+    "municipality": "Carnegie Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "http://www.carnegieborough.com",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Carnegie"
+  },
+  {
+    "municipality": "Castle Shannon Borough",
+    "status": "none",
+    "whereAllowed": "Not listed; unlisted uses are conditional uses in the I district",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.csboro.org/ordinance/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Castle+Shannon"
+  },
+  {
+    "municipality": "Chalfant Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://chalfantborough-pa.org/borough-documents-resources/borough-ordinances/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Chalfant"
+  },
+  {
+    "municipality": "Cheswick Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.cheswick.us/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Cheswick"
+  },
+  {
+    "municipality": "Churchill Borough",
+    "status": "none",
+    "whereAllowed": "Not listed; unlisted uses are conditional uses in the C-2 district",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.churchillborough.com/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Churchill"
+  },
+  {
+    "municipality": "Clairton City",
+    "status": "adopted",
+    "whereAllowed": "Permitted by right in the C/I and I districts",
+    "verified": "2026-10-28",
+    "sourceHref": "http://cityofclairton.com/zoning/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Clairton"
+  },
+  {
+    "municipality": "Collier Township",
+    "status": "proposed",
+    "whereAllowed": "Conditional use in the I-1 Industrial District (draft)",
+    "verified": "2026-10-28",
+    "sourceHref": "https://colliertownship.net/wp-content/uploads/2026/08/CollierTownshipZoningOrdinance_8.4.26_CleanVersion_UpdateCopy.pdf",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Collier"
+  },
+  {
+    "municipality": "Coraopolis Borough",
+    "status": "none",
+    "whereAllowed": "Not listed; unlisted uses are permitted by right in the I-1 district",
+    "verified": "2026-10-28",
+    "sourceHref": "https://coraopolispa.com/applications-permits-forms/zoning-map/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Coraopolis"
+  },
+  {
+    "municipality": "Crafton Borough",
+    "status": "none",
+    "whereAllowed": "Not listed; unlisted uses are prohibited unless found similar to a listed use",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.craftonborough.gov/planningcommission",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Crafton"
+  },
+  {
+    "municipality": "Crescent Township",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.crescenttownship.com/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Crescent"
+  },
+  {
+    "municipality": "Dormont Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://boro.dormont.pa.us/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Dormont"
+  },
+  {
+    "municipality": "Dravosburg Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://ecode360.com/6984956",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Dravosburg"
+  },
+  {
+    "municipality": "Duquesne City",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.duquesnepa.us/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Duquesne"
+  },
+  {
+    "municipality": "East Deer Township",
+    "status": "proposed",
+    "whereAllowed": "Proposed conditional use in the C-2 District",
+    "verified": "2026-10-28",
+    "sourceHref": "http://eastdeertownship.org/wp-content/uploads/2026/07/Ordinance-860.pdf",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=East+Deer"
+  },
+  {
+    "municipality": "East McKeesport Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.eastmckeesportboro.com/DocumentCenter/View/344/Chapter-27-Zoning-PDF",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=East+McKeesport"
+  },
+  {
+    "municipality": "East Pittsburgh Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "http://eastpittsburghboro.com/wp-content/uploads/2015/09/Ord-908-East-Pittsburgh-Zoning.pdf",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=East+Pittsburgh"
+  },
+  {
+    "municipality": "Edgewood Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://edgewood.pgh.pa.us/government/ordinances/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Edgewood"
+  },
+  {
+    "municipality": "Edgeworth Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://ecode360.com/12429447",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Edgeworth"
+  },
+  {
+    "municipality": "Elizabeth Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "http://elizabethpa.net/home/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Elizabeth+Borough"
+  },
+  {
+    "municipality": "Elizabeth Township",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.elizabethtownshippa.com/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Elizabeth+Township"
+  },
+  {
+    "municipality": "Emsworth Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://ecode360.com/11769694",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Emsworth"
+  },
+  {
+    "municipality": "Etna Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://ecode360.com/35091593",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Etna"
+  },
+  {
+    "municipality": "Fawn Township",
+    "status": "none",
+    "whereAllowed": "Not addressed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.fawntownship.com/departments/zoning-office/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Fawn"
+  },
+  {
+    "municipality": "Findlay Township",
+    "status": "adopted",
+    "whereAllowed": "Conditional use in the LI and HI districts",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.findlay.pa.us/AgendaCenter/ViewFile/Minutes/_06102026-932",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Findlay"
+  },
+  {
+    "municipality": "Forest Hills Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://ecode360.com/30880291",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Forest+Hills"
+  },
+  {
+    "municipality": "Forward Township",
+    "status": "none",
+    "whereAllowed": "Not addressed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.forwardtownship.com/ordinances.html",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Forward"
+  },
+  {
+    "municipality": "Fox Chapel Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://ecode360.com/31904910",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Fox+Chapel"
+  },
+  {
+    "municipality": "Franklin Park Borough",
+    "status": "adopted",
+    "whereAllowed": "Conditional use in the Data Center District Overlay",
+    "verified": "2026-10-28",
+    "sourceHref": "https://ecode360.com/FR0955/laws/LF2722153.pdf",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Franklin+Park"
+  },
+  {
+    "municipality": "Frazer Township",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://ecode360.com/print/FR3681?guid=30829028&children=true",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Frazer"
+  },
+  {
+    "municipality": "Glassport Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://img1.wsimg.com/blobby/go/4456dc09-521b-4359-9fbd-e5d52af46085/downloads/Chapter%2027%20Zoning.pdf?ver=1790780963270",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Glassport"
+  },
+  {
+    "municipality": "Glen Osborne Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.glenosborneborough.org/Ordinance%20429%20ZONING%2011.21.23.pdf",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Glen+Osborne"
+  },
+  {
+    "municipality": "Glenfield Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://glenfieldborough.org/__static/1bca25ee4522972d6edf2183d8b190a5/glenfield___haysville_zoning_ordinance_-85486.pdf?dl=1",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Glenfield"
+  },
+  {
+    "municipality": "Green Tree Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.greentreeboro.com/government/code_of_ordinances.php",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Green+Tree"
+  },
+  {
+    "municipality": "Hampton Township",
+    "status": "adopted",
+    "whereAllowed": "Conditional use in the LI and HI districts",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.hampton-pa.gov/DocumentCenter/View/5513/HAMP---Zoning-Ordinance---ADOPTED---9926-Update",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Hampton"
+  },
+  {
+    "municipality": "Harmar Township",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.harmartownship-pa.gov/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Harmar"
+  },
+  {
+    "municipality": "Harrison Township",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://harrisontwp.com/zoning-ordinance/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Harrison"
+  },
+  {
+    "municipality": "Haysville Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://haysvilleborough.org/zoning-ordinance",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Haysville"
+  },
+  {
+    "municipality": "Heidelberg Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://heidelbergborough.org/wp-content/uploads/2016/12/heidelbergzoningORD.pdf",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Heidelberg"
+  },
+  {
+    "municipality": "Homestead Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://homesteadborough.com/government/administration/ordinances/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Homestead"
+  },
+  {
+    "municipality": "Indiana Township",
+    "status": "proposed",
+    "whereAllowed": "Proposed conditional use in the LI district",
+    "verified": "2026-10-28",
+    "sourceHref": "https://indianatownship.com/draft-ordinance-regarding-data-centers/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Indiana"
+  },
+  {
+    "municipality": "Ingram Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://ecode360.com/IN1903",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Ingram"
+  },
+  {
+    "municipality": "Jefferson Hills Borough",
+    "status": "proposed",
+    "whereAllowed": "Proposed amendment, details not posted",
+    "verified": "2026-10-28",
+    "sourceHref": "https://citizenportal.ai/articles/9559394/pennsylvania/allegheny-county/jefferson-hills/council-refers-proposed-datacenter-zoning-amendment-to-planning-commission",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Jefferson+Hills"
+  },
+  {
+    "municipality": "Kennedy Township",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.kennedytwp.com/ordinances",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Kennedy"
+  },
+  {
+    "municipality": "Kilbuck Township",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.kilbucktownship.org/zoning-map-ordiances-and-resolutions",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Kilbuck"
+  },
+  {
+    "municipality": "Leet Township",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://ecode360.com/LE2626",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Leet"
+  },
+  {
+    "municipality": "Leetsdale Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.leetsdaleboro.net/ordinances",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Leetsdale"
+  },
+  {
+    "municipality": "Liberty Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.libertyborough.com/meeting-minutes",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Liberty"
+  },
+  {
+    "municipality": "Lincoln Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "http://www.lincolnborough.com/government.html",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Lincoln"
+  },
+  {
+    "municipality": "Marshall Township",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.twp.marshall.pa.us/230/Code-of-Ordinances",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Marshall"
+  },
+  {
+    "municipality": "McCandless Township",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://ecode360.com/MC4162",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=McCandless"
+  },
+  {
+    "municipality": "McDonald Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://mcdonaldboro.com/borough-ordinances-2/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=McDonald"
+  },
+  {
+    "municipality": "McKees Rocks Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://mckeesrockspa.us/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=McKees+Rocks"
+  },
+  {
+    "municipality": "McKeesport City",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.mckeesport-pa.gov/149/Community-Development",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=McKeesport"
+  },
+  {
+    "municipality": "Millvale Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.millvalepa.com/1305/Code-Ordinances",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Millvale"
+  },
+  {
+    "municipality": "Monroeville Borough",
+    "status": "adopted",
+    "whereAllowed": "Permitted by right in L, M-1, and M-2; conditional use in C-2, C-3, and BLVD",
+    "verified": "2026-10-28",
+    "sourceHref": "https://ecode360.com/11510889",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Monroeville"
+  },
+  {
+    "municipality": "Moon Township",
+    "status": "proposed",
+    "whereAllowed": "Proposed conditional use in M-1 (hyperscale), M-1, MX, and RT (mid-scale), and M-1, BP, MX, and RT (edge)",
+    "verified": "2026-10-28",
+    "sourceHref": "https://moontwppa.portal.civicclerk.com/event/866/files",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Moon"
+  },
+  {
+    "municipality": "Mt. Lebanon Township",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://mtlebanon.org/departments/permits-zoning/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Mt.+Lebanon"
+  },
+  {
+    "municipality": "Mt. Oliver Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://mtoliver.com/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Mt.+Oliver"
+  },
+  {
+    "municipality": "Munhall Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://ecode360.com/MU2404",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Munhall"
+  },
+  {
+    "municipality": "Neville Township",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://ecode360.com/NE3998",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Neville"
+  },
+  {
+    "municipality": "North Braddock Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://codelibrary.amlegal.com/codes/nbraddockbor/latest/nbraddockbor_pa/0-0-0-2291",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=North+Braddock"
+  },
+  {
+    "municipality": "North Fayette Township",
+    "status": "proposed",
+    "whereAllowed": "Proposed conditional use in a Data Center Overlay District",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.northfayettepa.gov/AgendaCenter/ViewFile/Item/8287?fileID=3139",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=North+Fayette"
+  },
+  {
+    "municipality": "North Versailles Township",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://ecode360.com/NO2601",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=North+Versailles"
+  },
+  {
+    "municipality": "Oakdale Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.oakdaleborough.com/public-meeting-agendas.html",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Oakdale"
+  },
+  {
+    "municipality": "Oakmont Borough",
+    "status": "adopted",
+    "whereAllowed": "Special exception in the I District",
+    "verified": "2026-10-28",
+    "sourceHref": "https://oakmontborough.com/wp-content/uploads/O3-2026-Data-Center-Ordinance.Regulations.pdf",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Oakmont"
+  },
+  {
+    "municipality": "Ohara Township",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://ecode360.com/OH0217",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Ohara"
+  },
+  {
+    "municipality": "Ohio Township",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.ohiotwp.org/planning_zoning",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Ohio"
+  },
+  {
+    "municipality": "Penn Hills Township",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://pennhillspa.gov/planning-department/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Penn+Hills"
+  },
+  {
+    "municipality": "Pennsbury Village Borough",
+    "status": "none",
+    "whereAllowed": "No zoning ordinance",
+    "verified": "2026-10-28",
+    "sourceHref": "https://pennsburyvillageboro.com/government/ordinances/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Pennsbury+Village"
+  },
+  {
+    "municipality": "Pine Township",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://ecode360.com/9187197",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Pine"
+  },
+  {
+    "municipality": "Pitcairn Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://pitcairnborough.us/index.php/forms/pitcairn-borough-code-of-ordinances",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Pitcairn"
+  },
+  {
+    "municipality": "Pittsburgh City",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://ecode360.com/45476515",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Pittsburgh"
+  },
+  {
+    "municipality": "Pleasant Hills Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.pleasanthillspa.com/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Pleasant+Hills"
+  },
+  {
+    "municipality": "Plum Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.plumboro.com/community-development/pages/planning-and-zoning-ordinances",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Plum"
+  },
+  {
+    "municipality": "Port Vue Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://portvue.org/local-government/ordinances-forms/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Port+Vue"
+  },
+  {
+    "municipality": "Rankin Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://rankinborough.com/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Rankin"
+  },
+  {
+    "municipality": "Reserve Township",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://reservetwp.com/township-code-zoning/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Reserve"
+  },
+  {
+    "municipality": "Richland Township",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://ecode360.com/RI2434",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Richland"
+  },
+  {
+    "municipality": "Robinson Township",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://ecode360.com/RO0250",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Robinson"
+  },
+  {
+    "municipality": "Ross Township",
+    "status": "proposed",
+    "whereAllowed": "Proposed conditional use in the I-1 district",
+    "verified": "2026-10-28",
+    "sourceHref": "https://ross.civicweb.net/document/124985/Board%20of%20Commissioners%20-%20Committee%20Meeting%20-%20Oc.pdf?handle=A111F0C4388B4E7598472C7F2B0E4E27",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Ross"
+  },
+  {
+    "municipality": "Rosslyn Farms Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://rosslynfarmspa.gov/government/borough-ordinances-zoning-map/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Rosslyn+Farms"
+  },
+  {
+    "municipality": "Scott Township",
+    "status": "proposed",
+    "whereAllowed": "Proposed conditional use, districts under discussion",
+    "verified": "2026-10-28",
+    "sourceHref": "https://scott-twp.com/government/planning-commission/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Scott"
+  },
+  {
+    "municipality": "Sewickley Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://ecode360.com/SE2446",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Sewickley"
+  },
+  {
+    "municipality": "Sewickley Heights Borough",
+    "status": "none",
+    "whereAllowed": "Not listed; unlisted uses are conditional uses in the D district",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.sewickleyheightsboro.com/generalgovernment/land-ordinances",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Sewickley+Heights"
+  },
+  {
+    "municipality": "Sewickley Hills Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.sewickleyhills.com/ordinances-resolutions",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Sewickley+Hills"
+  },
+  {
+    "municipality": "Shaler Township",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://ecode360.com/SH1304",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Shaler"
+  },
+  {
+    "municipality": "Sharpsburg Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://ecode360.com/SH2448",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Sharpsburg"
+  },
+  {
+    "municipality": "South Fayette Township",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.southfayettepa.com/AgendaCenter/ViewFile/Item/11730?fileID=46534",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=South+Fayette"
+  },
+  {
+    "municipality": "South Park Township",
+    "status": "proposed",
+    "whereAllowed": "Proposed conditional use in the I-1 and I-2 districts",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.southparktwp.com/Documents/Minutes/7-13-2026%20Minutes%20-%20BOS%20Meeting.pdf",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=South+Park"
+  },
+  {
+    "municipality": "South Versailles Township",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://apps.alleghenycounty.us/website/muniprofile.asp?muni=107",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=South+Versailles"
+  },
+  {
+    "municipality": "Springdale Borough",
+    "status": "none",
+    "whereAllowed": "Not listed; Dynamo DC approved as a conditional use",
+    "verified": "2026-10-28",
+    "sourceHref": "https://ecode360.com/32845112",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Springdale+Borough"
+  },
+  {
+    "municipality": "Springdale Township",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://springdaletwp.us/zoning/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Springdale+Township"
+  },
+  {
+    "municipality": "Stowe Township",
+    "status": "adopted",
+    "whereAllowed": "Permitted in the G-1 General Industrial District",
+    "verified": "2026-10-28",
+    "sourceHref": "https://stowetwp.net/wp-content/uploads/2026/06/2025.12.8-9-signed.pdf",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Stowe"
+  },
+  {
+    "municipality": "Swissvale Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.swissvaleborough.com/DocumentCenter/View/101/Zoning-Ordinance-2017-PDF",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Swissvale"
+  },
+  {
+    "municipality": "Tarentum Borough",
+    "status": "proposed",
+    "whereAllowed": "Conditional use in the CC, C-1, I-1, and I-2 districts (draft)",
+    "verified": "2026-10-28",
+    "sourceHref": "https://tarentumboro.com/wp-content/uploads/2026/06/Ordinance_26-XX_Zoning_DataCenters_Crypto_Etc.pdf",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Tarentum"
+  },
+  {
+    "municipality": "Thornburg Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://ecode360.com/35848205",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Thornburg"
+  },
+  {
+    "municipality": "Trafford Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://ecode360.com/11640364",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Trafford"
+  },
+  {
+    "municipality": "Turtle Creek Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.turtlecreekborough.us/index.php/forms/ordinances",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Turtle+Creek"
+  },
+  {
+    "municipality": "Upper St. Clair Township",
+    "status": "proposed",
+    "whereAllowed": "Proposed data center standards in the RM-P district",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.twpusc.org/government/township_code/index.php",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Upper+St.+Clair"
+  },
+  {
+    "municipality": "Verona Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://ecode360.com/15688902",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Verona"
+  },
+  {
+    "municipality": "Versailles Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://apps.alleghenycounty.us/website/MuniProfile.asp?muni=118",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Versailles"
+  },
+  {
+    "municipality": "Wall Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.wallborough.com/s/270-ZONING-ORD.pdf",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Wall"
+  },
+  {
+    "municipality": "West Deer Township",
+    "status": "adopted",
+    "whereAllowed": "Conditional use in the I and C-2 districts",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.westdeertownship.com/AgendaCenter/ViewFile/Item/174?fileID=220",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=West+Deer"
+  },
+  {
+    "municipality": "West Elizabeth Borough",
+    "status": "none",
+    "whereAllowed": "No zoning ordinance",
+    "verified": "2026-10-28",
+    "sourceHref": "https://apps.alleghenycounty.us/website/MuniProfile.asp?muni=121",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=West+Elizabeth"
+  },
+  {
+    "municipality": "West Homestead Borough",
+    "status": "adopted",
+    "whereAllowed": "Special exception in the IND district",
+    "verified": "2026-10-28",
+    "sourceHref": "https://ecode360.com/30862558",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=West+Homestead"
+  },
+  {
+    "municipality": "West Mifflin Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://www.westmifflin.gov/AgendaCenter",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=West+Mifflin"
+  },
+  {
+    "municipality": "West View Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://ecode360.com/16012635",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=West+View"
+  },
+  {
+    "municipality": "Whitaker Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://ecode360.com/30779470",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Whitaker"
+  },
+  {
+    "municipality": "White Oak Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://codelibrary.amlegal.com/codes/whiteoak/latest/whiteoak_pa/0-0-0-7310",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=White+Oak"
+  },
+  {
+    "municipality": "Whitehall Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://whitehallboro.gov/borough-code/",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Whitehall"
+  },
+  {
+    "municipality": "Wilkins Township",
+    "status": "adopted",
+    "whereAllowed": "Conditional use in the C-1 and M-1 districts",
+    "verified": "2026-10-28",
+    "sourceHref": "https://ecode360.com/32355639",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Wilkins"
+  },
+  {
+    "municipality": "Wilkinsburg Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://ecode360.com/8425193",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Wilkinsburg"
+  },
+  {
+    "municipality": "Wilmerding Borough",
+    "status": "none",
+    "whereAllowed": "Not listed",
+    "verified": "2026-10-28",
+    "sourceHref": "https://ecode360.com/27391957",
+    "trackerHref": "https://padatacenterordinances.org/find?county=allegheny&muni=Wilmerding"
+  }
+]

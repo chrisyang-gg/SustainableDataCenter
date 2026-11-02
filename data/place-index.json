@@ -1,0 +1,3725 @@
+[
+  {
+    "slug": "pittsburgh-allegheny-center",
+    "name": "Allegheny Center",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -80.00686,
+      40.45311
+    ],
+    "bounds": [
+      -80.01457,
+      40.44945,
+      -80.00091,
+      40.4562
+    ]
+  },
+  {
+    "slug": "pittsburgh-allegheny-west",
+    "name": "Allegheny West",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -80.01459,
+      40.45076
+    ],
+    "bounds": [
+      -80.01941,
+      40.44826,
+      -80.00875,
+      40.45397
+    ]
+  },
+  {
+    "slug": "pittsburgh-allentown",
+    "name": "Allentown",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.99478,
+      40.42444
+    ],
+    "bounds": [
+      -80.00384,
+      40.41827,
+      -79.98773,
+      40.42894
+    ]
+  },
+  {
+    "slug": "pittsburgh-arlington",
+    "name": "Arlington",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.96507,
+      40.41514
+    ],
+    "bounds": [
+      -79.98226,
+      40.40919,
+      -79.9551,
+      40.42124
+    ]
+  },
+  {
+    "slug": "pittsburgh-arlington-heights",
+    "name": "Arlington Heights",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.96069,
+      40.41664
+    ],
+    "bounds": [
+      -79.96568,
+      40.41243,
+      -79.95723,
+      40.42087
+    ]
+  },
+  {
+    "slug": "pittsburgh-banksville",
+    "name": "Banksville",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -80.03874,
+      40.41161
+    ],
+    "bounds": [
+      -80.05109,
+      40.39905,
+      -80.02959,
+      40.42492
+    ]
+  },
+  {
+    "slug": "pittsburgh-bedford-dwellings",
+    "name": "Bedford Dwellings",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.97438,
+      40.45059
+    ],
+    "bounds": [
+      -79.98386,
+      40.4464,
+      -79.96493,
+      40.45565
+    ]
+  },
+  {
+    "slug": "pittsburgh-beechview",
+    "name": "Beechview",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -80.02454,
+      40.41281
+    ],
+    "bounds": [
+      -80.03658,
+      40.39721,
+      -80.00997,
+      40.43008
+    ]
+  },
+  {
+    "slug": "pittsburgh-beltzhoover",
+    "name": "Beltzhoover",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -80.00289,
+      40.41721
+    ],
+    "bounds": [
+      -80.01136,
+      40.41115,
+      -79.99705,
+      40.42178
+    ]
+  },
+  {
+    "slug": "pittsburgh-bloomfield",
+    "name": "Bloomfield",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.94703,
+      40.46056
+    ],
+    "bounds": [
+      -79.95794,
+      40.45259,
+      -79.93511,
+      40.46618
+    ]
+  },
+  {
+    "slug": "pittsburgh-bluff",
+    "name": "Bluff",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.9841,
+      40.4367
+    ],
+    "bounds": [
+      -79.99581,
+      40.43363,
+      -79.97274,
+      40.43892
+    ]
+  },
+  {
+    "slug": "pittsburgh-bon-air",
+    "name": "Bon Air",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -80.00121,
+      40.40825
+    ],
+    "bounds": [
+      -80.00997,
+      40.40159,
+      -79.99649,
+      40.41393
+    ]
+  },
+  {
+    "slug": "pittsburgh-brighton-heights",
+    "name": "Brighton Heights",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -80.03668,
+      40.48114
+    ],
+    "bounds": [
+      -80.05145,
+      40.47178,
+      -80.02505,
+      40.49146
+    ]
+  },
+  {
+    "slug": "pittsburgh-brookline",
+    "name": "Brookline",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -80.01223,
+      40.39511
+    ],
+    "bounds": [
+      -80.03115,
+      40.38045,
+      -79.99722,
+      40.41301
+    ]
+  },
+  {
+    "slug": "pittsburgh-california-kirkbride",
+    "name": "California-Kirkbride",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -80.02231,
+      40.45996
+    ],
+    "bounds": [
+      -80.03078,
+      40.45521,
+      -80.01536,
+      40.46379
+    ]
+  },
+  {
+    "slug": "pittsburgh-carrick",
+    "name": "Carrick",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.98625,
+      40.39327
+    ],
+    "bounds": [
+      -80.00062,
+      40.37956,
+      -79.97308,
+      40.40815
+    ]
+  },
+  {
+    "slug": "pittsburgh-central-business-district",
+    "name": "Central Business District",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -80.00071,
+      40.44113
+    ],
+    "bounds": [
+      -80.01329,
+      40.434,
+      -79.99002,
+      40.44708
+    ]
+  },
+  {
+    "slug": "pittsburgh-central-lawrenceville",
+    "name": "Central Lawrenceville",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.9535,
+      40.47249
+    ],
+    "bounds": [
+      -79.96715,
+      40.46519,
+      -79.93494,
+      40.48125
+    ]
+  },
+  {
+    "slug": "pittsburgh-central-northside",
+    "name": "Central Northside",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -80.01055,
+      40.45698
+    ],
+    "bounds": [
+      -80.02008,
+      40.45311,
+      -80.00157,
+      40.46122
+    ]
+  },
+  {
+    "slug": "pittsburgh-central-oakland",
+    "name": "Central Oakland",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.95505,
+      40.43879
+    ],
+    "bounds": [
+      -79.96199,
+      40.43423,
+      -79.94896,
+      40.44318
+    ]
+  },
+  {
+    "slug": "pittsburgh-chartiers-city",
+    "name": "Chartiers City",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -80.07154,
+      40.4581
+    ],
+    "bounds": [
+      -80.07581,
+      40.45328,
+      -80.06692,
+      40.46268
+    ]
+  },
+  {
+    "slug": "pittsburgh-chateau",
+    "name": "Chateau",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -80.02797,
+      40.45205
+    ],
+    "bounds": [
+      -80.0359,
+      40.4449,
+      -80.01686,
+      40.46207
+    ]
+  },
+  {
+    "slug": "pittsburgh-crafton-heights",
+    "name": "Crafton Heights",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -80.05186,
+      40.44449
+    ],
+    "bounds": [
+      -80.06277,
+      40.4375,
+      -80.04161,
+      40.45261
+    ]
+  },
+  {
+    "slug": "pittsburgh-crawford-roberts",
+    "name": "Crawford-Roberts",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.98412,
+      40.44139
+    ],
+    "bounds": [
+      -79.99371,
+      40.43824,
+      -79.97538,
+      40.44853
+    ]
+  },
+  {
+    "slug": "pittsburgh-duquesne-heights",
+    "name": "Duquesne Heights",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -80.02461,
+      40.43425
+    ],
+    "bounds": [
+      -80.03306,
+      40.42524,
+      -80.01773,
+      40.44395
+    ]
+  },
+  {
+    "slug": "pittsburgh-east-allegheny",
+    "name": "East Allegheny",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.99716,
+      40.45611
+    ],
+    "bounds": [
+      -80.00259,
+      40.45039,
+      -79.99136,
+      40.46123
+    ]
+  },
+  {
+    "slug": "pittsburgh-east-carnegie",
+    "name": "East Carnegie",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -80.074,
+      40.42004
+    ],
+    "bounds": [
+      -80.08575,
+      40.41347,
+      -80.0661,
+      40.42605
+    ]
+  },
+  {
+    "slug": "pittsburgh-east-hills",
+    "name": "East Hills",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.8772,
+      40.45514
+    ],
+    "bounds": [
+      -79.88592,
+      40.44895,
+      -79.86585,
+      40.46161
+    ]
+  },
+  {
+    "slug": "pittsburgh-east-liberty",
+    "name": "East Liberty",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.92387,
+      40.46496
+    ],
+    "bounds": [
+      -79.93422,
+      40.45727,
+      -79.91568,
+      40.47386
+    ]
+  },
+  {
+    "slug": "pittsburgh-elliott",
+    "name": "Elliott",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -80.03931,
+      40.44316
+    ],
+    "bounds": [
+      -80.04742,
+      40.43572,
+      -80.02789,
+      40.45315
+    ]
+  },
+  {
+    "slug": "pittsburgh-esplen",
+    "name": "Esplen",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -80.05417,
+      40.46211
+    ],
+    "bounds": [
+      -80.07544,
+      40.45267,
+      -80.03898,
+      40.46526
+    ]
+  },
+  {
+    "slug": "pittsburgh-fairywood",
+    "name": "Fairywood",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -80.08372,
+      40.45063
+    ],
+    "bounds": [
+      -80.09533,
+      40.4398,
+      -80.06862,
+      40.45986
+    ]
+  },
+  {
+    "slug": "pittsburgh-fineview",
+    "name": "Fineview",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -80.00467,
+      40.4637
+    ],
+    "bounds": [
+      -80.01006,
+      40.45856,
+      -79.99973,
+      40.46842
+    ]
+  },
+  {
+    "slug": "pittsburgh-friendship",
+    "name": "Friendship",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.93416,
+      40.46141
+    ],
+    "bounds": [
+      -79.93706,
+      40.45657,
+      -79.93068,
+      40.46478
+    ]
+  },
+  {
+    "slug": "pittsburgh-garfield",
+    "name": "Garfield",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.938,
+      40.46803
+    ],
+    "bounds": [
+      -79.94739,
+      40.4635,
+      -79.92759,
+      40.4731
+    ]
+  },
+  {
+    "slug": "pittsburgh-glen-hazel",
+    "name": "Glen Hazel",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.9287,
+      40.40617
+    ],
+    "bounds": [
+      -79.93803,
+      40.3986,
+      -79.91974,
+      40.41237
+    ]
+  },
+  {
+    "slug": "pittsburgh-greenfield",
+    "name": "Greenfield",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.93947,
+      40.42435
+    ],
+    "bounds": [
+      -79.95229,
+      40.41888,
+      -79.92576,
+      40.43011
+    ]
+  },
+  {
+    "slug": "pittsburgh-hays",
+    "name": "Hays",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.9437,
+      40.39115
+    ],
+    "bounds": [
+      -79.97096,
+      40.37395,
+      -79.92559,
+      40.41035
+    ]
+  },
+  {
+    "slug": "pittsburgh-hazelwood",
+    "name": "Hazelwood",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.94455,
+      40.41426
+    ],
+    "bounds": [
+      -79.95937,
+      40.39821,
+      -79.9226,
+      40.42996
+    ]
+  },
+  {
+    "slug": "pittsburgh-highland-park",
+    "name": "Highland Park",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.91692,
+      40.47738
+    ],
+    "bounds": [
+      -79.92859,
+      40.46702,
+      -79.90613,
+      40.48821
+    ]
+  },
+  {
+    "slug": "pittsburgh-homewood-north",
+    "name": "Homewood North",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.89074,
+      40.45942
+    ],
+    "bounds": [
+      -79.90112,
+      40.45506,
+      -79.87775,
+      40.46465
+    ]
+  },
+  {
+    "slug": "pittsburgh-homewood-south",
+    "name": "Homewood South",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.89252,
+      40.45322
+    ],
+    "bounds": [
+      -79.90531,
+      40.44699,
+      -79.88409,
+      40.4584
+    ]
+  },
+  {
+    "slug": "pittsburgh-homewood-west",
+    "name": "Homewood West",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.90353,
+      40.45978
+    ],
+    "bounds": [
+      -79.90944,
+      40.45491,
+      -79.89903,
+      40.46423
+    ]
+  },
+  {
+    "slug": "pittsburgh-knoxville",
+    "name": "Knoxville",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.99301,
+      40.41296
+    ],
+    "bounds": [
+      -79.99728,
+      40.40722,
+      -79.98805,
+      40.41852
+    ]
+  },
+  {
+    "slug": "pittsburgh-larimer",
+    "name": "Larimer",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.91274,
+      40.46246
+    ],
+    "bounds": [
+      -79.91991,
+      40.45404,
+      -79.9056,
+      40.47029
+    ]
+  },
+  {
+    "slug": "pittsburgh-lincoln-place",
+    "name": "Lincoln Place",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.91533,
+      40.37251
+    ],
+    "bounds": [
+      -79.92683,
+      40.36152,
+      -79.90035,
+      40.38095
+    ]
+  },
+  {
+    "slug": "pittsburgh-lincoln-lemington-belmar",
+    "name": "Lincoln-Lemington-Belmar",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.89793,
+      40.47519
+    ],
+    "bounds": [
+      -79.90882,
+      40.46169,
+      -79.88396,
+      40.49249
+    ]
+  },
+  {
+    "slug": "pittsburgh-lower-lawrenceville",
+    "name": "Lower Lawrenceville",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.96443,
+      40.46556
+    ],
+    "bounds": [
+      -79.97265,
+      40.45944,
+      -79.95374,
+      40.47182
+    ]
+  },
+  {
+    "slug": "pittsburgh-manchester",
+    "name": "Manchester",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -80.02544,
+      40.45646
+    ],
+    "bounds": [
+      -80.03135,
+      40.45042,
+      -80.01893,
+      40.46213
+    ]
+  },
+  {
+    "slug": "pittsburgh-marshall-shadeland",
+    "name": "Marshall-Shadeland",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -80.03182,
+      40.47238
+    ],
+    "bounds": [
+      -80.04944,
+      40.45562,
+      -80.01718,
+      40.48276
+    ]
+  },
+  {
+    "slug": "pittsburgh-middle-hill",
+    "name": "Middle Hill",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.97289,
+      40.44789
+    ],
+    "bounds": [
+      -79.98237,
+      40.4429,
+      -79.96434,
+      40.45318
+    ]
+  },
+  {
+    "slug": "pittsburgh-morningside",
+    "name": "Morningside",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.9269,
+      40.48569
+    ],
+    "bounds": [
+      -79.93768,
+      40.47244,
+      -79.91317,
+      40.49051
+    ]
+  },
+  {
+    "slug": "pittsburgh-mount-washington",
+    "name": "Mount Washington",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -80.0085,
+      40.42552
+    ],
+    "bounds": [
+      -80.02149,
+      40.41309,
+      -79.99679,
+      40.43974
+    ]
+  },
+  {
+    "slug": "pittsburgh-mt-oliver",
+    "name": "Mt. Oliver",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.97926,
+      40.41072
+    ],
+    "bounds": [
+      -79.9818,
+      40.40639,
+      -79.97699,
+      40.41424
+    ]
+  },
+  {
+    "slug": "pittsburgh-new-homestead",
+    "name": "New Homestead",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.92348,
+      40.38622
+    ],
+    "bounds": [
+      -79.93202,
+      40.37804,
+      -79.91331,
+      40.39931
+    ]
+  },
+  {
+    "slug": "pittsburgh-north-oakland",
+    "name": "North Oakland",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.95489,
+      40.44886
+    ],
+    "bounds": [
+      -79.96338,
+      40.44135,
+      -79.94652,
+      40.46031
+    ]
+  },
+  {
+    "slug": "pittsburgh-north-shore",
+    "name": "North Shore",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -80.00506,
+      40.44851
+    ],
+    "bounds": [
+      -80.01807,
+      40.4447,
+      -79.9918,
+      40.45383
+    ]
+  },
+  {
+    "slug": "pittsburgh-northview-heights",
+    "name": "Northview Heights",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -80.00288,
+      40.47786
+    ],
+    "bounds": [
+      -80.00785,
+      40.47227,
+      -79.99535,
+      40.48333
+    ]
+  },
+  {
+    "slug": "pittsburgh-oakwood",
+    "name": "Oakwood",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -80.06421,
+      40.42675
+    ],
+    "bounds": [
+      -80.07315,
+      40.42063,
+      -80.05378,
+      40.43137
+    ]
+  },
+  {
+    "slug": "pittsburgh-overbrook",
+    "name": "Overbrook",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.99624,
+      40.38453
+    ],
+    "bounds": [
+      -80.00777,
+      40.37399,
+      -79.98432,
+      40.3956
+    ]
+  },
+  {
+    "slug": "pittsburgh-perry-north",
+    "name": "Perry North",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -80.01884,
+      40.48594
+    ],
+    "bounds": [
+      -80.02781,
+      40.47478,
+      -80.00751,
+      40.49772
+    ]
+  },
+  {
+    "slug": "pittsburgh-perry-south",
+    "name": "Perry South",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -80.01306,
+      40.46807
+    ],
+    "bounds": [
+      -80.02581,
+      40.45928,
+      -80.00221,
+      40.47745
+    ]
+  },
+  {
+    "slug": "pittsburgh-point-breeze",
+    "name": "Point Breeze",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.90829,
+      40.44637
+    ],
+    "bounds": [
+      -79.92159,
+      40.43802,
+      -79.89323,
+      40.45404
+    ]
+  },
+  {
+    "slug": "pittsburgh-point-breeze-north",
+    "name": "Point Breeze North",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.9018,
+      40.45145
+    ],
+    "bounds": [
+      -79.91243,
+      40.4465,
+      -79.89243,
+      40.45667
+    ]
+  },
+  {
+    "slug": "pittsburgh-polish-hill",
+    "name": "Polish Hill",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.96586,
+      40.45768
+    ],
+    "bounds": [
+      -79.97495,
+      40.45285,
+      -79.95601,
+      40.46102
+    ]
+  },
+  {
+    "slug": "pittsburgh-regent-square",
+    "name": "Regent Square",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.89675,
+      40.43122
+    ],
+    "bounds": [
+      -79.90135,
+      40.42645,
+      -79.89218,
+      40.43984
+    ]
+  },
+  {
+    "slug": "pittsburgh-ridgemont",
+    "name": "Ridgemont",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -80.03491,
+      40.42719
+    ],
+    "bounds": [
+      -80.04063,
+      40.42004,
+      -80.02804,
+      40.43392
+    ]
+  },
+  {
+    "slug": "pittsburgh-shadyside",
+    "name": "Shadyside",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.93149,
+      40.45369
+    ],
+    "bounds": [
+      -79.94968,
+      40.44711,
+      -79.91243,
+      40.46066
+    ]
+  },
+  {
+    "slug": "pittsburgh-sheraden",
+    "name": "Sheraden",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -80.05498,
+      40.45614
+    ],
+    "bounds": [
+      -80.07216,
+      40.44855,
+      -80.0399,
+      40.46188
+    ]
+  },
+  {
+    "slug": "pittsburgh-south-oakland",
+    "name": "South Oakland",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.9606,
+      40.43306
+    ],
+    "bounds": [
+      -79.97339,
+      40.4274,
+      -79.94966,
+      40.43914
+    ]
+  },
+  {
+    "slug": "pittsburgh-south-shore",
+    "name": "South Shore",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -80.01225,
+      40.4374
+    ],
+    "bounds": [
+      -80.0285,
+      40.42915,
+      -79.99744,
+      40.4449
+    ]
+  },
+  {
+    "slug": "pittsburgh-south-side-flats",
+    "name": "South Side Flats",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.96958,
+      40.42544
+    ],
+    "bounds": [
+      -79.99881,
+      40.41055,
+      -79.9544,
+      40.43278
+    ]
+  },
+  {
+    "slug": "pittsburgh-south-side-slopes",
+    "name": "South Side Slopes",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.98182,
+      40.42265
+    ],
+    "bounds": [
+      -79.99915,
+      40.41714,
+      -79.96129,
+      40.42976
+    ]
+  },
+  {
+    "slug": "pittsburgh-spring-garden",
+    "name": "Spring Garden",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.98677,
+      40.46749
+    ],
+    "bounds": [
+      -79.99548,
+      40.45756,
+      -79.98387,
+      40.47743
+    ]
+  },
+  {
+    "slug": "pittsburgh-spring-hill-city-view",
+    "name": "Spring Hill-City View",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.9951,
+      40.46668
+    ],
+    "bounds": [
+      -80.005,
+      40.45861,
+      -79.98669,
+      40.4746
+    ]
+  },
+  {
+    "slug": "pittsburgh-squirrel-hill-north",
+    "name": "Squirrel Hill North",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.93044,
+      40.4441
+    ],
+    "bounds": [
+      -79.94925,
+      40.43757,
+      -79.91165,
+      40.4529
+    ]
+  },
+  {
+    "slug": "pittsburgh-squirrel-hill-south",
+    "name": "Squirrel Hill South",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.92451,
+      40.42725
+    ],
+    "bounds": [
+      -79.94989,
+      40.41163,
+      -79.89868,
+      40.4415
+    ]
+  },
+  {
+    "slug": "pittsburgh-st-clair",
+    "name": "St. Clair",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.97348,
+      40.40931
+    ],
+    "bounds": [
+      -79.97848,
+      40.40393,
+      -79.96442,
+      40.41414
+    ]
+  },
+  {
+    "slug": "pittsburgh-stanton-heights",
+    "name": "Stanton Heights",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.93831,
+      40.48168
+    ],
+    "bounds": [
+      -79.94895,
+      40.47064,
+      -79.92554,
+      40.48918
+    ]
+  },
+  {
+    "slug": "pittsburgh-strip-district",
+    "name": "Strip District",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.98027,
+      40.45493
+    ],
+    "bounds": [
+      -79.9954,
+      40.44465,
+      -79.96808,
+      40.46487
+    ]
+  },
+  {
+    "slug": "pittsburgh-summer-hill",
+    "name": "Summer Hill",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -80.00966,
+      40.49293
+    ],
+    "bounds": [
+      -80.01782,
+      40.48237,
+      -80.00322,
+      40.50098
+    ]
+  },
+  {
+    "slug": "pittsburgh-swisshelm-park",
+    "name": "Swisshelm Park",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.90408,
+      40.42195
+    ],
+    "bounds": [
+      -79.91642,
+      40.41546,
+      -79.89102,
+      40.4279
+    ]
+  },
+  {
+    "slug": "pittsburgh-terrace-village",
+    "name": "Terrace Village",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.96992,
+      40.44317
+    ],
+    "bounds": [
+      -79.97968,
+      40.43878,
+      -79.95848,
+      40.44889
+    ]
+  },
+  {
+    "slug": "pittsburgh-troy-hill",
+    "name": "Troy Hill",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.98455,
+      40.46192
+    ],
+    "bounds": [
+      -79.99467,
+      40.45244,
+      -79.9724,
+      40.47162
+    ]
+  },
+  {
+    "slug": "pittsburgh-upper-hill",
+    "name": "Upper Hill",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.95981,
+      40.45352
+    ],
+    "bounds": [
+      -79.96601,
+      40.44832,
+      -79.95407,
+      40.45856
+    ]
+  },
+  {
+    "slug": "pittsburgh-upper-lawrenceville",
+    "name": "Upper Lawrenceville",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.94845,
+      40.48374
+    ],
+    "bounds": [
+      -79.95981,
+      40.4773,
+      -79.93716,
+      40.49001
+    ]
+  },
+  {
+    "slug": "pittsburgh-west-end",
+    "name": "West End",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -80.03354,
+      40.43768
+    ],
+    "bounds": [
+      -80.03881,
+      40.43008,
+      -80.0263,
+      40.44454
+    ]
+  },
+  {
+    "slug": "pittsburgh-west-oakland",
+    "name": "West Oakland",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -79.96736,
+      40.44036
+    ],
+    "bounds": [
+      -79.97755,
+      40.43646,
+      -79.95744,
+      40.44467
+    ]
+  },
+  {
+    "slug": "pittsburgh-westwood",
+    "name": "Westwood",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -80.04781,
+      40.43306
+    ],
+    "bounds": [
+      -80.05909,
+      40.42574,
+      -80.03584,
+      40.43831
+    ]
+  },
+  {
+    "slug": "pittsburgh-windgap",
+    "name": "Windgap",
+    "kind": "neighborhood",
+    "municipality": "Pittsburgh",
+    "ordinanceKey": "Pittsburgh City",
+    "centroid": [
+      -80.07339,
+      40.45527
+    ],
+    "bounds": [
+      -80.08425,
+      40.44724,
+      -80.0619,
+      40.46476
+    ]
+  },
+  {
+    "slug": "aleppo-township",
+    "name": "Aleppo Township",
+    "kind": "municipality",
+    "municipality": "Aleppo Township",
+    "ordinanceKey": "Aleppo Township",
+    "centroid": [
+      -80.15166,
+      40.53581
+    ],
+    "bounds": [
+      -80.16947,
+      40.52525,
+      -80.12081,
+      40.54167
+    ]
+  },
+  {
+    "slug": "aspinwall-borough",
+    "name": "Aspinwall Borough",
+    "kind": "municipality",
+    "municipality": "Aspinwall Borough",
+    "ordinanceKey": "Aspinwall Borough",
+    "centroid": [
+      -79.90208,
+      40.49221
+    ],
+    "bounds": [
+      -79.90932,
+      40.48579,
+      -79.89689,
+      40.50024
+    ]
+  },
+  {
+    "slug": "avalon-borough",
+    "name": "Avalon Borough",
+    "kind": "municipality",
+    "municipality": "Avalon Borough",
+    "ordinanceKey": "Avalon Borough",
+    "centroid": [
+      -80.06486,
+      40.49878
+    ],
+    "bounds": [
+      -80.07532,
+      40.49097,
+      -80.06091,
+      40.50901
+    ]
+  },
+  {
+    "slug": "baldwin-borough",
+    "name": "Baldwin Borough",
+    "kind": "municipality",
+    "municipality": "Baldwin Borough",
+    "ordinanceKey": "Baldwin Borough",
+    "centroid": [
+      -79.96057,
+      40.37009
+    ],
+    "bounds": [
+      -80.01092,
+      40.32953,
+      -79.9354,
+      40.41066
+    ]
+  },
+  {
+    "slug": "baldwin-township",
+    "name": "Baldwin Township",
+    "kind": "municipality",
+    "municipality": "Baldwin Township",
+    "ordinanceKey": "Baldwin Township",
+    "centroid": [
+      -80.01242,
+      40.37996
+    ],
+    "bounds": [
+      -80.02346,
+      40.37232,
+      -80.00182,
+      40.38816
+    ]
+  },
+  {
+    "slug": "bell-acres-borough",
+    "name": "Bell Acres Borough",
+    "kind": "municipality",
+    "municipality": "Bell Acres Borough",
+    "ordinanceKey": "Bell Acres Borough",
+    "centroid": [
+      -80.17965,
+      40.59878
+    ],
+    "bounds": [
+      -80.20798,
+      40.56437,
+      -80.13376,
+      40.6096
+    ]
+  },
+  {
+    "slug": "bellevue-borough",
+    "name": "Bellevue Borough",
+    "kind": "municipality",
+    "municipality": "Bellevue Borough",
+    "ordinanceKey": "Bellevue Borough",
+    "centroid": [
+      -80.05506,
+      40.49577
+    ],
+    "bounds": [
+      -80.06624,
+      40.48217,
+      -80.04462,
+      40.50819
+    ]
+  },
+  {
+    "slug": "ben-avon-borough",
+    "name": "Ben Avon Borough",
+    "kind": "municipality",
+    "municipality": "Ben Avon Borough",
+    "ordinanceKey": "Ben Avon Borough",
+    "centroid": [
+      -80.08214,
+      40.50731
+    ],
+    "bounds": [
+      -80.0895,
+      40.49839,
+      -80.07492,
+      40.51224
+    ]
+  },
+  {
+    "slug": "ben-avon-heights-borough",
+    "name": "Ben Avon Heights Borough",
+    "kind": "municipality",
+    "municipality": "Ben Avon Heights Borough",
+    "ordinanceKey": "Ben Avon Heights Borough",
+    "centroid": [
+      -80.07227,
+      40.51247
+    ],
+    "bounds": [
+      -80.07901,
+      40.50883,
+      -80.06848,
+      40.51539
+    ]
+  },
+  {
+    "slug": "bethel-park-municipality",
+    "name": "Bethel Park Municipality",
+    "kind": "municipality",
+    "municipality": "Bethel Park Municipality",
+    "ordinanceKey": "Bethel Park Borough",
+    "centroid": [
+      -80.03293,
+      40.32375
+    ],
+    "bounds": [
+      -80.07401,
+      40.28754,
+      -79.99808,
+      40.35928
+    ]
+  },
+  {
+    "slug": "blawnox-borough",
+    "name": "Blawnox Borough",
+    "kind": "municipality",
+    "municipality": "Blawnox Borough",
+    "ordinanceKey": "Blawnox Borough",
+    "centroid": [
+      -79.86041,
+      40.49355
+    ],
+    "bounds": [
+      -79.86586,
+      40.48507,
+      -79.85111,
+      40.49813
+    ]
+  },
+  {
+    "slug": "brackenridge-borough",
+    "name": "Brackenridge Borough",
+    "kind": "municipality",
+    "municipality": "Brackenridge Borough",
+    "ordinanceKey": "Brackenridge Borough",
+    "centroid": [
+      -79.7388,
+      40.60983
+    ],
+    "bounds": [
+      -79.75105,
+      40.60077,
+      -79.73317,
+      40.61568
+    ]
+  },
+  {
+    "slug": "braddock-borough",
+    "name": "Braddock Borough",
+    "kind": "municipality",
+    "municipality": "Braddock Borough",
+    "ordinanceKey": "Braddock Borough",
+    "centroid": [
+      -79.86792,
+      40.40458
+    ],
+    "bounds": [
+      -79.87944,
+      40.39227,
+      -79.85885,
+      40.41192
+    ]
+  },
+  {
+    "slug": "braddock-hills-borough",
+    "name": "Braddock Hills Borough",
+    "kind": "municipality",
+    "municipality": "Braddock Hills Borough",
+    "ordinanceKey": "Braddock Hills Borough",
+    "centroid": [
+      -79.86573,
+      40.42132
+    ],
+    "bounds": [
+      -79.87582,
+      40.40897,
+      -79.84908,
+      40.43376
+    ]
+  },
+  {
+    "slug": "bradford-woods-borough",
+    "name": "Bradford Woods Borough",
+    "kind": "municipality",
+    "municipality": "Bradford Woods Borough",
+    "ordinanceKey": "Bradford Woods Borough",
+    "centroid": [
+      -80.08351,
+      40.639
+    ],
+    "bounds": [
+      -80.09651,
+      40.62931,
+      -80.06936,
+      40.64601
+    ]
+  },
+  {
+    "slug": "brentwood-borough",
+    "name": "Brentwood Borough",
+    "kind": "municipality",
+    "municipality": "Brentwood Borough",
+    "ordinanceKey": "Brentwood Borough",
+    "centroid": [
+      -79.97647,
+      40.37695
+    ],
+    "bounds": [
+      -79.98882,
+      40.36085,
+      -79.96162,
+      40.3858
+    ]
+  },
+  {
+    "slug": "bridgeville-borough",
+    "name": "Bridgeville Borough",
+    "kind": "municipality",
+    "municipality": "Bridgeville Borough",
+    "ordinanceKey": "Bridgeville Borough",
+    "centroid": [
+      -80.10484,
+      40.35946
+    ],
+    "bounds": [
+      -80.1216,
+      40.34879,
+      -80.08769,
+      40.36745
+    ]
+  },
+  {
+    "slug": "carnegie-borough",
+    "name": "Carnegie Borough",
+    "kind": "municipality",
+    "municipality": "Carnegie Borough",
+    "ordinanceKey": "Carnegie Borough",
+    "centroid": [
+      -80.08452,
+      40.4079
+    ],
+    "bounds": [
+      -80.09999,
+      40.39856,
+      -80.06735,
+      40.42022
+    ]
+  },
+  {
+    "slug": "castle-shannon-borough",
+    "name": "Castle Shannon Borough",
+    "kind": "municipality",
+    "municipality": "Castle Shannon Borough",
+    "ordinanceKey": "Castle Shannon Borough",
+    "centroid": [
+      -80.01963,
+      40.3683
+    ],
+    "bounds": [
+      -80.0384,
+      40.355,
+      -80.00081,
+      40.37964
+    ]
+  },
+  {
+    "slug": "chalfant-borough",
+    "name": "Chalfant Borough",
+    "kind": "municipality",
+    "municipality": "Chalfant Borough",
+    "ordinanceKey": "Chalfant Borough",
+    "centroid": [
+      -79.83825,
+      40.41038
+    ],
+    "bounds": [
+      -79.84313,
+      40.40579,
+      -79.83396,
+      40.41506
+    ]
+  },
+  {
+    "slug": "cheswick-borough",
+    "name": "Cheswick Borough",
+    "kind": "municipality",
+    "municipality": "Cheswick Borough",
+    "ordinanceKey": "Cheswick Borough",
+    "centroid": [
+      -79.80019,
+      40.54225
+    ],
+    "bounds": [
+      -79.80785,
+      40.53579,
+      -79.7947,
+      40.54912
+    ]
+  },
+  {
+    "slug": "churchill-borough",
+    "name": "Churchill Borough",
+    "kind": "municipality",
+    "municipality": "Churchill Borough",
+    "ordinanceKey": "Churchill Borough",
+    "centroid": [
+      -79.84196,
+      40.43649
+    ],
+    "bounds": [
+      -79.86511,
+      40.42294,
+      -79.82088,
+      40.45282
+    ]
+  },
+  {
+    "slug": "clairton",
+    "name": "Clairton",
+    "kind": "municipality",
+    "municipality": "Clairton",
+    "ordinanceKey": "Clairton City",
+    "centroid": [
+      -79.88863,
+      40.30178
+    ],
+    "bounds": [
+      -79.90077,
+      40.28091,
+      -79.8671,
+      40.31975
+    ]
+  },
+  {
+    "slug": "collier-township",
+    "name": "Collier Township",
+    "kind": "municipality",
+    "municipality": "Collier Township",
+    "ordinanceKey": "Collier Township",
+    "centroid": [
+      -80.12559,
+      40.39666
+    ],
+    "bounds": [
+      -80.17011,
+      40.362,
+      -80.09215,
+      40.43345
+    ]
+  },
+  {
+    "slug": "coraopolis-borough",
+    "name": "Coraopolis Borough",
+    "kind": "municipality",
+    "municipality": "Coraopolis Borough",
+    "ordinanceKey": "Coraopolis Borough",
+    "centroid": [
+      -80.1571,
+      40.51321
+    ],
+    "bounds": [
+      -80.17815,
+      40.50359,
+      -80.14629,
+      40.52732
+    ]
+  },
+  {
+    "slug": "crafton-borough",
+    "name": "Crafton Borough",
+    "kind": "municipality",
+    "municipality": "Crafton Borough",
+    "ordinanceKey": "Crafton Borough",
+    "centroid": [
+      -80.07296,
+      40.43467
+    ],
+    "bounds": [
+      -80.0867,
+      40.42375,
+      -80.05728,
+      40.44209
+    ]
+  },
+  {
+    "slug": "crescent-township",
+    "name": "Crescent Township",
+    "kind": "municipality",
+    "municipality": "Crescent Township",
+    "ordinanceKey": "Crescent Township",
+    "centroid": [
+      -80.23023,
+      40.5521
+    ],
+    "bounds": [
+      -80.25139,
+      40.54424,
+      -80.2081,
+      40.57287
+    ]
+  },
+  {
+    "slug": "dormont-borough",
+    "name": "Dormont Borough",
+    "kind": "municipality",
+    "municipality": "Dormont Borough",
+    "ordinanceKey": "Dormont Borough",
+    "centroid": [
+      -80.03727,
+      40.39271
+    ],
+    "bounds": [
+      -80.04652,
+      40.38301,
+      -80.02869,
+      40.40429
+    ]
+  },
+  {
+    "slug": "dravosburg-borough",
+    "name": "Dravosburg Borough",
+    "kind": "municipality",
+    "municipality": "Dravosburg Borough",
+    "ordinanceKey": "Dravosburg Borough",
+    "centroid": [
+      -79.89314,
+      40.35235
+    ],
+    "bounds": [
+      -79.9062,
+      40.33899,
+      -79.87668,
+      40.3593
+    ]
+  },
+  {
+    "slug": "duquesne",
+    "name": "Duquesne",
+    "kind": "municipality",
+    "municipality": "Duquesne",
+    "ordinanceKey": "Duquesne City",
+    "centroid": [
+      -79.85242,
+      40.3702
+    ],
+    "bounds": [
+      -79.86886,
+      40.35693,
+      -79.83637,
+      40.38877
+    ]
+  },
+  {
+    "slug": "east-deer-township",
+    "name": "East Deer Township",
+    "kind": "municipality",
+    "municipality": "East Deer Township",
+    "ordinanceKey": "East Deer Township",
+    "centroid": [
+      -79.78131,
+      40.58384
+    ],
+    "bounds": [
+      -79.79644,
+      40.56283,
+      -79.76404,
+      40.60607
+    ]
+  },
+  {
+    "slug": "east-mckeesport-borough",
+    "name": "East McKeesport Borough",
+    "kind": "municipality",
+    "municipality": "East McKeesport Borough",
+    "ordinanceKey": "East McKeesport Borough",
+    "centroid": [
+      -79.80696,
+      40.38384
+    ],
+    "bounds": [
+      -79.81662,
+      40.37714,
+      -79.7981,
+      40.39142
+    ]
+  },
+  {
+    "slug": "east-pittsburgh-borough",
+    "name": "East Pittsburgh Borough",
+    "kind": "municipality",
+    "municipality": "East Pittsburgh Borough",
+    "ordinanceKey": "East Pittsburgh Borough",
+    "centroid": [
+      -79.83906,
+      40.39772
+    ],
+    "bounds": [
+      -79.84653,
+      40.39074,
+      -79.8301,
+      40.40531
+    ]
+  },
+  {
+    "slug": "edgewood-borough",
+    "name": "Edgewood Borough",
+    "kind": "municipality",
+    "municipality": "Edgewood Borough",
+    "ordinanceKey": "Edgewood Borough",
+    "centroid": [
+      -79.88379,
+      40.43025
+    ],
+    "bounds": [
+      -79.89456,
+      40.42396,
+      -79.87221,
+      40.43687
+    ]
+  },
+  {
+    "slug": "edgeworth-borough",
+    "name": "Edgeworth Borough",
+    "kind": "municipality",
+    "municipality": "Edgeworth Borough",
+    "ordinanceKey": "Edgeworth Borough",
+    "centroid": [
+      -80.19206,
+      40.55302
+    ],
+    "bounds": [
+      -80.21012,
+      40.54046,
+      -80.18057,
+      40.5689
+    ]
+  },
+  {
+    "slug": "elizabeth-borough",
+    "name": "Elizabeth Borough",
+    "kind": "municipality",
+    "municipality": "Elizabeth Borough",
+    "ordinanceKey": "Elizabeth Borough",
+    "centroid": [
+      -79.88776,
+      40.2705
+    ],
+    "bounds": [
+      -79.89631,
+      40.26356,
+      -79.87902,
+      40.27941
+    ]
+  },
+  {
+    "slug": "elizabeth-township",
+    "name": "Elizabeth Township",
+    "kind": "municipality",
+    "municipality": "Elizabeth Township",
+    "ordinanceKey": "Elizabeth Township",
+    "centroid": [
+      -79.83584,
+      40.26715
+    ],
+    "bounds": [
+      -79.88423,
+      40.20876,
+      -79.77503,
+      40.32017
+    ]
+  },
+  {
+    "slug": "emsworth-borough",
+    "name": "Emsworth Borough",
+    "kind": "municipality",
+    "municipality": "Emsworth Borough",
+    "ordinanceKey": "Emsworth Borough",
+    "centroid": [
+      -80.09419,
+      40.51207
+    ],
+    "bounds": [
+      -80.10862,
+      40.5032,
+      -80.08709,
+      40.51706
+    ]
+  },
+  {
+    "slug": "etna-borough",
+    "name": "Etna Borough",
+    "kind": "municipality",
+    "municipality": "Etna Borough",
+    "ordinanceKey": "Etna Borough",
+    "centroid": [
+      -79.94787,
+      40.49957
+    ],
+    "bounds": [
+      -79.95828,
+      40.48759,
+      -79.93836,
+      40.50867
+    ]
+  },
+  {
+    "slug": "fawn-township",
+    "name": "Fawn Township",
+    "kind": "municipality",
+    "municipality": "Fawn Township",
+    "ordinanceKey": "Fawn Township",
+    "centroid": [
+      -79.75997,
+      40.64068
+    ],
+    "bounds": [
+      -79.81695,
+      40.61182,
+      -79.71782,
+      40.6717
+    ]
+  },
+  {
+    "slug": "findlay-township",
+    "name": "Findlay Township",
+    "kind": "municipality",
+    "municipality": "Findlay Township",
+    "ordinanceKey": "Findlay Township",
+    "centroid": [
+      -80.23253,
+      40.45627
+    ],
+    "bounds": [
+      -80.3609,
+      40.4255,
+      -80.18836,
+      40.53931
+    ]
+  },
+  {
+    "slug": "forest-hills-borough",
+    "name": "Forest Hills Borough",
+    "kind": "municipality",
+    "municipality": "Forest Hills Borough",
+    "ordinanceKey": "Forest Hills Borough",
+    "centroid": [
+      -79.85168,
+      40.42361
+    ],
+    "bounds": [
+      -79.87235,
+      40.40923,
+      -79.83854,
+      40.43843
+    ]
+  },
+  {
+    "slug": "forward-township",
+    "name": "Forward Township",
+    "kind": "municipality",
+    "municipality": "Forward Township",
+    "ordinanceKey": "Forward Township",
+    "centroid": [
+      -79.88297,
+      40.23979
+    ],
+    "bounds": [
+      -79.9713,
+      40.19428,
+      -79.83926,
+      40.26893
+    ]
+  },
+  {
+    "slug": "fox-chapel-borough",
+    "name": "Fox Chapel Borough",
+    "kind": "municipality",
+    "municipality": "Fox Chapel Borough",
+    "ordinanceKey": "Fox Chapel Borough",
+    "centroid": [
+      -79.89612,
+      40.53029
+    ],
+    "bounds": [
+      -79.91502,
+      40.49153,
+      -79.85527,
+      40.55209
+    ]
+  },
+  {
+    "slug": "franklin-park-borough",
+    "name": "Franklin Park Borough",
+    "kind": "municipality",
+    "municipality": "Franklin Park Borough",
+    "ordinanceKey": "Franklin Park Borough",
+    "centroid": [
+      -80.11893,
+      40.59725
+    ],
+    "bounds": [
+      -80.15869,
+      40.54222,
+      -80.06402,
+      40.61632
+    ]
+  },
+  {
+    "slug": "frazer-township",
+    "name": "Frazer Township",
+    "kind": "municipality",
+    "municipality": "Frazer Township",
+    "ordinanceKey": "Frazer Township",
+    "centroid": [
+      -79.79097,
+      40.59452
+    ],
+    "bounds": [
+      -79.81646,
+      40.56193,
+      -79.76418,
+      40.6441
+    ]
+  },
+  {
+    "slug": "glassport-borough",
+    "name": "Glassport Borough",
+    "kind": "municipality",
+    "municipality": "Glassport Borough",
+    "ordinanceKey": "Glassport Borough",
+    "centroid": [
+      -79.88562,
+      40.32835
+    ],
+    "bounds": [
+      -79.89762,
+      40.31145,
+      -79.87231,
+      40.34512
+    ]
+  },
+  {
+    "slug": "glen-osborne-borough",
+    "name": "Glen Osborne Borough",
+    "kind": "municipality",
+    "municipality": "Glen Osborne Borough",
+    "ordinanceKey": "Glen Osborne Borough",
+    "centroid": [
+      -80.16806,
+      40.5315
+    ],
+    "bounds": [
+      -80.17865,
+      40.52391,
+      -80.15895,
+      40.53762
+    ]
+  },
+  {
+    "slug": "glenfield-borough",
+    "name": "Glenfield Borough",
+    "kind": "municipality",
+    "municipality": "Glenfield Borough",
+    "ordinanceKey": "Glenfield Borough",
+    "centroid": [
+      -80.13751,
+      40.52012
+    ],
+    "bounds": [
+      -80.15251,
+      40.51314,
+      -80.12029,
+      40.526
+    ]
+  },
+  {
+    "slug": "green-tree-borough",
+    "name": "Green Tree Borough",
+    "kind": "municipality",
+    "municipality": "Green Tree Borough",
+    "ordinanceKey": "Green Tree Borough",
+    "centroid": [
+      -80.06011,
+      40.42159
+    ],
+    "bounds": [
+      -80.07472,
+      40.40194,
+      -80.03482,
+      40.42936
+    ]
+  },
+  {
+    "slug": "hampton-township",
+    "name": "Hampton Township",
+    "kind": "municipality",
+    "municipality": "Hampton Township",
+    "ordinanceKey": "Hampton Township",
+    "centroid": [
+      -79.94813,
+      40.58188
+    ],
+    "bounds": [
+      -79.99114,
+      40.55357,
+      -79.91509,
+      40.61607
+    ]
+  },
+  {
+    "slug": "harmar-township",
+    "name": "Harmar Township",
+    "kind": "municipality",
+    "municipality": "Harmar Township",
+    "ordinanceKey": "Harmar Township",
+    "centroid": [
+      -79.83614,
+      40.54277
+    ],
+    "bounds": [
+      -79.869,
+      40.52051,
+      -79.80755,
+      40.56653
+    ]
+  },
+  {
+    "slug": "harrison-township",
+    "name": "Harrison Township",
+    "kind": "municipality",
+    "municipality": "Harrison Township",
+    "ordinanceKey": "Harrison Township",
+    "centroid": [
+      -79.71976,
+      40.62788
+    ],
+    "bounds": [
+      -79.75714,
+      40.60313,
+      -79.68897,
+      40.66985
+    ]
+  },
+  {
+    "slug": "haysville-borough",
+    "name": "Haysville Borough",
+    "kind": "municipality",
+    "municipality": "Haysville Borough",
+    "ordinanceKey": "Haysville Borough",
+    "centroid": [
+      -80.15606,
+      40.52699
+    ],
+    "bounds": [
+      -80.16173,
+      40.52168,
+      -80.14926,
+      40.53351
+    ]
+  },
+  {
+    "slug": "heidelberg-borough",
+    "name": "Heidelberg Borough",
+    "kind": "municipality",
+    "municipality": "Heidelberg Borough",
+    "ordinanceKey": "Heidelberg Borough",
+    "centroid": [
+      -80.09204,
+      40.39084
+    ],
+    "bounds": [
+      -80.0991,
+      40.387,
+      -80.08606,
+      40.39515
+    ]
+  },
+  {
+    "slug": "homestead-borough",
+    "name": "Homestead Borough",
+    "kind": "municipality",
+    "municipality": "Homestead Borough",
+    "ordinanceKey": "Homestead Borough",
+    "centroid": [
+      -79.90851,
+      40.40535
+    ],
+    "bounds": [
+      -79.9196,
+      40.39892,
+      -79.89963,
+      40.41571
+    ]
+  },
+  {
+    "slug": "indiana-township",
+    "name": "Indiana Township",
+    "kind": "municipality",
+    "municipality": "Indiana Township",
+    "ordinanceKey": "Indiana Township",
+    "centroid": [
+      -79.89275,
+      40.55533
+    ],
+    "bounds": [
+      -79.93868,
+      40.53412,
+      -79.81144,
+      40.59912
+    ]
+  },
+  {
+    "slug": "ingram-borough",
+    "name": "Ingram Borough",
+    "kind": "municipality",
+    "municipality": "Ingram Borough",
+    "ordinanceKey": "Ingram Borough",
+    "centroid": [
+      -80.0669,
+      40.44548
+    ],
+    "bounds": [
+      -80.07851,
+      40.44034,
+      -80.05537,
+      40.44938
+    ]
+  },
+  {
+    "slug": "jefferson-hills-borough",
+    "name": "Jefferson Hills Borough",
+    "kind": "municipality",
+    "municipality": "Jefferson Hills Borough",
+    "ordinanceKey": "Jefferson Hills Borough",
+    "centroid": [
+      -79.9173,
+      40.29237
+    ],
+    "bounds": [
+      -79.98507,
+      40.25244,
+      -79.87618,
+      40.32994
+    ]
+  },
+  {
+    "slug": "kennedy-township",
+    "name": "Kennedy Township",
+    "kind": "municipality",
+    "municipality": "Kennedy Township",
+    "ordinanceKey": "Kennedy Township",
+    "centroid": [
+      -80.10509,
+      40.47175
+    ],
+    "bounds": [
+      -80.12585,
+      40.44817,
+      -80.07765,
+      40.50396
+    ]
+  },
+  {
+    "slug": "kilbuck-township",
+    "name": "Kilbuck Township",
+    "kind": "municipality",
+    "municipality": "Kilbuck Township",
+    "ordinanceKey": "Kilbuck Township",
+    "centroid": [
+      -80.08668,
+      40.51375
+    ],
+    "bounds": [
+      -80.12156,
+      40.5059,
+      -80.0616,
+      40.53626
+    ]
+  },
+  {
+    "slug": "leet-township",
+    "name": "Leet Township",
+    "kind": "municipality",
+    "municipality": "Leet Township",
+    "ordinanceKey": "Leet Township",
+    "centroid": [
+      -80.20955,
+      40.5781
+    ],
+    "bounds": [
+      -80.21924,
+      40.56166,
+      -80.18651,
+      40.58807
+    ]
+  },
+  {
+    "slug": "leetsdale-borough",
+    "name": "Leetsdale Borough",
+    "kind": "municipality",
+    "municipality": "Leetsdale Borough",
+    "ordinanceKey": "Leetsdale Borough",
+    "centroid": [
+      -80.21547,
+      40.5694
+    ],
+    "bounds": [
+      -80.22894,
+      40.55333,
+      -80.19773,
+      40.57992
+    ]
+  },
+  {
+    "slug": "liberty-borough",
+    "name": "Liberty Borough",
+    "kind": "municipality",
+    "municipality": "Liberty Borough",
+    "ordinanceKey": "Liberty Borough",
+    "centroid": [
+      -79.86044,
+      40.32439
+    ],
+    "bounds": [
+      -79.87617,
+      40.315,
+      -79.84117,
+      40.33669
+    ]
+  },
+  {
+    "slug": "lincoln-borough",
+    "name": "Lincoln Borough",
+    "kind": "municipality",
+    "municipality": "Lincoln Borough",
+    "ordinanceKey": "Lincoln Borough",
+    "centroid": [
+      -79.85523,
+      40.29797
+    ],
+    "bounds": [
+      -79.88418,
+      40.27633,
+      -79.82931,
+      40.32113
+    ]
+  },
+  {
+    "slug": "marshall-township",
+    "name": "Marshall Township",
+    "kind": "municipality",
+    "municipality": "Marshall Township",
+    "ordinanceKey": "Marshall Township",
+    "centroid": [
+      -80.09725,
+      40.64268
+    ],
+    "bounds": [
+      -80.1485,
+      40.61475,
+      -80.0683,
+      40.67494
+    ]
+  },
+  {
+    "slug": "mccandless-township",
+    "name": "McCandless Township",
+    "kind": "municipality",
+    "municipality": "McCandless Township",
+    "ordinanceKey": "McCandless Township",
+    "centroid": [
+      -80.04511,
+      40.58929
+    ],
+    "bounds": [
+      -80.06806,
+      40.55271,
+      -79.98893,
+      40.61431
+    ]
+  },
+  {
+    "slug": "mcdonald-borough",
+    "name": "McDonald Borough",
+    "kind": "municipality",
+    "municipality": "McDonald Borough",
+    "ordinanceKey": "McDonald Borough",
+    "centroid": [
+      -80.22673,
+      40.37142
+    ],
+    "bounds": [
+      -80.23469,
+      40.3659,
+      -80.22043,
+      40.37747
+    ]
+  },
+  {
+    "slug": "mckees-rocks-borough",
+    "name": "McKees Rocks Borough",
+    "kind": "municipality",
+    "municipality": "McKees Rocks Borough",
+    "ordinanceKey": "McKees Rocks Borough",
+    "centroid": [
+      -80.06707,
+      40.4673
+    ],
+    "bounds": [
+      -80.08351,
+      40.46079,
+      -80.04684,
+      40.47585
+    ]
+  },
+  {
+    "slug": "mckeesport",
+    "name": "McKeesport",
+    "kind": "municipality",
+    "municipality": "McKeesport",
+    "ordinanceKey": "McKeesport City",
+    "centroid": [
+      -79.8393,
+      40.34402
+    ],
+    "bounds": [
+      -79.88564,
+      40.3181,
+      -79.81557,
+      40.36499
+    ]
+  },
+  {
+    "slug": "millvale-borough",
+    "name": "Millvale Borough",
+    "kind": "municipality",
+    "municipality": "Millvale Borough",
+    "ordinanceKey": "Millvale Borough",
+    "centroid": [
+      -79.97158,
+      40.48051
+    ],
+    "bounds": [
+      -79.98265,
+      40.46944,
+      -79.96478,
+      40.49551
+    ]
+  },
+  {
+    "slug": "monroeville-municipality",
+    "name": "Monroeville Municipality",
+    "kind": "municipality",
+    "municipality": "Monroeville Municipality",
+    "ordinanceKey": "Monroeville Borough",
+    "centroid": [
+      -79.75657,
+      40.42972
+    ],
+    "bounds": [
+      -79.82182,
+      40.38531,
+      -79.70399,
+      40.46203
+    ]
+  },
+  {
+    "slug": "moon-township",
+    "name": "Moon Township",
+    "kind": "municipality",
+    "municipality": "Moon Township",
+    "ordinanceKey": "Moon Township",
+    "centroid": [
+      -80.18196,
+      40.48759
+    ],
+    "bounds": [
+      -80.27433,
+      40.45555,
+      -80.14108,
+      40.55643
+    ]
+  },
+  {
+    "slug": "mount-lebanon-township",
+    "name": "Mount Lebanon Township",
+    "kind": "municipality",
+    "municipality": "Mount Lebanon Township",
+    "ordinanceKey": "Mt. Lebanon Township",
+    "centroid": [
+      -80.05145,
+      40.38098
+    ],
+    "bounds": [
+      -80.08411,
+      40.35104,
+      -80.01843,
+      40.40194
+    ]
+  },
+  {
+    "slug": "mount-oliver-borough",
+    "name": "Mount Oliver Borough",
+    "kind": "municipality",
+    "municipality": "Mount Oliver Borough",
+    "ordinanceKey": "Mt. Oliver Borough",
+    "centroid": [
+      -79.98658,
+      40.41262
+    ],
+    "bounds": [
+      -79.99181,
+      40.40592,
+      -79.98081,
+      40.41851
+    ]
+  },
+  {
+    "slug": "munhall-borough",
+    "name": "Munhall Borough",
+    "kind": "municipality",
+    "municipality": "Munhall Borough",
+    "ordinanceKey": "Munhall Borough",
+    "centroid": [
+      -79.90017,
+      40.39046
+    ],
+    "bounds": [
+      -79.91787,
+      40.37516,
+      -79.88425,
+      40.41591
+    ]
+  },
+  {
+    "slug": "neville-township",
+    "name": "Neville Township",
+    "kind": "municipality",
+    "municipality": "Neville Township",
+    "ordinanceKey": "Neville Township",
+    "centroid": [
+      -80.11874,
+      40.50843
+    ],
+    "bounds": [
+      -80.16148,
+      40.4911,
+      -80.06753,
+      40.5238
+    ]
+  },
+  {
+    "slug": "north-braddock-borough",
+    "name": "North Braddock Borough",
+    "kind": "municipality",
+    "municipality": "North Braddock Borough",
+    "ordinanceKey": "North Braddock Borough",
+    "centroid": [
+      -79.85381,
+      40.40319
+    ],
+    "bounds": [
+      -79.87202,
+      40.38843,
+      -79.83709,
+      40.41404
+    ]
+  },
+  {
+    "slug": "north-fayette-township",
+    "name": "North Fayette Township",
+    "kind": "municipality",
+    "municipality": "North Fayette Township",
+    "ordinanceKey": "North Fayette Township",
+    "centroid": [
+      -80.21159,
+      40.42835
+    ],
+    "bounds": [
+      -80.29612,
+      40.37143,
+      -80.16735,
+      40.45853
+    ]
+  },
+  {
+    "slug": "north-versailles-township",
+    "name": "North Versailles Township",
+    "kind": "municipality",
+    "municipality": "North Versailles Township",
+    "ordinanceKey": "North Versailles Township",
+    "centroid": [
+      -79.80211,
+      40.38199
+    ],
+    "bounds": [
+      -79.85347,
+      40.35968,
+      -79.76543,
+      40.40429
+    ]
+  },
+  {
+    "slug": "o-hara-township",
+    "name": "O Hara Township",
+    "kind": "municipality",
+    "municipality": "O Hara Township",
+    "ordinanceKey": "Ohara Township",
+    "centroid": [
+      -79.8712,
+      40.49923
+    ],
+    "bounds": [
+      -79.93772,
+      40.48308,
+      -79.84885,
+      40.5362
+    ]
+  },
+  {
+    "slug": "oakdale-borough",
+    "name": "Oakdale Borough",
+    "kind": "municipality",
+    "municipality": "Oakdale Borough",
+    "ordinanceKey": "Oakdale Borough",
+    "centroid": [
+      -80.18863,
+      40.40139
+    ],
+    "bounds": [
+      -80.19775,
+      40.39228,
+      -80.17767,
+      40.40644
+    ]
+  },
+  {
+    "slug": "oakmont-borough",
+    "name": "Oakmont Borough",
+    "kind": "municipality",
+    "municipality": "Oakmont Borough",
+    "ordinanceKey": "Oakmont Borough",
+    "centroid": [
+      -79.83245,
+      40.51927
+    ],
+    "bounds": [
+      -79.85097,
+      40.50743,
+      -79.81907,
+      40.53263
+    ]
+  },
+  {
+    "slug": "ohio-township",
+    "name": "Ohio Township",
+    "kind": "municipality",
+    "municipality": "Ohio Township",
+    "ordinanceKey": "Ohio Township",
+    "centroid": [
+      -80.10904,
+      40.55359
+    ],
+    "bounds": [
+      -80.12246,
+      40.51544,
+      -80.06229,
+      40.57547
+    ]
+  },
+  {
+    "slug": "penn-hills-municipality",
+    "name": "Penn Hills Municipality",
+    "kind": "municipality",
+    "municipality": "Penn Hills Municipality",
+    "ordinanceKey": "Penn Hills Township",
+    "centroid": [
+      -79.81925,
+      40.48517
+    ],
+    "bounds": [
+      -79.89003,
+      40.43858,
+      -79.77679,
+      40.51839
+    ]
+  },
+  {
+    "slug": "pennsbury-village-borough",
+    "name": "Pennsbury Village Borough",
+    "kind": "municipality",
+    "municipality": "Pennsbury Village Borough",
+    "ordinanceKey": "Pennsbury Village Borough",
+    "centroid": [
+      -80.10057,
+      40.42766
+    ],
+    "bounds": [
+      -80.10452,
+      40.42518,
+      -80.09784,
+      40.4309
+    ]
+  },
+  {
+    "slug": "pine-township",
+    "name": "Pine Township",
+    "kind": "municipality",
+    "municipality": "Pine Township",
+    "ordinanceKey": "Pine Township",
+    "centroid": [
+      -80.05025,
+      40.62805
+    ],
+    "bounds": [
+      -80.07139,
+      40.61254,
+      -79.99114,
+      40.67417
+    ]
+  },
+  {
+    "slug": "pitcairn-borough",
+    "name": "Pitcairn Borough",
+    "kind": "municipality",
+    "municipality": "Pitcairn Borough",
+    "ordinanceKey": "Pitcairn Borough",
+    "centroid": [
+      -79.77581,
+      40.40803
+    ],
+    "bounds": [
+      -79.78495,
+      40.3999,
+      -79.76945,
+      40.4224
+    ]
+  },
+  {
+    "slug": "pleasant-hills-borough",
+    "name": "Pleasant Hills Borough",
+    "kind": "municipality",
+    "municipality": "Pleasant Hills Borough",
+    "ordinanceKey": "Pleasant Hills Borough",
+    "centroid": [
+      -79.96383,
+      40.33114
+    ],
+    "bounds": [
+      -79.98558,
+      40.31645,
+      -79.93688,
+      40.34499
+    ]
+  },
+  {
+    "slug": "plum-borough",
+    "name": "Plum Borough",
+    "kind": "municipality",
+    "municipality": "Plum Borough",
+    "ordinanceKey": "Plum Borough",
+    "centroid": [
+      -79.75805,
+      40.49556
+    ],
+    "bounds": [
+      -79.83674,
+      40.44366,
+      -79.702,
+      40.55182
+    ]
+  },
+  {
+    "slug": "port-vue-borough",
+    "name": "Port Vue Borough",
+    "kind": "municipality",
+    "municipality": "Port Vue Borough",
+    "ordinanceKey": "Port Vue Borough",
+    "centroid": [
+      -79.86929,
+      40.3372
+    ],
+    "bounds": [
+      -79.88471,
+      40.32872,
+      -79.85828,
+      40.34876
+    ]
+  },
+  {
+    "slug": "rankin-borough",
+    "name": "Rankin Borough",
+    "kind": "municipality",
+    "municipality": "Rankin Borough",
+    "ordinanceKey": "Rankin Borough",
+    "centroid": [
+      -79.87887,
+      40.41167
+    ],
+    "bounds": [
+      -79.89062,
+      40.40423,
+      -79.87133,
+      40.41689
+    ]
+  },
+  {
+    "slug": "reserve-township",
+    "name": "Reserve Township",
+    "kind": "municipality",
+    "municipality": "Reserve Township",
+    "ordinanceKey": "Reserve Township",
+    "centroid": [
+      -79.98858,
+      40.48175
+    ],
+    "bounds": [
+      -80.00399,
+      40.46633,
+      -79.97216,
+      40.50195
+    ]
+  },
+  {
+    "slug": "richland-township",
+    "name": "Richland Township",
+    "kind": "municipality",
+    "municipality": "Richland Township",
+    "ordinanceKey": "Richland Township",
+    "centroid": [
+      -79.94355,
+      40.63844
+    ],
+    "bounds": [
+      -79.99417,
+      40.61431,
+      -79.92061,
+      40.67361
+    ]
+  },
+  {
+    "slug": "robinson-township",
+    "name": "Robinson Township",
+    "kind": "municipality",
+    "municipality": "Robinson Township",
+    "ordinanceKey": "Robinson Township",
+    "centroid": [
+      -80.13861,
+      40.45703
+    ],
+    "bounds": [
+      -80.17273,
+      40.41102,
+      -80.08037,
+      40.51492
+    ]
+  },
+  {
+    "slug": "ross-township",
+    "name": "Ross Township",
+    "kind": "municipality",
+    "municipality": "Ross Township",
+    "ordinanceKey": "Ross Township",
+    "centroid": [
+      -80.02439,
+      40.50509
+    ],
+    "bounds": [
+      -80.06472,
+      40.48716,
+      -79.98565,
+      40.55401
+    ]
+  },
+  {
+    "slug": "rosslyn-farms-borough",
+    "name": "Rosslyn Farms Borough",
+    "kind": "municipality",
+    "municipality": "Rosslyn Farms Borough",
+    "ordinanceKey": "Rosslyn Farms Borough",
+    "centroid": [
+      -80.08505,
+      40.42018
+    ],
+    "bounds": [
+      -80.09943,
+      40.41482,
+      -80.07478,
+      40.43091
+    ]
+  },
+  {
+    "slug": "scott-township",
+    "name": "Scott Township",
+    "kind": "municipality",
+    "municipality": "Scott Township",
+    "ordinanceKey": "Scott Township",
+    "centroid": [
+      -80.08168,
+      40.38638
+    ],
+    "bounds": [
+      -80.10051,
+      40.36181,
+      -80.0512,
+      40.41646
+    ]
+  },
+  {
+    "slug": "sewickley-borough",
+    "name": "Sewickley Borough",
+    "kind": "municipality",
+    "municipality": "Sewickley Borough",
+    "ordinanceKey": "Sewickley Borough",
+    "centroid": [
+      -80.17141,
+      40.54035
+    ],
+    "bounds": [
+      -80.19525,
+      40.52994,
+      -80.15438,
+      40.55075
+    ]
+  },
+  {
+    "slug": "sewickley-heights-borough",
+    "name": "Sewickley Heights Borough",
+    "kind": "municipality",
+    "municipality": "Sewickley Heights Borough",
+    "ordinanceKey": "Sewickley Heights Borough",
+    "centroid": [
+      -80.1479,
+      40.55377
+    ],
+    "bounds": [
+      -80.18168,
+      40.5328,
+      -80.1229,
+      40.58802
+    ]
+  },
+  {
+    "slug": "sewickley-hills-borough",
+    "name": "Sewickley Hills Borough",
+    "kind": "municipality",
+    "municipality": "Sewickley Hills Borough",
+    "ordinanceKey": "Sewickley Hills Borough",
+    "centroid": [
+      -80.12319,
+      40.56225
+    ],
+    "bounds": [
+      -80.1522,
+      40.53626,
+      -80.11352,
+      40.58824
+    ]
+  },
+  {
+    "slug": "shaler-township",
+    "name": "Shaler Township",
+    "kind": "municipality",
+    "municipality": "Shaler Township",
+    "ordinanceKey": "Shaler Township",
+    "centroid": [
+      -79.95877,
+      40.50687
+    ],
+    "bounds": [
+      -79.98892,
+      40.47792,
+      -79.93607,
+      40.55514
+    ]
+  },
+  {
+    "slug": "sharpsburg-borough",
+    "name": "Sharpsburg Borough",
+    "kind": "municipality",
+    "municipality": "Sharpsburg Borough",
+    "ordinanceKey": "Sharpsburg Borough",
+    "centroid": [
+      -79.92192,
+      40.49413
+    ],
+    "bounds": [
+      -79.94046,
+      40.48884,
+      -79.9077,
+      40.49905
+    ]
+  },
+  {
+    "slug": "south-fayette-township",
+    "name": "South Fayette Township",
+    "kind": "municipality",
+    "municipality": "South Fayette Township",
+    "ordinanceKey": "South Fayette Township",
+    "centroid": [
+      -80.15484,
+      40.36461
+    ],
+    "bounds": [
+      -80.22289,
+      40.31268,
+      -80.1007,
+      40.4018
+    ]
+  },
+  {
+    "slug": "south-park-township",
+    "name": "South Park Township",
+    "kind": "municipality",
+    "municipality": "South Park Township",
+    "ordinanceKey": "South Park Township",
+    "centroid": [
+      -80.00098,
+      40.30026
+    ],
+    "bounds": [
+      -80.03327,
+      40.26864,
+      -79.95615,
+      40.33822
+    ]
+  },
+  {
+    "slug": "south-versailles-township",
+    "name": "South Versailles Township",
+    "kind": "municipality",
+    "municipality": "South Versailles Township",
+    "ordinanceKey": "South Versailles Township",
+    "centroid": [
+      -79.79714,
+      40.30407
+    ],
+    "bounds": [
+      -79.80719,
+      40.29256,
+      -79.78376,
+      40.3202
+    ]
+  },
+  {
+    "slug": "springdale-borough",
+    "name": "Springdale Borough",
+    "kind": "municipality",
+    "municipality": "Springdale Borough",
+    "ordinanceKey": "Springdale Borough",
+    "centroid": [
+      -79.78044,
+      40.54308
+    ],
+    "bounds": [
+      -79.79505,
+      40.53411,
+      -79.76417,
+      40.54846
+    ]
+  },
+  {
+    "slug": "springdale-township",
+    "name": "Springdale Township",
+    "kind": "municipality",
+    "municipality": "Springdale Township",
+    "ordinanceKey": "Springdale Township",
+    "centroid": [
+      -79.78145,
+      40.54918
+    ],
+    "bounds": [
+      -79.8113,
+      40.54405,
+      -79.7637,
+      40.56292
+    ]
+  },
+  {
+    "slug": "stowe-township",
+    "name": "Stowe Township",
+    "kind": "municipality",
+    "municipality": "Stowe Township",
+    "ordinanceKey": "Stowe Township",
+    "centroid": [
+      -80.07639,
+      40.48182
+    ],
+    "bounds": [
+      -80.09996,
+      40.46893,
+      -80.04789,
+      40.49943
+    ]
+  },
+  {
+    "slug": "swissvale-borough",
+    "name": "Swissvale Borough",
+    "kind": "municipality",
+    "municipality": "Swissvale Borough",
+    "ordinanceKey": "Swissvale Borough",
+    "centroid": [
+      -79.88393,
+      40.42266
+    ],
+    "bounds": [
+      -79.89962,
+      40.4104,
+      -79.86778,
+      40.43495
+    ]
+  },
+  {
+    "slug": "tarentum-borough",
+    "name": "Tarentum Borough",
+    "kind": "municipality",
+    "municipality": "Tarentum Borough",
+    "ordinanceKey": "Tarentum Borough",
+    "centroid": [
+      -79.76088,
+      40.60502
+    ],
+    "bounds": [
+      -79.77992,
+      40.59287,
+      -79.74124,
+      40.6165
+    ]
+  },
+  {
+    "slug": "thornburg-borough",
+    "name": "Thornburg Borough",
+    "kind": "municipality",
+    "municipality": "Thornburg Borough",
+    "ordinanceKey": "Thornburg Borough",
+    "centroid": [
+      -80.08398,
+      40.43563
+    ],
+    "bounds": [
+      -80.09272,
+      40.42839,
+      -80.07537,
+      40.44001
+    ]
+  },
+  {
+    "slug": "trafford-borough",
+    "name": "Trafford Borough",
+    "kind": "municipality",
+    "municipality": "Trafford Borough",
+    "ordinanceKey": "Trafford Borough",
+    "centroid": [
+      -79.77149,
+      40.38041
+    ],
+    "bounds": [
+      -79.77502,
+      40.37542,
+      -79.75097,
+      40.39371
+    ]
+  },
+  {
+    "slug": "turtle-creek-borough",
+    "name": "Turtle Creek Borough",
+    "kind": "municipality",
+    "municipality": "Turtle Creek Borough",
+    "ordinanceKey": "Turtle Creek Borough",
+    "centroid": [
+      -79.82094,
+      40.40906
+    ],
+    "bounds": [
+      -79.83369,
+      40.39955,
+      -79.80962,
+      40.41883
+    ]
+  },
+  {
+    "slug": "upper-st-clair-municipality",
+    "name": "Upper St. Clair Municipality",
+    "kind": "municipality",
+    "municipality": "Upper St. Clair Municipality",
+    "ordinanceKey": "Upper St. Clair Township",
+    "centroid": [
+      -80.10039,
+      40.33737
+    ],
+    "bounds": [
+      -80.11834,
+      40.2998,
+      -80.05092,
+      40.36428
+    ]
+  },
+  {
+    "slug": "verona-borough",
+    "name": "Verona Borough",
+    "kind": "municipality",
+    "municipality": "Verona Borough",
+    "ordinanceKey": "Verona Borough",
+    "centroid": [
+      -79.84085,
+      40.50534
+    ],
+    "bounds": [
+      -79.85034,
+      40.49594,
+      -79.83346,
+      40.51257
+    ]
+  },
+  {
+    "slug": "versailles-borough",
+    "name": "Versailles Borough",
+    "kind": "municipality",
+    "municipality": "Versailles Borough",
+    "ordinanceKey": "Versailles Borough",
+    "centroid": [
+      -79.83172,
+      40.31749
+    ],
+    "bounds": [
+      -79.84117,
+      40.31211,
+      -79.82001,
+      40.32424
+    ]
+  },
+  {
+    "slug": "wall-borough",
+    "name": "Wall Borough",
+    "kind": "municipality",
+    "municipality": "Wall Borough",
+    "ordinanceKey": "Wall Borough",
+    "centroid": [
+      -79.78737,
+      40.39111
+    ],
+    "bounds": [
+      -79.80475,
+      40.38599,
+      -79.77311,
+      40.39581
+    ]
+  },
+  {
+    "slug": "west-deer-township",
+    "name": "West Deer Township",
+    "kind": "municipality",
+    "municipality": "West Deer Township",
+    "ordinanceKey": "West Deer Township",
+    "centroid": [
+      -79.87657,
+      40.62425
+    ],
+    "bounds": [
+      -79.92418,
+      40.59628,
+      -79.81264,
+      40.67329
+    ]
+  },
+  {
+    "slug": "west-elizabeth-borough",
+    "name": "West Elizabeth Borough",
+    "kind": "municipality",
+    "municipality": "West Elizabeth Borough",
+    "ordinanceKey": "West Elizabeth Borough",
+    "centroid": [
+      -79.89567,
+      40.27288
+    ],
+    "bounds": [
+      -79.90451,
+      40.26716,
+      -79.88629,
+      40.27829
+    ]
+  },
+  {
+    "slug": "west-homestead-borough",
+    "name": "West Homestead Borough",
+    "kind": "municipality",
+    "municipality": "West Homestead Borough",
+    "ordinanceKey": "West Homestead Borough",
+    "centroid": [
+      -79.91549,
+      40.39867
+    ],
+    "bounds": [
+      -79.93301,
+      40.38757,
+      -79.90298,
+      40.40977
+    ]
+  },
+  {
+    "slug": "west-mifflin-borough",
+    "name": "West Mifflin Borough",
+    "kind": "municipality",
+    "municipality": "West Mifflin Borough",
+    "ordinanceKey": "West Mifflin Borough",
+    "centroid": [
+      -79.89792,
+      40.36358
+    ],
+    "bounds": [
+      -79.96538,
+      40.3195,
+      -79.84697,
+      40.40218
+    ]
+  },
+  {
+    "slug": "west-view-borough",
+    "name": "West View Borough",
+    "kind": "municipality",
+    "municipality": "West View Borough",
+    "ordinanceKey": "West View Borough",
+    "centroid": [
+      -80.03605,
+      40.51906
+    ],
+    "bounds": [
+      -80.04812,
+      40.50903,
+      -80.01779,
+      40.52848
+    ]
+  },
+  {
+    "slug": "whitaker-borough",
+    "name": "Whitaker Borough",
+    "kind": "municipality",
+    "municipality": "Whitaker Borough",
+    "ordinanceKey": "Whitaker Borough",
+    "centroid": [
+      -79.8868,
+      40.40102
+    ],
+    "bounds": [
+      -79.89612,
+      40.39525,
+      -79.87672,
+      40.40719
+    ]
+  },
+  {
+    "slug": "white-oak-borough",
+    "name": "White Oak Borough",
+    "kind": "municipality",
+    "municipality": "White Oak Borough",
+    "ordinanceKey": "White Oak Borough",
+    "centroid": [
+      -79.81757,
+      40.34197
+    ],
+    "bounds": [
+      -79.83195,
+      40.31505,
+      -79.77441,
+      40.3612
+    ]
+  },
+  {
+    "slug": "whitehall-borough",
+    "name": "Whitehall Borough",
+    "kind": "municipality",
+    "municipality": "Whitehall Borough",
+    "ordinanceKey": "Whitehall Borough",
+    "centroid": [
+      -79.9858,
+      40.35904
+    ],
+    "bounds": [
+      -80.01708,
+      40.34441,
+      -79.95891,
+      40.37892
+    ]
+  },
+  {
+    "slug": "wilkins-township",
+    "name": "Wilkins Township",
+    "kind": "municipality",
+    "municipality": "Wilkins Township",
+    "ordinanceKey": "Wilkins Township",
+    "centroid": [
+      -79.82651,
+      40.42232
+    ],
+    "bounds": [
+      -79.84716,
+      40.40251,
+      -79.80198,
+      40.44499
+    ]
+  },
+  {
+    "slug": "wilkinsburg-borough",
+    "name": "Wilkinsburg Borough",
+    "kind": "municipality",
+    "municipality": "Wilkinsburg Borough",
+    "ordinanceKey": "Wilkinsburg Borough",
+    "centroid": [
+      -79.87483,
+      40.44382
+    ],
+    "bounds": [
+      -79.89557,
+      40.43133,
+      -79.85404,
+      40.45941
+    ]
+  },
+  {
+    "slug": "wilmerding-borough",
+    "name": "Wilmerding Borough",
+    "kind": "municipality",
+    "municipality": "Wilmerding Borough",
+    "ordinanceKey": "Wilmerding Borough",
+    "centroid": [
+      -79.81014,
+      40.39581
+    ],
+    "bounds": [
+      -79.81868,
+      40.38669,
+      -79.80144,
+      40.40236
+    ]
+  }
+]
