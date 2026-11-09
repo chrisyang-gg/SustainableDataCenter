@@ -8,6 +8,7 @@ import { describeTransmission, type GridLookup } from "@/lib/grid";
 import { publishedLoad } from "@/lib/facilities";
 import type { FloodZone, GeologyReport } from "@/lib/geology";
 import {
+  closePlumeSentence,
   EPA_OUTDOOR_LDN_DBA,
   FEEDER_PEAK_MVA,
   NO2_1H_UG_PER_M3,
@@ -211,7 +212,7 @@ function ImpactBody({
             note={
               impact.no2Micrograms === null
                 ? `${reported?.airCaveat ? `${reported.airCaveat} ` : ""}No measured concentration was published, and the plume needs the distance to a home.`
-                : `${reported?.airCaveat ? `${reported.airCaveat} ` : ""}No measured concentration was published. A Gaussian plume (urban Briggs class D, wind 2 m/s toward the homes, release height 5 m) carries uncontrolled diesel exhaust for one hour at ${load?.label}. AP-42 gives 3.2 lb NOx per million Btu; this screen counts all of it as NO₂. PM-10 in that same hour is about ${Math.round(impact.pm10Micrograms ?? 0).toLocaleString("en-US")} µg/m³.${(impact.receiverMeters ?? 0) < 100 ? " Under 100 meters the Briggs curves are outside their usual range, so treat this as a screen." : ""} This is a one-hour screening case, not an annual concentration.`
+                : `${reported?.airCaveat ? `${reported.airCaveat} ` : ""}No measured concentration was published. A Gaussian plume (urban Briggs class D, wind 2 m/s toward the homes, release height 5 m) carries uncontrolled diesel exhaust for one hour at ${load?.label}. AP-42 gives 3.2 lb NOx per million Btu; this screen counts all of it as NO₂. PM-10 in that same hour is about ${Math.round(impact.pm10Micrograms ?? 0).toLocaleString("en-US")} µg/m³.${closePlumeSentence(impact.homesMeters ?? 0, impact.plumeMeters ?? 0, impact.onResidentialBuilding)}${(impact.receiverMeters ?? 0) < 100 ? " Under 100 meters the Briggs curves are outside their usual range, so treat this as a screen." : ""} This is a one-hour screening case, not an annual concentration.`
             }
           />
           {ground.water ? (

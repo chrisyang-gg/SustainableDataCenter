@@ -13,6 +13,7 @@ import {
   UTILITY_CAPACITY_NOTE,
 } from "@/lib/support";
 import {
+  closePlumeSentence,
   DEFAULT_LOAD_MW,
   EPA_OUTDOOR_LDN_DBA,
   FEEDER_PEAK_MVA,
@@ -398,7 +399,7 @@ function EstimateBody({
         note={
           impact.no2Micrograms === null
             ? "The Gaussian plume needs the distance to a home. The decision line is the EPA 1-hour NO₂ standard, 100 ppb."
-            : `A Gaussian plume (urban Briggs class D, wind 2 m/s toward the homes, release height 5 m) carries uncontrolled diesel exhaust for one hour at the full ${megawatts} MW backup load. AP-42 gives 3.2 lb NOx per million Btu; this screen counts all of it as NO₂. PM-10 in that same hour is about ${Math.round(impact.pm10Micrograms ?? 0).toLocaleString("en-US")} µg/m³. The 24-hour PM2.5 standard is 35 µg/m³ and is a different average.${(impact.receiverMeters ?? 0) < 100 ? " Under 100 meters the Briggs curves are outside their usual range, so treat this as a screen." : ""} This is a one-hour screening case, not an annual concentration.`
+            : `A Gaussian plume (urban Briggs class D, wind 2 m/s toward the homes, release height 5 m) carries uncontrolled diesel exhaust for one hour at the full ${megawatts} MW backup load. AP-42 gives 3.2 lb NOx per million Btu; this screen counts all of it as NO₂. PM-10 in that same hour is about ${Math.round(impact.pm10Micrograms ?? 0).toLocaleString("en-US")} µg/m³. The 24-hour PM2.5 standard is 35 µg/m³ and is a different average.${closePlumeSentence(impact.homesMeters ?? 0, impact.plumeMeters ?? 0, impact.onResidentialBuilding)}${(impact.receiverMeters ?? 0) < 100 ? " Under 100 meters the Briggs curves are outside their usual range, so treat this as a screen." : ""} This is a one-hour screening case, not an annual concentration.`
         }
       />
       <ComplianceBlock

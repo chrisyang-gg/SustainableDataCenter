@@ -12,6 +12,8 @@ import {
   outdoorLevelDba,
   peopleImpact,
   plumeMicrograms,
+  plumePeakMeters,
+  plumeScreenMeters,
   soundPowerDba,
   streamflowShare,
   withdrawalGallonsPerDay,
@@ -35,6 +37,29 @@ test("a full-load generator hour is stronger near homes than far away", () => {
   const far = plumeMicrograms(20, 2000);
   assert.ok(near > far);
   assert.ok(near > 0);
+});
+
+test("a home beside the stack uses the ground-level peak instead of zero", () => {
+  assert.equal(plumePeakMeters(), 25);
+  const beside = peopleImpact({
+    megawatts: 100,
+    homes: { meters: 4, onBuilding: false },
+    streamflowCfs: null,
+    floodZones: [],
+  });
+  assert.equal(beside.receiverMeters, 4);
+  assert.equal(beside.plumeMeters, 25);
+  assert.equal(plumeScreenMeters(4), 25);
+  assert.ok((beside.no2Micrograms ?? 0) > 100_000);
+  assert.ok((beside.pm10Micrograms ?? 0) > 0);
+  const past = peopleImpact({
+    megawatts: 100,
+    homes: { meters: 500, onBuilding: false },
+    streamflowCfs: null,
+    floodZones: [],
+  });
+  assert.equal(past.plumeMeters, 500);
+  assert.ok((past.no2Micrograms ?? 0) < (beside.no2Micrograms ?? 0));
 });
 
 test("water is a share of streamflow and load is a multiple of a neighborhood feeder", () => {

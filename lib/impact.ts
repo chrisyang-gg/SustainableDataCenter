@@ -67,6 +67,8 @@ export type PeopleImpact = {
   homesMeters: number | null;
   onResidentialBuilding: boolean;
   receiverMeters: number | null;
+  /** Distance used for the ground-level plume. Farther than the home when the home is inside the near field. */
+  plumeMeters: number | null;
   coolingCells: number;
   soundPowerDba: number;
   noiseLeqDba: number | null;
@@ -145,6 +147,42 @@ export function plumeMicrograms(gramsPerSecond: number, meters: number): number 
   return ((gramsPerSecond / dilution) * reflection) * 1_000_000;
 }
 
+let cachedPlumePeakMeters: number | null = null;
+
+/** Integer meters where this release height has its highest ground-level concentration. */
+export function plumePeakMeters(): number {
+  if (cachedPlumePeakMeters !== null) return cachedPlumePeakMeters;
+  let best = 0;
+  let at = 1;
+  for (let meters = 1; meters <= 200; meters += 1) {
+    const value = plumeMicrograms(1, meters);
+    if (value > best) {
+      best = value;
+      at = meters;
+    }
+  }
+  cachedPlumePeakMeters = at;
+  return at;
+}
+
+/**
+ * Ground-level concentration beside the stack is about 0, because a 5 meter
+ * release has not spread down yet. Inside that near field, use the peak.
+ */
+export function plumeScreenMeters(meters: number): number {
+  const peak = plumePeakMeters();
+  return meters < peak ? peak : meters;
+}
+
+export function closePlumeSentence(homesMeters: number, plumeMeters: number, onBuilding: boolean): string {
+  if (homesMeters >= plumeMeters && !onBuilding) return "";
+  const used = Math.round(plumeMeters);
+  const where = onBuilding
+    ? "This pin is on a mapped residential building."
+    : `The nearest homes are ${Math.round(homesMeters)} meters away.`;
+  return ` ${where} This screen uses ${used} meters, the distance where a 5 meter release produces its highest ground-level concentration. Closer than that, the Briggs screen still has the exhaust overhead and rounds to about 0.`;
+}
+
 export function floodNote(zones: FloodZone[]): string | null {
   const floodway = zones.some((zone) =>
     (zone.detail ?? "").toLowerCase().includes("floodway"),
@@ -170,11 +208,13 @@ export function peopleImpact(input: {
   const power = soundPowerDba(cells);
   const gallons = withdrawalGallonsPerDay(input.megawatts);
   const receiver = input.homes ? receiverMeters(input.homes) : null;
+  const plumeMeters = receiver === null ? null : plumeScreenMeters(receiver);
   return {
     megawatts: input.megawatts,
     homesMeters: input.homes?.meters ?? null,
     onResidentialBuilding: input.homes?.onBuilding ?? false,
     receiverMeters: receiver,
+    plumeMeters,
     coolingCells: cells,
     soundPowerDba: power,
     noiseLeqDba: receiver === null ? null : outdoorLevelDba(power, receiver),
@@ -186,13 +226,13 @@ export function peopleImpact(input: {
         : null,
     feederMultiple: input.megawatts / FEEDER_PEAK_MVA,
     no2Micrograms:
-      receiver === null
+      plumeMeters === null
         ? null
-        : plumeMicrograms(emissionGramsPerSecond(input.megawatts, NOX_LB_PER_MMBTU), receiver),
+        : plumeMicrograms(emissionGramsPerSecond(input.megawatts, NOX_LB_PER_MMBTU), plumeMeters),
     pm10Micrograms:
-      receiver === null
+      plumeMeters === null
         ? null
-        : plumeMicrograms(emissionGramsPerSecond(input.megawatts, PM10_LB_PER_MMBTU), receiver),
+        : plumeMicrograms(emissionGramsPerSecond(input.megawatts, PM10_LB_PER_MMBTU), plumeMeters),
     floodNote: floodNote(input.floodZones),
   };
 }
