@@ -9,6 +9,7 @@ import {
   type MunicipalOrdinance,
   type PlaceSummary,
 } from "@/lib/place-directory";
+import { ParcelStamp } from "@/components/parcel-stamp";
 import { Badge } from "@/components/ui/badge";
 import { GeologyPanel, GeologySkeleton } from "@/components/geology-panel";
 import {
@@ -59,6 +60,7 @@ export function PlaceDetail({
           <h1 className="mt-2 text-xl font-medium text-foreground">
             {place.name}
           </h1>
+          <ParcelStamp />
           <div className="mt-2 flex flex-wrap gap-1.5">
             <Badge variant="secondary">
               {neighborhood ? "Pittsburgh neighborhood" : "Municipality"}

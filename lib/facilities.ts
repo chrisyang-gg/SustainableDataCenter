@@ -124,3 +124,24 @@ export function stageLabel(stage: Stage): string {
   if (stage === "planned") return "Planned";
   return "Proposed";
 }
+
+/** Highest published megawatt figure. A range uses the top, which is the larger case. */
+export function publishedLoad(capacity: string | null): {
+  megawatts: number;
+  label: string;
+} | null {
+  if (!capacity || !/mw/i.test(capacity)) return null;
+  const numbers = [...capacity.matchAll(/(\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?/g)]
+    .map((match) => Number(match[1].replace(/,/g, "")))
+    .filter((value) => Number.isFinite(value) && value > 0);
+  if (numbers.length === 0) return null;
+  const megawatts = Math.max(...numbers);
+  const shown = megawatts.toLocaleString("en-US");
+  if (numbers.length > 1) {
+    return {
+      megawatts,
+      label: `${shown} MW, the top of the published ${capacity.replace(/\s*MW\s*$/i, "")} MW`,
+    };
+  }
+  return { megawatts, label: `${shown} MW, the published load` };
+}

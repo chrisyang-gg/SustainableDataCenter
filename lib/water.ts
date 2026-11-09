@@ -14,6 +14,8 @@ export type WaterReading = {
   channel: Lookup<number>;
   stream: Lookup<WaterSite>;
   streamReading: string | null;
+  streamflowCfs: number | null;
+  streamflowBasis: "latest" | "typical-day" | null;
   well: Lookup<WaterSite>;
   messages: string[];
   sources: { label: string; href: string }[];
@@ -107,11 +109,15 @@ function channelMiles(payload: unknown, latitude: number, longitude: number): nu
   return null;
 }
 
-function freshReading(payload: unknown, now: number): string | null {
-  if (!payload || typeof payload !== "object") return null;
+function freshReading(
+  payload: unknown,
+  now: number,
+): { text: string | null; cfs: number | null } {
+  if (!payload || typeof payload !== "object") return { text: null, cfs: null };
   const series = (payload as { value?: { timeSeries?: unknown[] } }).value?.timeSeries;
-  if (!Array.isArray(series)) return null;
+  if (!Array.isArray(series)) return { text: null, cfs: null };
   const parts: string[] = [];
+  let cfs: number | null = null;
   for (const item of series) {
     if (!item || typeof item !== "object") continue;
     const row = item as {
@@ -130,10 +136,14 @@ function freshReading(payload: unknown, now: number): string | null {
       hour: "numeric",
       minute: "2-digit",
     }).format(when);
-    if (code === "00060") parts.push(`${latest.value} cubic feet per second at ${formatted} ET`);
+    if (code === "00060") {
+      const discharge = Number(latest.value);
+      if (Number.isFinite(discharge)) cfs = discharge;
+      parts.push(`${latest.value} cubic feet per second at ${formatted} ET`);
+    }
     if (code === "00065") parts.push(`gage height ${latest.value} ft at ${formatted} ET`);
   }
-  return parts.length > 0 ? parts.join("; ") : null;
+  return { text: parts.length > 0 ? parts.join("; ") : null, cfs };
 }
 
 const REQUEST_HEADERS = {
@@ -159,6 +169,38 @@ async function readText(url: string): Promise<string> {
   });
   if (!response.ok) throw new Error(String(response.status));
   return response.text();
+}
+
+export function typicalDischargeCfs(rdb: string, month: number, day: number): number | null {
+  const rows = rdb
+    .split("\n")
+    .map((line) => line.trim())
+    .filter((line) => line.startsWith("USGS\t"));
+  const values: number[] = [];
+  let today: number | null = null;
+  for (const row of rows) {
+    const columns = row.split("\t");
+    const rowMonth = Number(columns[5]);
+    const rowDay = Number(columns[6]);
+    const mean = Number(columns[10]);
+    if (!Number.isFinite(mean)) continue;
+    values.push(mean);
+    if (rowMonth === month && rowDay === day) today = mean;
+  }
+  if (today !== null) return today;
+  if (values.length === 0) return null;
+  return values.reduce((sum, value) => sum + value, 0) / values.length;
+}
+
+function easternMonthDay(now: number): { month: number; day: number } {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/New_York",
+    month: "numeric",
+    day: "numeric",
+  }).formatToParts(new Date(now));
+  const month = Number(parts.find((part) => part.type === "month")?.value);
+  const day = Number(parts.find((part) => part.type === "day")?.value);
+  return { month, day };
 }
 
 export function searchBox(latitude: number, longitude: number): string {
@@ -269,12 +311,30 @@ export async function readWater(latitude: number, longitude: number): Promise<Wa
         : { status: "empty" };
 
   let streamReading: string | null = null;
+  let streamflowCfs: number | null = null;
+  let streamflowBasis: WaterReading["streamflowBasis"] = null;
   if (stream.status === "found") {
     const ivUrl = `https://waterservices.usgs.gov/nwis/iv/?format=json&sites=${stream.value.siteNumber}&parameterCd=00060,00065`;
     try {
-      streamReading = freshReading(await readJson(ivUrl), Date.now());
+      const fresh = freshReading(await readJson(ivUrl), Date.now());
+      streamReading = fresh.text;
+      streamflowCfs = fresh.cfs;
+      if (fresh.cfs !== null) streamflowBasis = "latest";
     } catch {
       messages.push("The latest gage reading did not load.");
+    }
+    if (streamflowCfs === null) {
+      const statUrl = `https://waterservices.usgs.gov/nwis/stat/?format=rdb&sites=${stream.value.siteNumber}&parameterCd=00060&statReportType=daily&statTypeCd=mean`;
+      try {
+        const { month, day } = easternMonthDay(Date.now());
+        const typical = typicalDischargeCfs(await readText(statUrl), month, day);
+        if (typical !== null) {
+          streamflowCfs = typical;
+          streamflowBasis = "typical-day";
+        }
+      } catch {
+        messages.push("The long-term discharge record did not load.");
+      }
     }
   }
 
@@ -282,6 +342,8 @@ export async function readWater(latitude: number, longitude: number): Promise<Wa
     channel,
     stream,
     streamReading,
+    streamflowCfs,
+    streamflowBasis,
     well,
     messages,
     sources: [

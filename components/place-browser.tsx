@@ -11,6 +11,7 @@ import {
   type PlaceKind,
 } from "@/lib/place-directory";
 import { ordinanceReminder, reminderColor, reminderLabel } from "@/lib/reminder";
+import { ParcelSearch } from "@/components/parcel-search";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -57,6 +58,7 @@ export function PlaceBrowser() {
           Allegheny County is split into municipalities, which write the zoning.
           Click the map to drop a pin.
         </p>
+        <ParcelSearch />
         <label className="mt-3 block text-xs font-medium text-muted-foreground">
           Place
           <div className="relative mt-1">

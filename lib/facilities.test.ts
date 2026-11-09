@@ -2,10 +2,12 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { COUNTY_BOUNDS, facilities, getFacility } from "../data/facilities.ts";
 import { newsFor, newsSlugs } from "../data/news.ts";
+import { reportedFor } from "../data/measured.ts";
 import {
   filterFacilities,
   formatSubmitted,
   markerPosition,
+  publishedLoad,
 } from "./facilities.ts";
 
 test("every pin sits inside the Allegheny County bounds", () => {
@@ -29,6 +31,23 @@ test("news links name the facility and use a published article", () => {
   assert.ok(dynamo.every((item) => item.href.startsWith("https://")));
   assert.equal(newsFor("sei-allegheny").length, 0);
   assert.ok(newsFor("northern-data-ardent-pit1").some((item) => item.outlet === "Data Center Dynamics"));
+});
+
+test("a published range uses its top, and a missing load stays empty", () => {
+  assert.equal(publishedLoad("180–240 MW")?.megawatts, 240);
+  assert.match(publishedLoad("180–240 MW")?.label ?? "", /240 MW/);
+  assert.equal(publishedLoad("1,000 MW")?.megawatts, 1000);
+  assert.equal(publishedLoad(null), null);
+  assert.equal(publishedLoad("47 acres"), null);
+});
+
+test("Springdale noise is the reported Jacobs figure, and other sites have none", () => {
+  const springdale = reportedFor("dynamo-springdale");
+  assert.equal(springdale?.noise?.everydayDba, 57);
+  assert.equal(springdale?.noise?.outageDba, 75);
+  assert.equal(reportedFor("365-pittsburgh"), null);
+  assert.equal(reportedFor("henderson-road-data-center")?.noise, undefined);
+  assert.match(reportedFor("henderson-road-data-center")?.airCaveat ?? "", /gas plant/);
 });
 
 test("Dynamo Springdale carries the DEP permit file", () => {

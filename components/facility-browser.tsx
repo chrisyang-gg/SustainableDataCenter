@@ -5,6 +5,7 @@ import { Search } from "lucide-react";
 import { facilities, municipalities } from "@/data/facilities";
 import { newsFor } from "@/data/news";
 import { depStatusLabel, stageLabel, type StageFilter } from "@/lib/facilities";
+import { ParcelSearch } from "@/components/parcel-search";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useFacilityFilters } from "@/components/tracker-shell";
@@ -35,6 +36,7 @@ export function FacilityBrowser() {
           the location, companies, and permit file. Open Places, or click the
           map, for geology and local zoning.
         </p>
+        <ParcelSearch />
         <label className="mt-3 block text-xs font-medium text-muted-foreground">
           Project name
           <div className="relative mt-1">

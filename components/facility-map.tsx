@@ -21,6 +21,7 @@ import county from "@/data/allegheny-county.json";
 import placesGeo from "@/data/places.json";
 import { COUNTY_BOUNDS, facilities, getFacility } from "@/data/facilities";
 import { markerPosition, stageLabel } from "@/lib/facilities";
+import { pointInCounty } from "@/lib/geology";
 import { getOrdinance, getPlace, parsePin } from "@/lib/place-directory";
 import { ordinanceReminder, reminderColor } from "@/lib/reminder";
 import { cn } from "@/lib/utils";
@@ -85,16 +86,34 @@ export default function FacilityMap() {
         getOrdinance(place.ordinanceKey).status,
       ).tone
     : "debated";
-  const pin = place
-    ? (parsePin(searchParams.get("pin")) ?? {
-        longitude: place.centroid[0],
-        latitude: place.centroid[1],
-      })
-    : null;
+  const whatIf = pathname.startsWith("/what-if");
+  const whatIfPin = whatIf ? parsePin(searchParams.get("pin")) : null;
+  const whatIfLongitude = whatIfPin?.longitude;
+  const whatIfLatitude = whatIfPin?.latitude;
+  const pin = whatIf
+    ? whatIfPin
+    : place
+      ? (parsePin(searchParams.get("pin")) ?? {
+          longitude: place.centroid[0],
+          latitude: place.centroid[1],
+        })
+      : null;
 
   useEffect(() => {
     const map = mapRef.current;
     if (!map) return;
+    if (whatIf) {
+      if (whatIfLongitude !== undefined && whatIfLatitude !== undefined) {
+        map.flyTo({
+          center: [whatIfLongitude, whatIfLatitude],
+          zoom: 13,
+          duration: 700,
+        });
+      } else {
+        map.fitBounds(bounds, { padding: 36, duration: 700 });
+      }
+      return;
+    }
     if (selected) {
       const position = markerPosition(selected);
       map.flyTo({
@@ -115,7 +134,7 @@ export default function FacilityMap() {
       return;
     }
     map.fitBounds(bounds, { padding: 36, duration: 700 });
-  }, [selected, place]);
+  }, [selected, place, whatIf, whatIfLongitude, whatIfLatitude]);
 
   return (
     <div className="absolute inset-0">
@@ -130,13 +149,27 @@ export default function FacilityMap() {
         maxBounds={mapMaxBounds}
         minZoom={8}
         interactiveLayerIds={["place-fill", "place-fill-selected"]}
-        cursor="default"
+        cursor={whatIf ? "crosshair" : "default"}
         onMouseMove={(event) => {
           const canvas = mapRef.current?.getCanvas();
           if (!canvas) return;
+          if (whatIf) {
+            canvas.style.cursor = "crosshair";
+            return;
+          }
           canvas.style.cursor = event.features?.length ? "pointer" : "";
         }}
         onClick={(event) => {
+          if (whatIf) {
+            const latitude = event.lngLat.lat;
+            const longitude = event.lngLat.lng;
+            if (!pointInCounty(latitude, longitude)) return;
+            router.push(
+              `/what-if?pin=${longitude.toFixed(5)},${latitude.toFixed(5)}`,
+              { scroll: false },
+            );
+            return;
+          }
           const feature = event.features?.find(
             (item) => typeof item.properties?.slug === "string",
           );
@@ -215,6 +248,14 @@ export default function FacilityMap() {
                 aria-pressed={active}
                 onClick={(event) => {
                   event.stopPropagation();
+                  if (whatIf) {
+                    if (!pointInCounty(position.latitude, position.longitude)) return;
+                    router.push(
+                      `/what-if?pin=${position.longitude.toFixed(5)},${position.latitude.toFixed(5)}`,
+                      { scroll: false },
+                    );
+                    return;
+                  }
                   router.push(`/facilities/${facility.slug}`);
                 }}
                 className={cn(
@@ -236,7 +277,7 @@ export default function FacilityMap() {
         ) : null}
       </Map>
       <div className="pointer-events-none absolute top-2 left-2 border border-[#2a2a2a] bg-black/90 px-2 py-1 font-mono text-[10px] tracking-[0.08em] text-[#f3f0e8] uppercase">
-        Click an area
+        {whatIf ? "Click to site a data center" : "Click an area"}
       </div>
       <div className="pointer-events-none absolute bottom-8 left-2 max-w-[250px] border border-[#2a2a2a] bg-black/90 px-3 py-2 font-mono text-[10px] leading-4 text-[#f3f0e8] md:bottom-3 md:left-3">
         <p className="mb-1 tracking-[0.14em] text-[#a39e93] uppercase">Zoning</p>

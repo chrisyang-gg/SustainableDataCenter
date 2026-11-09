@@ -58,6 +58,7 @@ export function TrackerShell({ children }: { children: React.ReactNode }) {
   const projectsActive =
     pathname === "/" || pathname.startsWith("/facilities");
   const placesActive = pathname.startsWith("/places");
+  const whatIfActive = pathname.startsWith("/what-if");
   const [filters, setFilters] = useState<FacilityFilters>({
     query: "",
     stage: "all" satisfies StageFilter,
@@ -107,6 +108,18 @@ export function TrackerShell({ children }: { children: React.ReactNode }) {
               aria-current={placesActive ? "page" : undefined}
             >
               Places
+            </Link>
+            <Link
+              href="/what-if"
+              className={cn(
+                "pb-0.5",
+                whatIfActive
+                  ? "text-primary underline decoration-1 underline-offset-4"
+                  : "text-muted-foreground hover:text-foreground",
+              )}
+              aria-current={whatIfActive ? "page" : undefined}
+            >
+              What-if
             </Link>
           </nav>
         </header>

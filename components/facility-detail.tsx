@@ -11,6 +11,7 @@ import {
   stageLabel,
 } from "@/lib/facilities";
 import { newsFor } from "@/data/news";
+import { FacilityImpact } from "@/components/facility-impact";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -85,6 +86,8 @@ export function FacilityDetail({ facility }: { facility: Facility }) {
             <Fact label="Status note">{facility.localNote}</Fact>
           ) : null}
         </dl>
+
+        <FacilityImpact key={facility.slug} facility={facility} />
 
         <section aria-labelledby="permits-heading">
           <h2 id="permits-heading" className="text-base font-semibold">
