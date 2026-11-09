@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import type { Facility } from "@/data/facilities";
 import { reportedFor } from "@/data/measured";
 import type { HomesLookup } from "@/lib/community";
+import { describeTransmission, type GridLookup } from "@/lib/grid";
 import { publishedLoad } from "@/lib/facilities";
 import type { FloodZone, GeologyReport } from "@/lib/geology";
 import {
@@ -19,6 +20,7 @@ type Ground = {
   homes: HomesLookup;
   water: WaterReading | null;
   floodZones: FloodZone[];
+  grid: GridLookup;
 };
 
 export function FacilityImpact({ facility }: { facility: Facility }) {
@@ -35,7 +37,8 @@ export function FacilityImpact({ facility }: { facility: Facility }) {
       if (!response.ok) throw new Error(String(response.status));
       return (await response.json()) as { homes: HomesLookup };
     });
-    const geology = publishedLoad(facility.capacity)
+    const withLoad = publishedLoad(facility.capacity) !== null;
+    const geology = withLoad
       ? fetch(`/api/geology?lat=${latitude}&lng=${longitude}`, {
           signal: controller.signal,
         }).then(async (response) => {
@@ -43,13 +46,28 @@ export function FacilityImpact({ facility }: { facility: Facility }) {
           return (await response.json()) as GeologyReport;
         })
       : Promise.resolve(null);
-    Promise.all([community, geology])
-      .then(([communityResult, geologyResult]) => {
+    const grid = withLoad
+      ? fetch(`/api/grid?lat=${latitude}&lng=${longitude}`, {
+          signal: controller.signal,
+        })
+          .then(async (response) => {
+            if (!response.ok) return { status: "unavailable" as const };
+            const body = (await response.json()) as { line: GridLookup };
+            return body.line;
+          })
+          .catch((error: unknown) => {
+            if (error instanceof DOMException && error.name === "AbortError") throw error;
+            return { status: "unavailable" as const };
+          })
+      : Promise.resolve({ status: "unavailable" as const });
+    Promise.all([community, geology, grid])
+      .then(([communityResult, geologyResult, gridResult]) => {
         if (controller.signal.aborted) return;
         setGround({
           homes: communityResult.homes,
           water: geologyResult?.water ?? null,
           floodZones: geologyResult?.floodZones ?? [],
+          grid: gridResult,
         });
       })
       .catch((error: unknown) => {
@@ -179,7 +197,7 @@ function ImpactBody({
             value={`${impact.feederMultiple.toFixed(1)}× a neighborhood feeder`}
             valueLabel="Estimated"
             decision={`${FEEDER_PEAK_MVA} MVA typical 15 kV peak`}
-            note={`No feeder measurement was published for this site. EPRI reports that most 15 kV neighborhood feeders peak at 4 to 6 MVA. At ${load?.label}, the load is ${impact.feederMultiple.toFixed(1)} times the top of that range. Outage counts and harmonic distortion are not sensors on this pin.`}
+            note={`No feeder measurement was published for this site. EPRI reports that most 15 kV neighborhood feeders peak at 4 to 6 MVA. At ${load?.label}, the load is ${impact.feederMultiple.toFixed(1)} times the top of that range. ${describeTransmission(ground.grid)} Outage counts and harmonic distortion are not sensors on this pin.`}
           />
           <Metric
             title="Air at those homes"
@@ -263,6 +281,11 @@ function ModelSources() {
       <li>
         <a className="text-primary hover:underline" href="https://www.epri.com/research/products/000000003002011005" target="_blank" rel="noreferrer">
           EPRI 3002011005, typical 15 kV feeder peak of 4 to 6 MVA
+        </a>
+      </li>
+      <li>
+        <a className="text-primary hover:underline" href="https://mapservices.pasda.psu.edu/server/rest/services/pasda/HIFLD_FEMA_PA/MapServer/215" target="_blank" rel="noreferrer">
+          PASDA 2025 HIFLD transmission lines
         </a>
       </li>
     </>

@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { distanceToGeometry } from "./distance.ts";
+import { distanceToGeometry, distanceToLines } from "./distance.ts";
 import { typicalDischargeCfs } from "./water.ts";
 import {
   CELL_SOUND_POWER_DBA,
@@ -81,6 +81,25 @@ test("a pin on a home uses the 15 meter floor, and a point inside a ring is zero
     coordinates: [ring],
   });
   assert.ok(outside > 500 && outside < 1200);
+});
+
+test("a transmission line through the pin is zero meters, and one north is about a kilometer", () => {
+  assert.equal(
+    distanceToLines(-80, 40, [
+      [
+        [-80.01, 40],
+        [-79.99, 40],
+      ],
+    ]),
+    0,
+  );
+  const north = distanceToLines(-80, 40, [
+    [
+      [-80.01, 40.01],
+      [-79.99, 40.01],
+    ],
+  ]);
+  assert.ok(north > 1000 && north < 1200);
 });
 
 test("a missing live discharge can fall back to the long-term day", () => {

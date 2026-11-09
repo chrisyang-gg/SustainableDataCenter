@@ -74,6 +74,22 @@ function distanceToRing(
   return best;
 }
 
+export function distanceToLines(
+  longitude: number,
+  latitude: number,
+  lines: number[][][],
+): number {
+  let best = Number.POSITIVE_INFINITY;
+  for (const line of lines) {
+    for (let i = 0; i < line.length - 1; i += 1) {
+      const [ax, ay] = toMeters(line[i][0], line[i][1], longitude, latitude);
+      const [bx, by] = toMeters(line[i + 1][0], line[i + 1][1], longitude, latitude);
+      best = Math.min(best, distanceToSegment(ax, ay, bx, by));
+    }
+  }
+  return best;
+}
+
 export function distanceToGeometry(
   longitude: number,
   latitude: number,

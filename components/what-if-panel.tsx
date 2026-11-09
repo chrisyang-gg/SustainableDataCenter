@@ -5,6 +5,13 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import type { GeologyReport } from "@/lib/geology";
 import type { HomesLookup } from "@/lib/community";
+import { describeTransmission, type GridLookup } from "@/lib/grid";
+import {
+  feederSupport,
+  registrationNote,
+  streamSupport,
+  UTILITY_CAPACITY_NOTE,
+} from "@/lib/support";
 import {
   DEFAULT_LOAD_MW,
   EPA_OUTDOOR_LDN_DBA,
@@ -228,10 +235,25 @@ function Estimate({
 }
 
 const communityReads = new Map<string, Promise<{ homes: HomesLookup }>>();
+const gridReads = new Map<string, Promise<{ line: GridLookup }>>();
 const pairedReads = new Map<
   string,
-  Promise<[GeologyReport, { homes: HomesLookup }]>
+  Promise<[GeologyReport, { homes: HomesLookup }, { line: GridLookup }]>
 >();
+
+function loadGrid(latitude: number, longitude: number): Promise<{ line: GridLookup }> {
+  const key = `${latitude.toFixed(5)},${longitude.toFixed(5)}`;
+  const existing = gridReads.get(key);
+  if (existing) return existing;
+  const pending = fetch(`/api/grid?lat=${latitude}&lng=${longitude}`)
+    .then(async (response) => {
+      if (!response.ok) return { line: { status: "unavailable" as const } };
+      return (await response.json()) as { line: GridLookup };
+    })
+    .catch(() => ({ line: { status: "unavailable" as const } }));
+  gridReads.set(key, pending);
+  return pending;
+}
 
 function loadCommunity(latitude: number, longitude: number): Promise<{ homes: HomesLookup }> {
   const key = `${latitude.toFixed(5)},${longitude.toFixed(5)}`;
@@ -250,13 +272,14 @@ function loadCommunity(latitude: number, longitude: number): Promise<{ homes: Ho
 function loadPair(
   latitude: number,
   longitude: number,
-): Promise<[GeologyReport, { homes: HomesLookup }]> {
+): Promise<[GeologyReport, { homes: HomesLookup }, { line: GridLookup }]> {
   const key = `${latitude.toFixed(5)},${longitude.toFixed(5)}`;
   const existing = pairedReads.get(key);
   if (existing) return existing;
   const pending = Promise.all([
     loadReport(latitude, longitude),
     loadCommunity(latitude, longitude),
+    loadGrid(latitude, longitude),
   ]);
   pairedReads.set(key, pending);
   return pending;
@@ -282,7 +305,7 @@ function EstimateBody({
   longitude: number;
   megawatts: number;
 }) {
-  const [report, community] = use(loadPair(latitude, longitude));
+  const [report, community, grid] = use(loadPair(latitude, longitude));
   const homes =
     community.homes.status === "found"
       ? { meters: community.homes.meters, onBuilding: community.homes.onBuilding }
@@ -356,7 +379,13 @@ function EstimateBody({
         title="Electricity on their feeder"
         value={`${impact.feederMultiple.toFixed(1)}× a neighborhood feeder`}
         decision={`${FEEDER_PEAK_MVA} MVA typical 15 kV peak`}
-        note={`EPRI reports that most 15 kV feeders, the circuits that serve neighborhoods, peak at 4 to 6 MVA. ${megawatts} MW is ${impact.feederMultiple.toFixed(1)} times the top of that range, so the load is larger than the circuit the nearest homes would share. It needs its own interconnection. Outage counts and harmonic distortion, which The Cloud Next Door measured near operating sites, are not sensors on this pin.`}
+        note={`EPRI reports that most 15 kV feeders peak at 4 to 6 MVA under typical operating conditions, and that maximum capacity is higher depending on conductor size and length. ${megawatts} MW is ${impact.feederMultiple.toFixed(1)} times that 6 MVA peak. ${describeTransmission(grid.line)} Outage counts and harmonic distortion, which The Cloud Next Door measured near operating sites, are not sensors on this pin.`}
+      />
+      <SystemSupport
+        megawatts={megawatts}
+        streamflowShare={impact.streamflowShare}
+        gallonsPerDay={impact.withdrawalGallonsPerDay}
+        transmission={describeTransmission(grid.line)}
       />
       <Metric
         title="Air at those homes"
@@ -434,12 +463,72 @@ function EstimateBody({
           </a>
         </li>
         <li>
+          <a className="text-primary hover:underline" href="https://doi.org/10.1002/rra.1511" target="_blank" rel="noreferrer">
+            Richter et al. 2012, presumptive standard for daily flow alteration
+          </a>
+        </li>
+        <li>
+          <a className="text-primary hover:underline" href="https://www.pacodeandbulletin.gov/secure/pacode/data/025/chapter110/s110.201.html" target="_blank" rel="noreferrer">
+            25 Pa. Code § 110.201, water withdrawal registration
+          </a>
+        </li>
+        <li>
+          <a className="text-primary hover:underline" href="https://mapservices.pasda.psu.edu/server/rest/services/pasda/HIFLD_FEMA_PA/MapServer/215" target="_blank" rel="noreferrer">
+            PASDA 2025 HIFLD transmission lines
+          </a>
+        </li>
+        <li>
           <a className="text-primary hover:underline" href="https://gisdata.alleghenycounty.us/arcgis/rest/services/EGIS/Buildings/MapServer/0" target="_blank" rel="noreferrer">
             Allegheny County building footprints, residential code 210
           </a>
         </li>
       </ul>
     </div>
+  );
+}
+
+function SystemSupport({
+  megawatts,
+  streamflowShare,
+  gallonsPerDay,
+  transmission,
+}: {
+  megawatts: number;
+  streamflowShare: number | null;
+  gallonsPerDay: number;
+  transmission: string;
+}) {
+  const feeder = feederSupport(megawatts);
+  const stream = streamSupport(streamflowShare);
+  return (
+    <section className="border border-border px-3 py-2" aria-labelledby="systems-heading">
+      <h3 id="systems-heading" className="text-sm font-semibold text-foreground">
+        Can the existing systems carry this?
+      </h3>
+      <p className="mt-1 text-xs leading-5 text-muted-foreground">
+        Electricity is the neighborhood feeder the nearest homes already use. Water is the
+        nearest gage. A mapped transmission line and a gage reading are not spare capacity on a
+        utility system.
+      </p>
+      <div className="mt-3">
+        <p className="font-mono text-[10px] tracking-[0.12em] text-muted-foreground uppercase">
+          Electricity
+        </p>
+        <p className="mt-1 text-sm leading-5 text-foreground">{feeder.headline}</p>
+        <p className="mt-1 text-xs leading-5 text-muted-foreground">
+          {feeder.detail} {transmission}
+        </p>
+      </div>
+      <div className="mt-3">
+        <p className="font-mono text-[10px] tracking-[0.12em] text-muted-foreground uppercase">
+          Water
+        </p>
+        <p className="mt-1 text-sm leading-5 text-foreground">{stream.headline}</p>
+        <p className="mt-1 text-xs leading-5 text-muted-foreground">
+          {stream.detail} {registrationNote(gallonsPerDay)} {UTILITY_CAPACITY_NOTE}
+        </p>
+      </div>
+    </section>
   );
 }
 
