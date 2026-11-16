@@ -61,7 +61,7 @@ export function SimulatorPanel() {
             Set the building, then run one estimate.
           </p>
         </header>
-        <div className="flex flex-wrap gap-1.5" role="group" aria-label="Example facilities">
+        <div className="flex flex-wrap gap-1.5" role="group" aria-label="Hypothetical plants">
           {PRESETS.map((preset) => (
             <button
               key={preset.id}

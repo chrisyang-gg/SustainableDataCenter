@@ -12,6 +12,7 @@ import {
 } from "@/lib/facilities";
 import { newsFor } from "@/data/news";
 import { FacilityImpact } from "@/components/facility-impact";
+import { SpringdaleExample } from "@/components/springdale-example";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -58,6 +59,8 @@ export function FacilityDetail({ facility }: { facility: Facility }) {
             {facility.summary}
           </p>
         </header>
+
+        {facility.slug === "dynamo-springdale" ? <SpringdaleExample /> : null}
 
         <dl className="divide-y divide-border border-y border-border text-sm">
           <Fact label="Location">
