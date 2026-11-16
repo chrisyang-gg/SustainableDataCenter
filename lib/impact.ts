@@ -48,9 +48,23 @@ export const PM10_LB_PER_MMBTU = 0.0573;
 export const BSFC_BTU_PER_HP_HR = 7000;
 export const KW_PER_HP = 0.746;
 
-/** Screening wind and release height. Stability class D, urban Briggs curves. */
+/** Screening wind and the old no-rise release height. Stability class D, urban Briggs curves. */
 export const SCREEN_WIND_MPS = 2;
 export const SCREEN_RELEASE_METERS = 5;
+
+/**
+ * One emergency diesel stack, from the McLaren data center plume assessment
+ * (Ramboll Environ, Table 1): a 3 MW generator, 45.2 ft stack, 1.7 ft diameter,
+ * 59.22 m/s exit speed, 891.9 F exhaust.
+ */
+export const GENERATOR_MW = 3;
+export const GENERATOR_STACK_METERS = 13.77;
+export const GENERATOR_STACK_DIAMETER_METERS = 0.51;
+export const GENERATOR_EXIT_MPS = 59.22;
+export const GENERATOR_STACK_K = 751;
+/** Outside air for the buoyancy calculation, 20 C. */
+export const SCREEN_AMBIENT_K = 293;
+const GRAVITY = 9.80665;
 
 /** 100 ppb NO2 ≈ 188 µg/m³. EPA 1-hour primary standard. */
 export const NO2_1H_UG_PER_M3 = 188;
@@ -138,39 +152,141 @@ export function briggsUrbanD(meters: number): { crosswind: number; vertical: num
 }
 
 /** Centerline Gaussian plume, grams per second in, micrograms per cubic meter out. */
-export function plumeMicrograms(gramsPerSecond: number, meters: number): number {
+export function plumeMicrograms(
+  gramsPerSecond: number,
+  meters: number,
+  releaseMeters: number = SCREEN_RELEASE_METERS,
+): number {
   const { crosswind, vertical } = briggsUrbanD(meters);
   const dilution = Math.PI * SCREEN_WIND_MPS * crosswind * vertical;
-  const reflection = Math.exp(
-    -(SCREEN_RELEASE_METERS ** 2) / (2 * vertical * vertical),
-  );
+  const height = Math.max(releaseMeters, 0.1);
+  const reflection = Math.exp(-(height ** 2) / (2 * vertical * vertical));
   return ((gramsPerSecond / dilution) * reflection) * 1_000_000;
 }
 
-let cachedPlumePeakMeters: number | null = null;
+const plumePeakCache = new Map<number, number>();
 
 /** Integer meters where this release height has its highest ground-level concentration. */
-export function plumePeakMeters(): number {
-  if (cachedPlumePeakMeters !== null) return cachedPlumePeakMeters;
+export function plumePeakMetersFor(releaseMeters: number): number {
+  const key = Math.round(releaseMeters * 10) / 10;
+  const cached = plumePeakCache.get(key);
+  if (cached !== undefined) return cached;
   let best = 0;
   let at = 1;
-  for (let meters = 1; meters <= 200; meters += 1) {
-    const value = plumeMicrograms(1, meters);
+  for (let meters = 1; meters <= 400; meters += 1) {
+    const value = plumeMicrograms(1, meters, key);
     if (value > best) {
       best = value;
       at = meters;
     }
   }
-  cachedPlumePeakMeters = at;
+  plumePeakCache.set(key, at);
   return at;
 }
 
+export function plumePeakMeters(): number {
+  return plumePeakMetersFor(SCREEN_RELEASE_METERS);
+}
+
+/** Briggs buoyancy flux for one generator stack, m^4/s^3. EPA ISC3 equation. */
+export function generatorBuoyancyFlux(): number {
+  const diameter = GENERATOR_STACK_DIAMETER_METERS;
+  return (
+    (GRAVITY * GENERATOR_EXIT_MPS * diameter * diameter * (GENERATOR_STACK_K - SCREEN_AMBIENT_K)) /
+    (4 * GENERATOR_STACK_K)
+  );
+}
+
+/** Buoyant rise at a downwind distance. Final rise follows EPA ISC3 for neutral air. */
+export function plumeRiseMeters(distanceMeters: number): number {
+  const flux = generatorBuoyancyFlux();
+  const wind = SCREEN_WIND_MPS;
+  const finalRise =
+    flux < 55
+      ? (21.425 * flux ** 0.75) / wind
+      : (38.71 * flux ** 0.6) / wind;
+  const transitional = (1.6 * flux ** (1 / 3) * distanceMeters ** (2 / 3)) / wind;
+  return Math.min(finalRise, transitional);
+}
+
+export type BackupPlume = {
+  no2Micrograms: number;
+  pm10Micrograms: number;
+  plumeMeters: number;
+  stacks: number;
+  effectiveHeightMeters: number;
+};
+
 /**
- * Ground-level concentration beside the stack is about 0, because a 5 meter
- * release has not spread down yet. Inside that near field, use the peak.
+ * One-hour ground-level screen for a diesel backup plant.
+ * The plant is split into 3 MW stacks. Each stack gets Briggs buoyant rise.
+ * If the homes are closer than the highest ground-level point, the result is
+ * that highest point, because the exhaust is still overhead at the house.
+ * Stacks are added on one centerline, which is higher than a yard that spreads them.
  */
-export function plumeScreenMeters(meters: number): number {
-  const peak = plumePeakMeters();
+export function backupPlume(
+  megawatts: number,
+  homesMeters: number,
+  stackMeters: number = GENERATOR_STACK_METERS,
+): BackupPlume {
+  if (!(megawatts > 0)) {
+    return {
+      no2Micrograms: 0,
+      pm10Micrograms: 0,
+      plumeMeters: homesMeters,
+      stacks: 0,
+      effectiveHeightMeters: stackMeters,
+    };
+  }
+  const stacks = Math.max(1, Math.ceil(megawatts / GENERATOR_MW));
+  const each = megawatts / stacks;
+  const nox = emissionGramsPerSecond(each, NOX_LB_PER_MMBTU);
+  const pm = emissionGramsPerSecond(each, PM10_LB_PER_MMBTU);
+  const at = (distance: number) => {
+    const height = stackMeters + plumeRiseMeters(distance);
+    return {
+      no2: plumeMicrograms(nox, distance, height) * stacks,
+      pm10: plumeMicrograms(pm, distance, height) * stacks,
+      height,
+    };
+  };
+  let best = at(50);
+  let bestDistance = 50;
+  for (let distance = 60; distance <= 15000; distance += 10) {
+    const sample = at(distance);
+    if (sample.no2 > best.no2) {
+      best = sample;
+      bestDistance = distance;
+    }
+  }
+  if (homesMeters >= bestDistance) {
+    const home = at(homesMeters);
+    return {
+      no2Micrograms: home.no2,
+      pm10Micrograms: home.pm10,
+      plumeMeters: homesMeters,
+      stacks,
+      effectiveHeightMeters: home.height,
+    };
+  }
+  return {
+    no2Micrograms: best.no2,
+    pm10Micrograms: best.pm10,
+    plumeMeters: bestDistance,
+    stacks,
+    effectiveHeightMeters: best.height,
+  };
+}
+
+/**
+ * Ground-level concentration beside the stack is about 0, because the release
+ * has not spread down yet. Inside that near field, use the peak.
+ */
+export function plumeScreenMeters(
+  meters: number,
+  releaseMeters: number = SCREEN_RELEASE_METERS,
+): number {
+  const peak = plumePeakMetersFor(releaseMeters);
   return meters < peak ? peak : meters;
 }
 
@@ -180,7 +296,7 @@ export function closePlumeSentence(homesMeters: number, plumeMeters: number, onB
   const where = onBuilding
     ? "This pin is on a mapped residential building."
     : `The nearest homes are ${Math.round(homesMeters)} meters away.`;
-  return ` ${where} This screen uses ${used} meters, the distance where a 5 meter release produces its highest ground-level concentration. Closer than that, the Briggs screen still has the exhaust overhead and rounds to about 0.`;
+  return ` ${where} This screen uses ${used} meters, where the buoyant generator plumes reach their highest ground-level concentration. Closer than that, the exhaust is still overhead.`;
 }
 
 export function floodNote(zones: FloodZone[]): string | null {
@@ -208,7 +324,8 @@ export function peopleImpact(input: {
   const power = soundPowerDba(cells);
   const gallons = withdrawalGallonsPerDay(input.megawatts);
   const receiver = input.homes ? receiverMeters(input.homes) : null;
-  const plumeMeters = receiver === null ? null : plumeScreenMeters(receiver);
+  const plume = receiver === null ? null : backupPlume(input.megawatts, receiver);
+  const plumeMeters = plume?.plumeMeters ?? null;
   return {
     megawatts: input.megawatts,
     homesMeters: input.homes?.meters ?? null,
@@ -225,14 +342,8 @@ export function peopleImpact(input: {
         ? streamflowShare(gallons, input.streamflowCfs)
         : null,
     feederMultiple: input.megawatts / FEEDER_PEAK_MVA,
-    no2Micrograms:
-      plumeMeters === null
-        ? null
-        : plumeMicrograms(emissionGramsPerSecond(input.megawatts, NOX_LB_PER_MMBTU), plumeMeters),
-    pm10Micrograms:
-      plumeMeters === null
-        ? null
-        : plumeMicrograms(emissionGramsPerSecond(input.megawatts, PM10_LB_PER_MMBTU), plumeMeters),
+    no2Micrograms: plume?.no2Micrograms ?? null,
+    pm10Micrograms: plume?.pm10Micrograms ?? null,
     floodNote: floodNote(input.floodZones),
   };
 }

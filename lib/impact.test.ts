@@ -39,8 +39,9 @@ test("a full-load generator hour is stronger near homes than far away", () => {
   assert.ok(near > 0);
 });
 
-test("a home beside the stack uses the ground-level peak instead of zero", () => {
+test("a home beside the stack uses the buoyant ground-level peak", () => {
   assert.equal(plumePeakMeters(), 25);
+  assert.equal(plumeScreenMeters(4), 25);
   const beside = peopleImpact({
     megawatts: 100,
     homes: { meters: 4, onBuilding: false },
@@ -48,17 +49,17 @@ test("a home beside the stack uses the ground-level peak instead of zero", () =>
     floodZones: [],
   });
   assert.equal(beside.receiverMeters, 4);
-  assert.equal(beside.plumeMeters, 25);
-  assert.equal(plumeScreenMeters(4), 25);
-  assert.ok((beside.no2Micrograms ?? 0) > 100_000);
+  assert.ok((beside.plumeMeters ?? 0) > 400);
+  assert.ok((beside.no2Micrograms ?? 0) > 1_000);
+  assert.ok((beside.no2Micrograms ?? 0) < 10_000);
   assert.ok((beside.pm10Micrograms ?? 0) > 0);
   const past = peopleImpact({
     megawatts: 100,
-    homes: { meters: 500, onBuilding: false },
+    homes: { meters: 4000, onBuilding: false },
     streamflowCfs: null,
     floodZones: [],
   });
-  assert.equal(past.plumeMeters, 500);
+  assert.equal(past.plumeMeters, 4000);
   assert.ok((past.no2Micrograms ?? 0) < (beside.no2Micrograms ?? 0));
 });
 
