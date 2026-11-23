@@ -57,9 +57,31 @@ The same estimate then lists siting rules. 44 CFR 60.3 stops a new building in a
 
 ## Data center simulator
 
-The Simulator tab is a construction screen, separate from the map pin and the What-if compliance review. A resident sets eleven choices: facility electricity, power usage effectiveness, site area, cooling system, on-site water use, hours per year, night operation, distance to homes, cooling-tower cells, diesel backup share, and exhaust height. Each control names the component it belongs to. Water use belongs to the cooling plant. Electricity use belongs to the utility service.
+The Simulator tab separates design inputs from the map and What-if review. Four profiles replace the previous size presets. Selecting a profile restores reference PUE and site WUE while preserving facility MW, cooling choice, and other design inputs. AI is a workload profile that can occur in hyperscale or colocation facilities, not a mutually exclusive size threshold.
 
-`simulateDataCenter` in `lib/simulator.ts` turns that configuration into one estimate. Noise uses the same ISO 9613-2 cell model as What-if. Air uses the same one-hour diesel plume, with the exhaust-height control as the physical stack height. A backup share of zero reports 0 µg/m³. Cooling water uses the same LBNL liters-per-IT-kilowatt-hour rate. The feeder multiple uses the same 6 MVA comparison. The price lines are an assumption, not a utility login: the residential energy price, in cents per kWh, rises by the facility's share of Duquesne Light's 2025 summer forecasted peak of 2,703 MW, applied to the EIA 2025 Pennsylvania residential price. The volumetric water and wastewater price, in dollars per 1,000 gallons, rises by the facility's share of Pittsburgh Water's 65 million gallons a day, applied to the March 8, 2026 rates. Site area is recorded as the yard size. It does not invent a separate acreage impact.
+`lib/lbnl-simulator.ts` records the central 2023 category values (medians) from [LBNL's 2024 report, Figure 4.5, p. 47](https://eta-publications.lbl.gov/sites/default/files/2024-12/lbnl-2024-united-states-data-center-energy-usage-report_1.pdf#page=47). SMB maps to its broader Small group; SPs maps to Midsize and Colo. These modeled values reflect the category's cooling-system and location mixtures, not a measurement of the proposed facility.
+
+| Profile | Report group | PUE | Site WUE (L/IT-kWh) | Fixed UPS range (Table 4.3, p. 43) |
+| --- | --- | --- | --- | --- |
+| SMB | Small | 1.91 | 0.32 | 77–85% |
+| SPs (medium scale) | Midsize and Colo | 1.68 | 0.67 | 80–94% |
+| Hyperscale | Hyperscale | 1.22 | 0.32 | 90–99% |
+| AI-centered | AI Specialized | 1.14 | 0.61 | 90–99% |
+
+UPS efficiency is a read-only range, because Table 4.3 supplies ranges rather than single values. UPS losses are already in PUE and are not multiplied into energy again. PUE and WUE remain editable for a design-specific estimate. Nine cooling families follow Table 4.2 (pp. 40–42). Selecting a cooling family records the design and explains its operation; it does not invent a scalar efficiency correction or set tower count. Reproducing cooling-specific PUE/WUE would require the report's hourly thermal simulation and climate/operating inputs, beyond these category references.
+
+`simulateDataCenter` in `lib/simulator.ts` computes:
+
+- Facility electricity (kWh/year) = operating facility MW × annual hours × 1,000.
+- IT electricity = facility electricity / PUE; infrastructure = facility minus IT electricity.
+- Direct consumption (L/year) = IT electricity × site WUE. Divide by 3.785411784 and 365 for annual-average US gal/day.
+- Electricity-associated off-site water = facility electricity × 4.52 L/kWh; combined water is direct plus off-site water.
+
+The water equation rearranges the original WUE definition in [The Green Grid (2011), White Paper 35, p. 6, equation (2)](https://www.thegreengrid.org/system/files/store/WUE_v1.pdf#page=6). Equations (3)–(4) support the combined boundary: source WUE = site WUE + PUE × energy-water intensity. LBNL's consumption-based data supply the inputs; this does not equate consumption with utility withdrawal. The 4.52 L/kWh input is the report's **2023 U.S. data-center electricity-mix proxy** (p. 57), not a local measurement, forecast, or marginal water factor. The 2011 paper's older grid factor is not used. Off-site water is excluded from the local water-price scenario.
+
+Noise retains the ISO 9613-2 tower-cell screen. Air retains the one-hour diesel plume screen, with entered exhaust height and backup share. The feeder comparison retains the 6 MVA reference. Site area is displayed without an acreage-derived impact. Price increments remain illustrative proportional app assumptions using historical utility/rate baselines, not price forecasts. Only direct on-site water enters the water-price calculation.
+
+Every impact has **Calculation & references**, with implemented equations, worked values from a normalized input snapshot, specific source pages, and limitations. The parameter guide maps each control to its actual effect. `lib/simulator-methodology.ts` records source roles, reviewed November 23, 2026. Run model checks with `node --import tsx --test lib/*.test.ts` and `npx tsc --noEmit`.
 
 ## What a place page shows
 

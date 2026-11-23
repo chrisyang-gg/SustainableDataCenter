@@ -5,11 +5,18 @@ import {
   HOURS_PER_YEAR,
   LITERS_PER_GALLON,
   outdoorLevelDba,
-  PUE,
   RECEIVER_FLOOR_METERS,
-  SITE_WUE_L_PER_KWH,
   soundPowerDba,
 } from "@/lib/impact";
+import {
+  coolingSystem,
+  DATA_CENTER_PROFILES,
+  GRID_WATER_L_PER_FACILITY_KWH,
+  isDataCenterProfileId,
+  type CoolingChoice,
+  type DataCenterProfileId,
+} from "@/lib/lbnl-simulator";
+export type { CoolingChoice, DataCenterProfileId } from "@/lib/lbnl-simulator";
 
 /** EIA Electric Power Annual, Pennsylvania residential price, 2025. */
 export const PA_RESIDENTIAL_CENTS_PER_KWH = 19.29;
@@ -29,9 +36,8 @@ export const PWSA_GALLONS_PER_DAY = 65_000_000;
  */
 export const PWSA_DOLLARS_PER_THOUSAND_GALLONS = 18.28 + 2.13 + 7.32 + 0.88;
 
-export type CoolingChoice = "air" | "evaporative" | "custom";
-
 export type SimulatorInput = {
+  profile: DataCenterProfileId;
   /** Facility electricity, IT plus overhead, in MW while it is running. */
   facilityMegawatts: number;
   pue: number;
@@ -48,8 +54,19 @@ export type SimulatorInput = {
 };
 
 export type SimulatorImpact = {
+  /** Normalized inputs captured for this run's calculation and references. */
+  configuration: SimulatorInput;
   facilityMegawatts: number;
   itMegawatts: number;
+  facilityEnergyKwh: number;
+  itEnergyKwh: number;
+  infrastructureEnergyKwh: number;
+  infrastructureShare: number;
+  directWaterLitersPerYear: number;
+  indirectWaterLitersPerYear: number;
+  totalWaterLitersPerYear: number;
+  upsEfficiencyMin: number;
+  upsEfficiencyMax: number;
   areaAcres: number;
   coolingLabel: string;
   gallonsPerDay: number;
@@ -82,21 +99,16 @@ function clamp(value: number, low: number, high: number): number {
 }
 
 export function coolingLabel(choice: CoolingChoice, wue: number): string {
-  if (choice === "air") {
-    return "Calculated from air cooling, with no on-site water use. Inferred as zero because air cooling does not evaporate water on site.";
-  }
-  if (choice === "evaporative") {
-    return "Calculated from evaporative cooling water use. LBNL reports average on-site use of 0.36 liters per IT kilowatt-hour.";
-  }
-  return `Calculated from a cooling-water rate of ${wue.toFixed(2)} liters per IT kilowatt-hour. No published rate matches this plant, so the rate is the one set here.`;
+  return `${coolingSystem(choice).label}. The calculation uses site WUE ${wue.toFixed(2)} L/IT-kWh. Figure 4.5 is a category cooling-mix reference, not a calibration of this individual cooling design.`;
 }
 
-export const COUNTY_SCALE: SimulatorInput = {
+export const DEFAULT_SIMULATOR_INPUT: SimulatorInput = {
+  profile: "sps",
   facilityMegawatts: 25,
-  pue: PUE,
+  pue: DATA_CENTER_PROFILES.sps.pue,
   areaAcres: 15,
-  cooling: "evaporative",
-  siteWueLPerKwh: SITE_WUE_L_PER_KWH,
+  cooling: "water-cooled-chiller",
+  siteWueLPerKwh: DATA_CENTER_PROFILES.sps.wue,
   hoursPerYear: HOURS_PER_YEAR,
   runsAllNight: true,
   homesMeters: 180,
@@ -105,41 +117,19 @@ export const COUNTY_SCALE: SimulatorInput = {
   releaseMeters: 5,
 };
 
-export const SMALL_FACILITY: SimulatorInput = {
-  facilityMegawatts: 2,
-  pue: 1.2,
-  areaAcres: 2,
-  cooling: "air",
-  siteWueLPerKwh: 0,
-  hoursPerYear: 4000,
-  runsAllNight: false,
-  homesMeters: 800,
-  coolingCells: 1,
-  backupFraction: 0,
-  releaseMeters: 15,
-};
-
-export const LARGE_FACILITY: SimulatorInput = {
-  facilityMegawatts: 100,
-  pue: 1.5,
-  areaAcres: 80,
-  cooling: "custom",
-  siteWueLPerKwh: 1.2,
-  hoursPerYear: HOURS_PER_YEAR,
-  runsAllNight: true,
-  homesMeters: 40,
-  coolingCells: 40,
-  backupFraction: 1,
-  releaseMeters: 5,
-};
+/** Profile changes reset only the referenced efficiencies, preserving the design. */
+export function applyDataCenterProfile(input: SimulatorInput, profile: DataCenterProfileId): SimulatorInput {
+  const reference = DATA_CENTER_PROFILES[profile];
+  return { ...input, profile, pue: reference.pue, siteWueLPerKwh: reference.wue };
+}
 
 function normalize(input: SimulatorInput): SimulatorInput {
   const facilityMegawatts = clamp(input.facilityMegawatts, 0.5, 500);
-  const pue = clamp(input.pue, 1.05, 2.5);
-  const cooling = input.cooling;
-  const siteWueLPerKwh =
-    cooling === "air" ? 0 : cooling === "evaporative" ? SITE_WUE_L_PER_KWH : clamp(input.siteWueLPerKwh, 0, 3);
+  const pue = clamp(input.pue, 1, 3);
+  const cooling = coolingSystem(input.cooling).id;
+  const siteWueLPerKwh = clamp(input.siteWueLPerKwh, 0, 3);
   return {
+    profile: isDataCenterProfileId(input.profile) ? input.profile : "sps",
     facilityMegawatts,
     pue,
     areaAcres: clamp(input.areaAcres, 0.5, 500),
@@ -159,7 +149,12 @@ export function simulateDataCenter(input: SimulatorInput): SimulatorImpact {
   const config = normalize(input);
   const itMegawatts = config.facilityMegawatts / config.pue;
   const itKwh = itMegawatts * config.hoursPerYear * 1000;
-  const gallonsPerDay = (itKwh * config.siteWueLPerKwh) / LITERS_PER_GALLON / 365;
+  const facilityEnergyKwh = config.facilityMegawatts * config.hoursPerYear * 1000;
+  const infrastructureEnergyKwh = facilityEnergyKwh - itKwh;
+  const directWaterLitersPerYear = itKwh * config.siteWueLPerKwh;
+  const indirectWaterLitersPerYear = facilityEnergyKwh * GRID_WATER_L_PER_FACILITY_KWH;
+  const gallonsPerDay = directWaterLitersPerYear / LITERS_PER_GALLON / 365;
+  const profile = DATA_CENTER_PROFILES[config.profile];
   const receiver = Math.max(config.homesMeters, RECEIVER_FLOOR_METERS);
   const noiseLeqDba =
     config.coolingCells < 1
@@ -180,8 +175,18 @@ export function simulateDataCenter(input: SimulatorInput): SimulatorImpact {
   const waterDollarsPerThousandGallons = PWSA_DOLLARS_PER_THOUSAND_GALLONS * waterShare;
 
   return {
+    configuration: config,
     facilityMegawatts: config.facilityMegawatts,
     itMegawatts,
+    facilityEnergyKwh,
+    itEnergyKwh: itKwh,
+    infrastructureEnergyKwh,
+    infrastructureShare: infrastructureEnergyKwh / facilityEnergyKwh,
+    directWaterLitersPerYear,
+    indirectWaterLitersPerYear,
+    totalWaterLitersPerYear: directWaterLitersPerYear + indirectWaterLitersPerYear,
+    upsEfficiencyMin: profile.upsMin,
+    upsEfficiencyMax: profile.upsMax,
     areaAcres: config.areaAcres,
     coolingLabel: coolingLabel(config.cooling, config.siteWueLPerKwh),
     gallonsPerDay,
@@ -199,9 +204,9 @@ export function simulateDataCenter(input: SimulatorInput): SimulatorImpact {
     electricityCentsPerKwh,
     waterDollarsPerThousandGallons,
     electricityAssumption:
-      "The electricity price increase faced at the nearest residential area. Inferred as facility load ÷ Duquesne Light's summer peak × the EIA Pennsylvania price.",
+      "Illustrative increment: annual-average facility load ÷ Duquesne Light's historical summer peak × the EIA Pennsylvania price. The proportional price response is an app assumption, not a utility forecast.",
     waterAssumption:
-      "The water price increase faced at the nearest residential area. Inferred as cooling water ÷ Pittsburgh Water's daily production × its price per 1,000 gallons.",
+      "Illustrative increment: annual-average cooling water ÷ Pittsburgh Water's average daily production × selected residential volumetric charges. The proportional price response is an app assumption, not a utility forecast.",
     areaNote: "Site area is the acreage entered for the yard and is not used in the other results.",
     noiseNote,
     homesMeters: config.homesMeters,
