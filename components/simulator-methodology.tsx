@@ -1,6 +1,5 @@
 import {
   emissionGramsPerSecond,
-  FEEDER_PEAK_MVA,
   GENERATOR_MW,
   LITERS_PER_GALLON,
   NOX_LB_PER_MMBTU,
@@ -78,8 +77,7 @@ function workedCalculation(id: SimulatorMethodId, impact: SimulatorImpact): stri
         `${number(impact.gallonsPerDay)} / ${number(PWSA_GALLONS_PER_DAY)} = ${number(impact.waterShare * 100, 4)}% cooling-water-to-production ratio`,
         `$${number(PWSA_DOLLARS_PER_THOUSAND_GALLONS)} × ${number(impact.waterShare, 6)} = +$${number(impact.waterDollarsPerThousandGallons, 4)} / 1,000 US gal (illustrative increment)`,
       ];
-    case "feeder":
-      return [`${number(c.facilityMegawatts)} MW / ${FEEDER_PEAK_MVA} MVA ≈ ${number(impact.feederMultiple)}× at assumed unity power factor`];
+
   }
 }
 

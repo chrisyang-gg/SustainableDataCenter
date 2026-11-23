@@ -2,7 +2,6 @@ import {
   ATMOSPHERE_DB_PER_METER,
   BSFC_BTU_PER_HP_HR,
   CELL_SOUND_POWER_DBA,
-  FEEDER_PEAK_MVA,
   GENERATOR_EXIT_MPS,
   GENERATOR_MW,
   GENERATOR_STACK_DIAMETER_METERS,
@@ -29,8 +28,8 @@ export const SOURCES_REVIEWED = "November 23, 2026";
 const sources = {
   lbnl: {
     title: "Shehabi et al. (2024), United States Data Center Energy Usage Report",
-    href: `${LBNL_REPORT_URL}#page=47`,
-    locator: "LBNL-2001637: p. 39 (PUE/WUE definitions); Figure 4.5, p. 47 (2023 category medians); Table 4.2, pp. 40–42 (nine cooling systems); Table 4.3, p. 43 (UPS ranges).",
+    href: `${LBNL_REPORT_URL}#page=46`,
+    locator: "LBNL-2001637: p. 39 (PUE/WUE definitions); Figure 4.4, p. 46 (cooling-system distributions; app uses approximate readings of their median lines); Table 4.2, pp. 40–42 (cooling families); Table 4.3, p. 43 (UPS ranges).",
   },
   greenGrid: {
     title: "The Green Grid (2011), Water Usage Effectiveness (WUE), White Paper 35",
@@ -97,11 +96,7 @@ const sources = {
     href: "https://www.pgh2o.com/your-water/water-quality-treatment",
     locator: "Opening paragraph: average production of 65 million gallons daily.",
   },
-  epri: {
-    title: "EPRI (December 2017), Technical Comparison of North American and International Distribution Systems",
-    href: "https://restservice.epri.com/publicdownload/000000003002011005/0/Product#page=25",
-    locator: "Report 3002011005, printed p. 1-11 (PDF p. 25), MV Distribution: typical 15 kV feeder peak loading of 4–6 MVA; capacity may be higher.",
-  },
+
 } as const;
 
 export type SimulatorSource = (typeof sources)[keyof typeof sources];
@@ -126,11 +121,12 @@ export const SIMULATOR_METHODS = {
     ],
     assumptions: [
       "P is the total facility draw while operating, including IT and overhead. The same draw and PUE are assumed in every operating hour; this is not a time-varying load model.",
-      "Category defaults use the central 2023 values in Figure 4.5: Small 1.91, Midsize and Colo 1.68, Hyperscale 1.22, AI Specialized 1.14. SMB and SPs are mapped to the first two broader groups. Users can supply design-specific PUE; category selection does not set facility size.",
+      "Cooling selections load approximate median-line readings from Figure 4.4, p. 46, rounded to 0.01 from the supplied chart. SMB uses Small; SPs uses Midsize; Hyperscale and AI-centered use Large-scale. The chart has no separate AI group. This mapping is an app assumption, not a definition of AI facility size. Figure 4.5 category-mixture averages are not applied on top of these medians.",
+      "Only cooling configurations plotted for the selected group are offered. Category changes preserve the chosen cooling system when a matching chart row exists, otherwise select a supported default. Both actions reset PUE/WUE; users may override either value or restore the cooling medians. Other design inputs are preserved.",
       "UPS efficiency is displayed as the Table 4.3 range for the selected category, not an invented midpoint. UPS and cooling losses are already within PUE; no extra UPS loss factor is applied.",
       "Figures 5.6–5.7 describe national equipment and space-type trends. The displayed facility IT/infrastructure split is derived from its PUE; no national equipment percentage is imposed on this facility.",
     ],
-    references: [{ source: sources.lbnl, supports: "PUE definition, category references and UPS ranges; multiplication, annual averaging, and infrastructure subtraction are arithmetic." }],
+    references: [{ source: sources.lbnl, supports: "PUE definition, Figure 4.4 cooling-system median lines (approximately read from the chart), and UPS ranges; multiplication, annual averaging, and infrastructure subtraction are arithmetic." }],
   },
   water: {
     label: "Direct on-site water consumption",
@@ -141,14 +137,14 @@ export const SIMULATOR_METHODS = {
       `Annual-average water (US gal/day) = IT energy × w / ${LITERS_PER_GALLON} / 365`,
     ],
     assumptions: [
-      "Figure 4.5 category WUE references are Small 0.32, Midsize and Colo 0.67, Hyperscale 0.32, and AI Specialized 0.61 L/IT-kWh. These are modeled central values for a mixture of cooling systems and locations, not measurements of this facility.",
-      "The nine cooling choices describe Table 4.2 designs. They do not automatically replace PUE/WUE or tower count: the report does not supply one scalar correction per cooling design for the Figure 4.5 category mixture. Enter design-specific PUE/WUE when available. Selecting air cooling alone does not assert zero water use.",
+      "Site WUE and PUE start from the selected cooling configuration's median lines in Figure 4.4, approximately read from the supplied chart and rounded to 0.01. These are scenario references across modeled locations and operating conditions, not measured or Pittsburgh-specific values. Medians of PUE and WUE are applied separately; their pair is not necessarily one jointly observed facility or the median water demand.",
+      "The chart provides 17 rows: 3 Small, 7 Midsize, and 7 Large-scale configurations. Air-/water-cooled supplemental chillers and dry/adiabatic variants are kept separate. Near-zero readings retain small nonzero medians where visible; the fully dry liquid-cooling median is approximately 0.00. Cooling choices reset PUE/WUE but do not set tower count. Manual overrides remain available.",
       "This is a consumption-based proxy averaged over 365 days, including non-operating days. It does not establish peak-day demand, total withdrawal, blowdown, sanitary use, or water consumed by off-site electricity generation.",
       "The water equation is an algebraic rearrangement of the original WUE definition (The Green Grid, equation 2), using the LBNL consumption-based input and its boundary. It is not a new empirical cooling formula or a claim that consumption equals utility withdrawals.",
     ],
     references: [
       { source: sources.greenGrid, supports: "Original WUE ratio: multiplying IT energy by site WUE gives annual site water. The conversion uses 3.785411784 liters per US gallon." },
-      { source: sources.lbnl, supports: "Consumption-based category WUE inputs and cooling-system definitions, not a separate universal cooling-water demand formula." },
+      { source: sources.lbnl, supports: "Consumption-based WUE, Figure 4.4 cooling-system median lines (approximate chart readings), and Table 4.2 configurations, not a separate universal cooling-water demand formula." },
     ],
   },
   waterFootprint: {
@@ -255,29 +251,20 @@ export const SIMULATOR_METHODS = {
       { source: sources.production, supports: "65 million gal/day average production denominator; no remaining-capacity figure." },
     ],
   },
-  feeder: {
-    label: "Feeder load scale",
-    inputs: "Operating facility electricity P (MW).",
-    formulas: [`Scale multiple = P / ${FEEDER_PEAK_MVA} (assuming power factor = 1, so MW ≈ MVA)`],
-    assumptions: [
-      "The app selects the upper end of EPRI’s 4–6 MVA typical peak-loading range for 15 kV feeders. It is neither a maximum rating nor available hosting capacity.",
-      "The multiple does not tell how many feeders must be built or whether the local feeder will overload. Power factor, existing load, conductor size, voltage, and the actual connection design are not supplied. Annual hours do not change this operating-load comparison.",
-    ],
-    references: [{ source: sources.epri, supports: "Typical peak-loading range and the distinction between loading and maximum capacity." }],
-  },
+
 } satisfies Record<string, Method>;
 
 export type SimulatorMethodId = keyof typeof SIMULATOR_METHODS;
 
 export const PARAMETER_IMPACTS: { parameter: string; impacts: string; explanation: string }[] = [
-  { parameter: "Data center category", impacts: "Reference PUE, site WUE, and fixed UPS range", explanation: "Applies Figure 4.5 medians and Table 4.3 UPS ranges. Preserves entered facility MW and other design controls; AI is a workload profile, not a size threshold." },
-  { parameter: "Electricity usage", impacts: "IT load, energy, direct and off-site water, diesel exhaust, both price scenarios, feeder scale", explanation: "Total operating facility MW is the shared starting point." },
-  { parameter: "PUE", impacts: "IT/infrastructure split, direct water, combined water, water-price scenario", explanation: "At fixed total MW, IT MW = facility MW / PUE; total electricity, off-site water, feeder scale, and backup MW stay fixed." },
+  { parameter: "Data center category", impacts: "Available cooling systems, median PUE/WUE, and fixed UPS range", explanation: "Maps SMB → Small, SPs → Midsize, Hyperscale/AI → Large-scale in Figure 4.4. Retains cooling when charted for the new group, otherwise selects a supported default, then loads its medians. Preserves facility MW and other design controls; AI has no separate chart group." },
+  { parameter: "Electricity usage", impacts: "IT load, energy, direct and off-site water, diesel exhaust, electricity-price scenario", explanation: "Total operating facility MW is the shared starting point." },
+  { parameter: "PUE", impacts: "IT/infrastructure split, direct water, combined water", explanation: "At fixed total MW, IT MW = facility MW / PUE; total electricity, off-site water, and backup MW stay fixed." },
   { parameter: "UPS efficiency (fixed)", impacts: "Category reference only", explanation: "Read-only Table 4.3 range. Its losses are already represented in PUE, so no additional loss multiplier is applied." },
   { parameter: "Site area", impacts: "Displayed acreage only", explanation: "No acreage-derived impact is modeled; no external formula is applied." },
-  { parameter: "Cooling system", impacts: "Selected design and explanation", explanation: "Records one of nine Table 4.2 families. Category-average mode uses entered PUE/WUE; no unsupported system-specific coefficients or automatic tower-count changes are applied." },
-  { parameter: "Site WUE", impacts: "Direct and combined water, water-price scenario", explanation: "Liters consumed per IT kWh. Defaults to the selected category; can be replaced with a design-specific value. Does not affect off-site electricity-associated water." },
-  { parameter: "Hours running", impacts: "Annual energy, average load, direct and off-site water, both price scenarios", explanation: "Does not scale operating noise, the one-hour diesel screen, or feeder peak-load comparison." },
+  { parameter: "Cooling system", impacts: "PUE, site WUE, IT/infrastructure split, direct/combined water", explanation: "Loads the selected Figure 4.4 median PUE/WUE pair (approximately read from the chart). Chiller and adiabatic variants are separate. Does not change tower count or total electricity when facility MW is fixed." },
+  { parameter: "Site WUE", impacts: "Direct and combined water", explanation: "Liters consumed per IT kWh. Defaults to the selected cooling configuration's approximate median; can be overridden. Does not affect off-site electricity-associated water." },
+  { parameter: "Hours running", impacts: "Annual energy, average load, direct and off-site water, electricity-price scenario", explanation: "Does not scale operating noise or the one-hour diesel screen." },
   { parameter: "Night operation", impacts: "Noise weighting only", explanation: "Applies the continuous-operation day-night penalty; does not alter annual energy or exhaust." },
   { parameter: "Distance to homes", impacts: "Noise and diesel exhaust", explanation: "Noise uses at least 15 m; air uses the downwind peak when it lies beyond the homes." },
   { parameter: "Cooling-tower cells", impacts: "Tower noise only", explanation: "Logarithmic sound-power addition; does not set WUE or water demand." },

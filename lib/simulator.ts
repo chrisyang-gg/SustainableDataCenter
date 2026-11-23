@@ -1,7 +1,6 @@
 import {
   backupPlume,
   continuousLdn,
-  FEEDER_PEAK_MVA,
   HOURS_PER_YEAR,
   LITERS_PER_GALLON,
   outdoorLevelDba,
@@ -10,9 +9,13 @@ import {
 } from "@/lib/impact";
 import {
   coolingSystem,
+  coolingMedian,
+  COOLING_SCALE_LABELS,
   DATA_CENTER_PROFILES,
   GRID_WATER_L_PER_FACILITY_KWH,
   isDataCenterProfileId,
+  PROFILE_COOLING_SCALE,
+  PROFILE_DEFAULT_COOLING,
   type CoolingChoice,
   type DataCenterProfileId,
 } from "@/lib/lbnl-simulator";
@@ -77,7 +80,6 @@ export type SimulatorImpact = {
   plumeMeters: number;
   stacks: number;
   effectiveHeightMeters: number;
-  feederMultiple: number;
   averageMegawatts: number;
   electricityShare: number;
   waterShare: number;
@@ -98,17 +100,19 @@ function clamp(value: number, low: number, high: number): number {
   return Math.min(high, Math.max(low, value));
 }
 
-export function coolingLabel(choice: CoolingChoice, wue: number): string {
-  return `${coolingSystem(choice).label}. The calculation uses site WUE ${wue.toFixed(2)} L/IT-kWh. Figure 4.5 is a category cooling-mix reference, not a calibration of this individual cooling design.`;
+export function coolingLabel(config: SimulatorInput): string {
+  const median = coolingMedian(config.profile, config.cooling);
+  const matches = median && config.pue === median.pue && config.siteWueLPerKwh === median.wue;
+  return `${coolingSystem(config.cooling).label}. Uses PUE ${config.pue.toFixed(2)} and site WUE ${config.siteWueLPerKwh.toFixed(2)} L/IT-kWh. ${matches ? `Approximate Figure 4.4 median readings for ${COOLING_SCALE_LABELS[PROFILE_COOLING_SCALE[config.profile]]}; not a site-specific prediction.` : "Custom PUE/WUE inputs; these are not the chart median pair."}`;
 }
 
 export const DEFAULT_SIMULATOR_INPUT: SimulatorInput = {
   profile: "sps",
   facilityMegawatts: 25,
-  pue: DATA_CENTER_PROFILES.sps.pue,
+  pue: coolingMedian("sps", "water-cooled-chiller")!.pue,
   areaAcres: 15,
   cooling: "water-cooled-chiller",
-  siteWueLPerKwh: DATA_CENTER_PROFILES.sps.wue,
+  siteWueLPerKwh: coolingMedian("sps", "water-cooled-chiller")!.wue,
   hoursPerYear: HOURS_PER_YEAR,
   runsAllNight: true,
   homesMeters: 180,
@@ -117,17 +121,24 @@ export const DEFAULT_SIMULATOR_INPUT: SimulatorInput = {
   releaseMeters: 5,
 };
 
-/** Profile changes reset only the referenced efficiencies, preserving the design. */
+/** Use the selected chart row, preserving unrelated design inputs. */
+export function applyCoolingSystem(input: SimulatorInput, cooling: CoolingChoice): SimulatorInput {
+  const median = coolingMedian(input.profile, cooling);
+  if (!median) throw new RangeError("No Figure 4.4 median for this category and cooling system.");
+  return { ...input, cooling, pue: median.pue, siteWueLPerKwh: median.wue };
+}
+
+/** Retain cooling if the new scale has a chart row; otherwise select its default. */
 export function applyDataCenterProfile(input: SimulatorInput, profile: DataCenterProfileId): SimulatorInput {
-  const reference = DATA_CENTER_PROFILES[profile];
-  return { ...input, profile, pue: reference.pue, siteWueLPerKwh: reference.wue };
+  const cooling = coolingMedian(profile, input.cooling) ? input.cooling : PROFILE_DEFAULT_COOLING[profile];
+  return applyCoolingSystem({ ...input, profile }, cooling);
 }
 
 function normalize(input: SimulatorInput): SimulatorInput {
   const facilityMegawatts = clamp(input.facilityMegawatts, 0.5, 500);
   const pue = clamp(input.pue, 1, 3);
   const cooling = coolingSystem(input.cooling).id;
-  const siteWueLPerKwh = clamp(input.siteWueLPerKwh, 0, 3);
+  const siteWueLPerKwh = clamp(input.siteWueLPerKwh, 0, 5);
   return {
     profile: isDataCenterProfileId(input.profile) ? input.profile : "sps",
     facilityMegawatts,
@@ -188,7 +199,7 @@ export function simulateDataCenter(input: SimulatorInput): SimulatorImpact {
     upsEfficiencyMin: profile.upsMin,
     upsEfficiencyMax: profile.upsMax,
     areaAcres: config.areaAcres,
-    coolingLabel: coolingLabel(config.cooling, config.siteWueLPerKwh),
+    coolingLabel: coolingLabel(config),
     gallonsPerDay,
     noiseLeqDba,
     noiseLdnDba,
@@ -197,7 +208,6 @@ export function simulateDataCenter(input: SimulatorInput): SimulatorImpact {
     plumeMeters: plume.plumeMeters,
     stacks: plume.stacks,
     effectiveHeightMeters: plume.effectiveHeightMeters,
-    feederMultiple: config.facilityMegawatts / FEEDER_PEAK_MVA,
     averageMegawatts,
     electricityShare,
     waterShare,

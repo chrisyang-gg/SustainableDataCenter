@@ -3,25 +3,27 @@
 import { useState, type ReactNode } from "react";
 import { SimulatorMethodology, SimulatorParameterGuide } from "@/components/simulator-methodology";
 import type { SimulatorMethodId } from "@/lib/simulator-methodology";
-import { EPA_OUTDOOR_LDN_DBA, FEEDER_PEAK_MVA, NO2_1H_UG_PER_M3 } from "@/lib/impact";
+import { EPA_OUTDOOR_LDN_DBA, NO2_1H_UG_PER_M3 } from "@/lib/impact";
 import {
   applyDataCenterProfile,
+  applyCoolingSystem,
   DEFAULT_SIMULATOR_INPUT,
   PA_RESIDENTIAL_CENTS_PER_KWH,
-  PWSA_DOLLARS_PER_THOUSAND_GALLONS,
+  // PWSA_DOLLARS_PER_THOUSAND_GALLONS, // Restore with the water-price result.
   simulateDataCenter,
   type CoolingChoice,
   type SimulatorImpact,
   type SimulatorInput,
 } from "@/lib/simulator";
 import { Button } from "@/components/ui/button";
-import { COOLING_SYSTEMS, coolingSystem, DATA_CENTER_PROFILES, GRID_WATER_L_PER_FACILITY_KWH, LBNL_REPORT_URL, type DataCenterProfileId } from "@/lib/lbnl-simulator";
+import { coolingMedian, coolingMedians, coolingSystem, COOLING_SCALE_LABELS, DATA_CENTER_PROFILES, GRID_WATER_L_PER_FACILITY_KWH, LBNL_REPORT_URL, PROFILE_COOLING_SCALE, type DataCenterProfileId } from "@/lib/lbnl-simulator";
 
 
 function centsPerKwh(value: number): string {
   return `${value.toLocaleString("en-US", { minimumFractionDigits: 3, maximumFractionDigits: 3 })}¢ / kWh`;
 }
 
+/* Retained for restoring the water-price result.
 function dollarsPerThousandGallons(value: number): string {
   const dollars = value.toLocaleString("en-US", {
     style: "currency",
@@ -31,6 +33,7 @@ function dollarsPerThousandGallons(value: number): string {
   });
   return `${dollars} / 1,000 gal`;
 }
+*/
 
 export function SimulatorPanel() {
   const [draft, setDraft] = useState<SimulatorInput>(DEFAULT_SIMULATOR_INPUT);
@@ -45,7 +48,11 @@ export function SimulatorPanel() {
   }
 
   const reference = DATA_CENTER_PROFILES[draft.profile];
-  const customEfficiencies = draft.pue !== reference.pue || draft.siteWueLPerKwh !== reference.wue;
+  const median = coolingMedian(draft.profile, draft.cooling)!;
+  const coolingOptions = coolingMedians(draft.profile);
+  const scaleLabel = COOLING_SCALE_LABELS[PROFILE_COOLING_SCALE[draft.profile]];
+  const customEfficiencies = draft.pue !== median.pue || draft.siteWueLPerKwh !== median.wue;
+  const resultsOutdated = impact !== null && JSON.stringify(draft) !== JSON.stringify(impact.configuration);
 
   const facilityMw = Number.isFinite(draft.facilityMegawatts) ? draft.facilityMegawatts : 0;
   const itMw = draft.pue > 0 ? facilityMw / draft.pue : 0;
@@ -73,15 +80,26 @@ export function SimulatorPanel() {
           ))}
         </div>
         <section className="space-y-2 border border-border px-3 py-3 text-sm leading-6">
-          <h3 className="font-medium text-foreground">{reference.label}: LBNL reference</h3>
-          <p className="text-foreground">PUE {reference.pue.toFixed(2)} · Site WUE {reference.wue.toFixed(2)} L/IT-kWh</p>
-          <p className="text-muted-foreground">Figure 4.5 central estimates (medians), based on the 2023 category mix. The report’s group is “{reference.reportLabel}”. SMB uses the broader Small group; SPs uses Midsize and Colo.</p>
-          <p className="text-muted-foreground">These profiles do not set a facility’s MW size. AI is a workload profile that can occur in hyperscale or colocation facilities.</p>
-          <a href={`${LBNL_REPORT_URL}#page=47`} className="text-primary underline" target="_blank" rel="noreferrer">Figure 4.5, p. 47</a>
+          <h3 className="font-medium text-foreground">{reference.label}: cooling reference</h3>
+          <p className="text-foreground">{coolingSystem(draft.cooling).label}</p>
+          <p className="text-foreground">Chart medians: PUE ≈ {median.pue.toFixed(2)} · Site WUE ≈ {median.wue.toFixed(2)} L/IT-kWh</p>
+          <p className="text-muted-foreground">Approximate readings of the median lines in Figure 4.4, rounded to 0.01. These modeled references span locations and operating assumptions; they are not local measurements. Changing the cooling system loads its PUE and WUE together.</p>
+          <p className="text-muted-foreground">Chart group: {scaleLabel}. SMB maps to Small; SPs to Midsize; Hyperscale and AI-centered to Large-scale. The chart has no separate AI group. Profiles do not set facility MW.</p>
+          <a href={`${LBNL_REPORT_URL}#page=46`} className="text-primary underline" target="_blank" rel="noreferrer">Figure 4.4, p. 46</a>
           {customEfficiencies ? <div>
             <p className="text-foreground">Custom PUE/WUE entered for this design.</p>
-            <button type="button" className="text-primary underline" onClick={() => chooseProfile(draft.profile)}>Restore category PUE and WUE</button>
+            <button type="button" className="text-primary underline" onClick={() => setDraft((current) => applyCoolingSystem(current, current.cooling))}>Restore cooling medians</button>
           </div> : null}
+          <details>
+            <summary className="cursor-pointer text-primary">View {scaleLabel} cooling medians</summary>
+            <div className="mt-2 overflow-x-auto">
+              <table className="w-full text-left text-sm leading-6">
+                <caption className="sr-only">Approximate Figure 4.4 median readings for {scaleLabel}</caption>
+                <thead><tr className="border-b border-border"><th scope="col" className="py-2 pr-3">Cooling system</th><th scope="col" className="py-2 pr-3">PUE</th><th scope="col" className="py-2">Site WUE (L/IT-kWh)</th></tr></thead>
+                <tbody>{coolingOptions.map((row) => <tr key={row.cooling} className="border-b border-border align-top"><th scope="row" className="py-2 pr-3 font-normal">{coolingSystem(row.cooling).label}</th><td className="whitespace-nowrap py-2 pr-3">≈ {row.pue.toFixed(2)}</td><td className="whitespace-nowrap py-2">≈ {row.wue.toFixed(2)}</td></tr>)}</tbody>
+              </table>
+            </div>
+          </details>
         </section>
         <SimulatorParameterGuide />
         <form
@@ -110,7 +128,7 @@ export function SimulatorPanel() {
           <Field
             label="Power usage effectiveness"
             component="Electrical plant"
-            hint="PUE = facility electricity / IT electricity. Starts from Figure 4.5; edit only if you have a design-specific value. UPS losses are already included."
+            hint="PUE = facility electricity / IT electricity. Starts from the selected cooling system's approximate Figure 4.4 median; you can enter a design-specific value. UPS losses are already included. At fixed facility MW, PUE changes the IT/overhead split, not total electricity."
           >
             <NumberControl
               label="PUE"
@@ -143,32 +161,32 @@ export function SimulatorPanel() {
           <Field
             label="Cooling system"
             component="Cooling plant"
-            hint="Nine design families from Table 4.2. Category PUE/WUE averages combine multiple cooling systems; this selection does not invent system-specific efficiency factors."
+            hint={`Shows the ${coolingOptions.length} configurations plotted for ${scaleLabel} in Figure 4.4. Selecting a system replaces both PUE and WUE with its approximate medians, including any custom edits.`}
           >
             <select
               className="h-8 w-full border border-border bg-black px-2 text-sm text-foreground"
               value={draft.cooling}
               aria-label="Cooling system"
-              onChange={(event) => update({ cooling: event.target.value as CoolingChoice })}
+              onChange={(event) => setDraft((current) => applyCoolingSystem(current, event.target.value as CoolingChoice))}
             >
-              {COOLING_SYSTEMS.map((system) => <option key={system.id} value={system.id}>{system.label}</option>)}
+              {coolingOptions.map((row) => <option key={row.cooling} value={row.cooling}>{coolingSystem(row.cooling).label}</option>)}
             </select>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">{coolingSystem(draft.cooling).note}</p>
-            <p className="mt-2 text-sm leading-6 text-muted-foreground">Category-average mode: the entered PUE and WUE determine energy and water. For this specific cooling design, enter measured/design PUE and WUE; tower count remains a separate noise input.</p>
+            <p className="mt-2 text-sm leading-6 text-muted-foreground">Only charted combinations are offered. Category changes retain the cooling system when it is charted for the new group, otherwise select a supported default. Cooling-tower count remains a separate noise input.</p>
             <a className="mt-2 block text-sm text-primary underline" href={`${LBNL_REPORT_URL}#page=40`} target="_blank" rel="noreferrer">Cooling-system definitions: Table 4.2, pp. 40–42</a>
           </Field>
           <Field
             label="Site WUE"
             component="On-site water consumption"
-            hint="Liters consumed on site per IT kWh. Starts from the selected category’s Figure 4.5 value; edit for a design-specific estimate."
+            hint="Liters consumed on site per IT kWh. Starts from the selected cooling system's approximate Figure 4.4 median; edit for a design-specific estimate. A plotted value near zero is not a guarantee of zero water use."
           >
             <NumberControl
               label="Site water use"
               value={draft.siteWueLPerKwh}
               min={0}
-              max={3}
+              max={5}
               step={0.01}
-              suffix="L/kWh"
+              suffix="L/IT-kWh"
               onChange={(siteWueLPerKwh) => update({ siteWueLPerKwh })}
             />
           </Field>
@@ -251,6 +269,7 @@ export function SimulatorPanel() {
           <Button type="submit">Run estimate</Button>
         </form>
         <section id="simulator-results" className="space-y-3" aria-live="polite">
+          {resultsOutdated ? <p className="border border-primary px-3 py-2 text-sm leading-6 text-foreground" role="status">Inputs changed. Run estimate to update the results below.</p> : null}
           {impact === null ? (
             <p className="text-sm leading-6 text-muted-foreground">
               Run an estimate to see each impact, its formula, the values used, source pages, and modeling assumptions.
@@ -293,7 +312,7 @@ function Results({ impact }: { impact: SimulatorImpact }) {
         value={`${(impact.totalWaterLitersPerYear / 1_000_000).toLocaleString("en-US", { maximumFractionDigits: 2 })} million L/year`}
         decision={`${GRID_WATER_L_PER_FACILITY_KWH.toFixed(2)} L / facility kWh`}
         referenceLabel="2023 U.S. data-center grid proxy"
-        note={`${(impact.directWaterLitersPerYear / 1_000_000).toFixed(2)} million L direct + ${(impact.indirectWaterLitersPerYear / 1_000_000).toFixed(2)} million L off-site. The grid proxy is not a local utility measurement, and off-site water is not added to the local water-price scenario.`}
+        note={`${(impact.directWaterLitersPerYear / 1_000_000).toFixed(2)} million L direct + ${(impact.indirectWaterLitersPerYear / 1_000_000).toFixed(2)} million L off-site. The grid proxy is not a local utility measurement.`}
         method="waterFootprint"
         impact={impact}
       />
@@ -329,6 +348,7 @@ function Results({ impact }: { impact: SimulatorImpact }) {
         method="electricityPrice"
         impact={impact}
       />
+      {/* Water-price estimate temporarily disabled; retain for restoration.
       <Metric
         title="Illustrative water and sewer price increment"
         value={`+${dollarsPerThousandGallons(impact.waterDollarsPerThousandGallons)}`}
@@ -338,15 +358,7 @@ function Results({ impact }: { impact: SimulatorImpact }) {
         method="waterPrice"
         impact={impact}
       />
-      <Metric
-        title="Feeder load scale"
-        value={`${impact.feederMultiple.toFixed(1)}× typical peak loading`}
-        decision={`${FEEDER_PEAK_MVA} MVA reference`}
-        referenceLabel="EPRI loading benchmark"
-        note="Operating facility MW divided by 6 MVA, assuming unity power factor. This compares scale with typical 15 kV feeder loading; it does not estimate spare capacity or establish an overload."
-        method="feeder"
-        impact={impact}
-      />
+      */}
     </>
   );
 }

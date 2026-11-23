@@ -57,18 +57,20 @@ The same estimate then lists siting rules. 44 CFR 60.3 stops a new building in a
 
 ## Data center simulator
 
-The Simulator tab separates design inputs from the map and What-if review. Four profiles replace the previous size presets. Selecting a profile restores reference PUE and site WUE while preserving facility MW, cooling choice, and other design inputs. AI is a workload profile that can occur in hyperscale or colocation facilities, not a mutually exclusive size threshold.
+The Simulator tab separates design inputs from the map and What-if review. Selecting a cooling system loads its approximate median PUE and site WUE from Figure 4.4. Selecting a profile retains the cooling system when the new chart group includes it, otherwise selects a supported default, then loads that row's medians. Facility MW and other design inputs are preserved. AI is a workload profile that can occur in hyperscale or colocation facilities, not a mutually exclusive size threshold.
 
-`lib/lbnl-simulator.ts` records the central 2023 category values (medians) from [LBNL's 2024 report, Figure 4.5, p. 47](https://eta-publications.lbl.gov/sites/default/files/2024-12/lbnl-2024-united-states-data-center-energy-usage-report_1.pdf#page=47). SMB maps to its broader Small group; SPs maps to Midsize and Colo. These modeled values reflect the category's cooling-system and location mixtures, not a measurement of the proposed facility.
+`lib/lbnl-simulator.ts` records **17 approximate median-line readings** from the user-supplied image of [LBNL's 2024 report, Figure 4.4, p. 46](https://eta-publications.lbl.gov/sites/default/files/2024-12/lbnl-2024-united-states-data-center-energy-usage-report_1.pdf#page=46): 3 Small, 7 Midsize, and 7 Large-scale rows. Readings are rounded to 0.01; they are not exact tabulated values, box/whisker midpoints, or local climate predictions. The UI shows the active pair and an expandable table for its chart group. Each PUE/WUE median is applied independently; the pair need not represent one jointly observed facility or the median water demand.
 
-| Profile | Report group | PUE | Site WUE (L/IT-kWh) | Fixed UPS range (Table 4.3, p. 43) |
-| --- | --- | --- | --- | --- |
-| SMB | Small | 1.91 | 0.32 | 77–85% |
-| SPs (medium scale) | Midsize and Colo | 1.68 | 0.67 | 80–94% |
-| Hyperscale | Hyperscale | 1.22 | 0.32 | 90–99% |
-| AI-centered | AI Specialized | 1.14 | 0.61 | 90–99% |
+| Profile | Figure 4.4 group | Cooling default when previous design is unavailable | Fixed UPS range (Table 4.3, p. 43) |
+| --- | --- | --- | --- |
+| SMB | Small | Water-cooled chiller | 77–85% |
+| SPs (medium scale) | Midsize | Water-cooled chiller | 80–94% |
+| Hyperscale | Large-scale | Airside economizer + adiabatic cooling (water-cooled chiller) | 90–99% |
+| AI-centered | Large-scale | IT liquid cooling: waterside economizer (water-cooled chiller) | 90–99% |
 
-UPS efficiency is a read-only range, because Table 4.3 supplies ranges rather than single values. UPS losses are already in PUE and are not multiplied into energy again. PUE and WUE remain editable for a design-specific estimate. Nine cooling families follow Table 4.2 (pp. 40–42). Selecting a cooling family records the design and explains its operation; it does not invent a scalar efficiency correction or set tower count. Reproducing cooling-specific PUE/WUE would require the report's hourly thermal simulation and climate/operating inputs, beyond these category references.
+The chart has no separate AI group; mapping both Hyperscale and AI-centered to Large-scale is an explicit app assumption. Only combinations plotted for that group are offered. The 13 distinct cooling configurations split Table 4.2 families by air-/water-cooled supplemental chillers and dry/adiabatic assist. For example, Midsize water-cooled chiller uses approximately PUE 1.52 / WUE 2.90, versus 1.83 / 0.05 for air-cooled chiller. Small water-cooled chiller uses 1.70 / 3.22; the WUE input supports values through 5 so it is not clipped. The near-zero fully dry liquid-cooling median is entered as 0.00; this is not a guarantee of zero operational water use.
+
+UPS efficiency remains a read-only Table 4.3 range. UPS losses are already in PUE and are not multiplied into energy again. PUE and WUE remain editable, with a Restore cooling medians action after edits. Switching cooling replaces both custom values. Figure 4.5 category-mixture medians remain in the source as historical context but no longer set the simulator defaults. Tower count remains a separate noise input. Run estimate after changing inputs; previous results are marked as needing a new run. At fixed total facility MW, changing PUE changes IT versus infrastructure energy, not total facility electricity or off-site water.
 
 `simulateDataCenter` in `lib/simulator.ts` computes:
 
@@ -79,7 +81,7 @@ UPS efficiency is a read-only range, because Table 4.3 supplies ranges rather th
 
 The water equation rearranges the original WUE definition in [The Green Grid (2011), White Paper 35, p. 6, equation (2)](https://www.thegreengrid.org/system/files/store/WUE_v1.pdf#page=6). Equations (3)–(4) support the combined boundary: source WUE = site WUE + PUE × energy-water intensity. LBNL's consumption-based data supply the inputs; this does not equate consumption with utility withdrawal. The 4.52 L/kWh input is the report's **2023 U.S. data-center electricity-mix proxy** (p. 57), not a local measurement, forecast, or marginal water factor. The 2011 paper's older grid factor is not used. Off-site water is excluded from the local water-price scenario.
 
-Noise retains the ISO 9613-2 tower-cell screen. Air retains the one-hour diesel plume screen, with entered exhaust height and backup share. The feeder comparison retains the 6 MVA reference. Site area is displayed without an acreage-derived impact. Price increments remain illustrative proportional app assumptions using historical utility/rate baselines, not price forecasts. Only direct on-site water enters the water-price calculation.
+Noise retains the ISO 9613-2 tower-cell screen. Air retains the one-hour diesel plume screen, with entered exhaust height and backup share. Site area is displayed without an acreage-derived impact. The electricity-price increment remains an illustrative proportional app assumption using historical utility/rate baselines, not a price forecast. The water-price result is temporarily commented out in the simulator; its model and references are retained for restoration. Direct water consumption, water footprint, and WUE controls remain available.
 
 Every impact has **Calculation & references**, with implemented equations, worked values from a normalized input snapshot, specific source pages, and limitations. The parameter guide maps each control to its actual effect. `lib/simulator-methodology.ts` records source roles, reviewed November 23, 2026. Run model checks with `node --import tsx --test lib/*.test.ts` and `npx tsc --noEmit`.
 
